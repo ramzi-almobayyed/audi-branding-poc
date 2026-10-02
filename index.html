@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Audi Branding POC</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <div id="loginScreen" class="screen login-screen">
+        <div class="login-card">
+          <div class="brand-block">
+            <span class="brand-mark">AUDI</span>
+            <p>Branding Proof of Concept</p>
+          </div>
+          <h1>Protected Access</h1>
+          <p class="subtitle">Enter the password to view the live concept.</p>
+
+          <form id="loginForm">
+            <label for="password" class="sr-only">Password</label>
+            <input id="password" type="password" placeholder="Password" autocomplete="off" />
+            <button type="submit">Unlock</button>
+          </form>
+
+          <p id="errorMessage" class="error-message" aria-live="polite"></p>
+        </div>
+      </div>
+
+      <div id="contentScreen" class="screen content-screen hidden">
+        <header class="topbar">
+          <div class="logo">AUDI</div>
+          <div class="top-actions">
+            <button id="logoutBtn" class="logout-btn" type="button">Log out</button>
+          </div>
+        </header>
+
+        <main class="content-wrap">
+          <section class="hero">
+            <div class="hero-copy">
+              <span class="eyebrow">Brand Experience</span>
+              <h2>Audi Brand Presentation</h2>
+              <p>
+                This is a demo concept page for sharing the branding direction, presentation,
+                and visual exploration in a protected environment.
+              </p>
+            </div>
+            <div class="hero-panel">
+              <div class="mock-card">
+                <span class="badge">POC</span>
+                <h3>Creative Direction</h3>
+                <p>Luxury, precision, innovation, and premium identity.</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="grid">
+            <article class="panel">
+              <h3>Brand Pillars</h3>
+              <ul>
+                <li>Modern luxury</li>
+                <li>Performance identity</li>
+                <li>Precision craftsmanship</li>
+                <li>Digital-first experience</li>
+              </ul>
+            </article>
+
+            <article class="panel">
+              <h3>Visual Language</h3>
+              <ul>
+                <li>Minimal typography</li>
+                <li>Elegant contrast</li>
+                <li>Premium editorial layout</li>
+                <li>High-end motion cues</li>
+              </ul>
+            </article>
+
+            <article class="panel wide">
+              <h3>Proposed Messaging</h3>
+              <p>
+                “A deeper expression of design, performance, and digital elegance — crafted for
+                a modern audience who values sophistication and innovation.”
+              </p>
+            </article>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
