@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AUDI Package Variations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  color-scheme: dark;
+  --bg:#0d0f18; --surf:#141720; --surf2:#1c2030; --border:#2a2f4a;
+  --text:#e2e8f0; --muted:#8a98b0; --accent:#3399cc; --accent-strong:#5cc8ff;
+  --tile-dark:#0d0f18; --tile-light:#f3f6fa; --tile-light-border:#d6dee8;
+  --btn-bg:#0067A5; --btn-text:#ffffff;
+  --display:'Plus Jakarta Sans', 'Segoe UI', system-ui, sans-serif;
+  --body:'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif;
+  --mono:'JetBrains Mono', ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    color-scheme: light;
+    --bg:#f4f6fa; --surf:#ffffff; --surf2:#eef2f7; --border:#d8dfea;
+    --text:#131a2a; --muted:#56647a; --accent:#0067A5; --accent-strong:#004f7c;
+  }
+}
+:root[data-theme="light"]{
+  color-scheme: light;
+  --bg:#f4f6fa; --surf:#ffffff; --surf2:#eef2f7; --border:#d8dfea;
+  --text:#131a2a; --muted:#56647a; --accent:#0067A5; --accent-strong:#004f7c;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:15px;line-height:1.55;margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:20px;padding-block:40px 64px;display:flex;flex-direction:column;gap:40px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.intro{display:grid;grid-template-columns:1.3fr 1fr;gap:32px;align-items:center}
+.intro h1{font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:-.01em;margin-top:8px}
+.intro p{color:var(--muted);max-width:62ch;margin:12px 0 0}
+.base{display:flex;align-items:center;gap:16px;background:var(--surf);border:1px solid var(--border);border-radius:10px;padding:16px 18px}
+.base svg{width:64px;height:64px;flex:none}
+.base b{font-family:var(--display);font-size:15px;display:block}
+.base span{color:var(--muted);font-size:13px}
+
+.preview{background:var(--surf);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.preview-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:14px 18px;border-bottom:1px solid var(--border)}
+.preview-top h2{font-size:15px;font-weight:700}
+.preview-top span{font-size:13px;color:var(--muted)}
+.browser{background:#0a0c13;padding:10px 12px 0}
+.tabs{display:flex;gap:4px}
+.tab{display:flex;align-items:center;gap:8px;background:#141720;color:#c9d3e0;font-size:12px;padding:8px 14px;border-radius:8px 8px 0 0;max-width:280px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tab.ghost{background:transparent;color:#5d6a80}
+.tab svg{flex:none}
+.dash-bar{background:#141720;border-bottom:1px solid #2a2f4a;display:flex;align-items:center;gap:12px;padding:12px 18px;color:#e2e8f0}
+.dash-bar .brand{display:flex;align-items:center;gap:10px}
+.dash-bar .word{font-family:var(--display);font-weight:800;letter-spacing:.14em;font-size:17px}
+.dash-bar .sub{color:#7888a0;font-size:14px;border-left:1px solid #2a2f4a;padding-left:12px}
+.dash-body{background:#0d0f18;padding:18px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.dash-body div{height:54px;border-radius:6px;background:#1c2030;border:1px solid #2a2f4a}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:20px}
+.concept{background:var(--surf);border:1px solid var(--border);border-radius:10px;display:flex;flex-direction:column;overflow:hidden;transition:border-color .2s}
+.concept.active{border-color:var(--accent)}
+.concept-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:16px 18px 0}
+.concept-head h3{font-size:19px;font-weight:700}
+.tag{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.tag.rec{color:var(--accent-strong)}
+.stage{margin:14px 18px 0;background:var(--tile-dark);border:1px solid #232842;border-radius:8px 8px 0 0;display:grid;place-items:center;padding:28px 0}
+.stage svg{width:132px;height:132px}
+.lockup{display:flex;align-items:center;gap:12px;margin:0 18px;padding:14px 16px;background:var(--tile-light);border:1px solid var(--tile-light-border);border-top:0;border-radius:0 0 8px 8px;color:#131a2a}
+.lockup svg{width:40px;height:40px;flex:none}
+.lockup .word{font-family:var(--display);font-weight:800;font-size:24px;letter-spacing:.14em;line-height:1}
+.lockup .expand{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;color:#56647a;text-transform:uppercase;margin-top:5px;line-height:1.3}
+.favs{display:flex;gap:10px;margin:14px 18px 0;flex-wrap:wrap}
+.fav{display:flex;align-items:flex-end;gap:12px;padding:10px 12px;border-radius:6px;flex:1;min-width:130px}
+.fav.d{background:var(--tile-dark);border:1px solid #232842}
+.fav.l{background:var(--tile-light);border:1px solid var(--tile-light-border)}
+.fav figure{margin:0;display:flex;flex-direction:column;align-items:center;gap:4px}
+.fav figcaption{font-family:var(--mono);font-size:9px;color:#7888a0;font-variant-numeric:tabular-nums}
+.body{padding:14px 18px 18px;display:flex;flex-direction:column;gap:10px;flex:1}
+.body p{margin:0;color:var(--muted);font-size:14px}
+.reads{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:5px;font-size:13px}
+.reads li{display:grid;grid-template-columns:92px 1fr;gap:8px}
+.reads span{font-family:var(--mono);font-size:11px;color:var(--accent);text-transform:uppercase;letter-spacing:.06em;padding-top:2px}
+.body button{margin-top:auto;align-self:flex-start;font:600 13px var(--body);background:transparent;color:var(--accent);border:1px solid var(--accent);border-radius:6px;padding:8px 14px;cursor:pointer}
+.body button:hover{background:var(--accent);color:var(--surf)}
+.body button:focus-visible{outline:2px solid var(--accent-strong);outline-offset:2px}
+.concept.active .body button{background:var(--btn-bg);color:var(--btn-text);border-color:var(--btn-bg)}
+
+.note{background:var(--surf2);border:1px solid var(--border);border-radius:10px;padding:20px 22px;display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.note h2{font-size:17px;margin-bottom:6px}
+.note p{margin:0;color:var(--muted);font-size:14px;max-width:60ch}
+.note code{font-family:var(--mono);font-size:12.5px;color:var(--text)}
+@media (prefers-reduced-motion: reduce){.concept{transition:none}}
+@media (max-width:760px){
+  .intro,.note{grid-template-columns:1fr}
+  .dash-body{grid-template-columns:1fr 1fr}
+  .dash-bar .sub{display:none}
+  .grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- Shared gradients and marks, drawn on a 64-unit grid -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="gBlue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3fa9e0"/><stop offset="1" stop-color="#0067A5"/>
+    </linearGradient>
+    <linearGradient id="gTile" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0a7cc2"/><stop offset="1" stop-color="#00456d"/>
+    </linearGradient>
+    <radialGradient id="gCore" cx=".4" cy=".35" r=".7">
+      <stop offset="0" stop-color="#d4f3ff"/><stop offset="1" stop-color="#5cc8ff"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Base: original concept 4 -->
+  <symbol id="m0" viewBox="0 0 64 64">
+    <polygon points="32,5 55.4,18.5 55.4,45.5 32,59 8.6,45.5 8.6,18.5" fill="url(#gTile)" stroke="url(#gTile)" stroke-width="5" stroke-linejoin="round"/>
+    <polyline points="20.5,46 32,20 43.5,46" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="25" y1="38" x2="39" y2="38" stroke="#5cc8ff" stroke-width="5" stroke-linecap="round"/>
+  </symbol>
+
+  <!-- 4A Isometric Cube -->
+  <symbol id="m1" viewBox="0 0 64 64">
+    <polygon points="32,5 55.4,18.5 32,32 8.6,18.5" fill="#3fa9e0"/>
+    <polygon points="8.6,18.5 32,32 32,59 8.6,45.5" fill="#0067A5"/>
+    <polygon points="32,32 55.4,18.5 55.4,45.5 32,59" fill="#00456d"/>
+    <polyline points="20.5,47 32,20 43.5,47" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="25" y1="39" x2="39" y2="39" stroke="#fff" stroke-width="5" stroke-linecap="round"/>
+  </symbol>
+
+  <!-- 4B Carved -->
+  <symbol id="m2" viewBox="0 0 64 64">
+    <defs>
+      <mask id="cutA" maskUnits="userSpaceOnUse" x="0" y="0" width="64" height="64">
+        <rect width="64" height="64" fill="#fff"/>
+        <polyline points="12.5,66 32,14 51.5,66" fill="none" stroke="#000" stroke-width="5.5" stroke-linejoin="miter"/>
+        <line x1="22" y1="41" x2="42" y2="41" stroke="#000" stroke-width="5"/>
+      </mask>
+    </defs>
+    <g mask="url(#cutA)">
+      <polygon points="32,5 55.4,18.5 55.4,45.5 32,59 8.6,45.5 8.6,18.5" fill="url(#gTile)" stroke="url(#gTile)" stroke-width="5" stroke-linejoin="round"/>
+      <polygon points="32,20 38.6,38.5 25.4,38.5" fill="#5cc8ff"/>
+    </g>
+  </symbol>
+
+  <!-- 4C Pipeline Ring -->
+  <symbol id="m3" viewBox="0 0 64 64">
+    <polygon points="32,6 54.5,19 54.5,45 32,58 9.5,45 9.5,19" fill="none" stroke="#3399cc" stroke-width="3.5" stroke-linejoin="round"/>
+    <circle cx="32" cy="6" r="7" fill="#5cc8ff" opacity=".22"/>
+    <circle cx="32" cy="6" r="4.5" fill="url(#gCore)"/>
+    <g fill="#0067A5">
+      <circle cx="54.5" cy="19" r="4"/><circle cx="54.5" cy="45" r="4"/><circle cx="32" cy="58" r="4"/>
+      <circle cx="9.5" cy="45" r="4"/><circle cx="9.5" cy="19" r="4"/>
+    </g>
+    <polyline points="21.5,45 32,22 42.5,45" fill="none" stroke="url(#gBlue)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="25.5" y1="37.5" x2="38.5" y2="37.5" stroke="#5cc8ff" stroke-width="4.5" stroke-linecap="round"/>
+  </symbol>
+
+  <!-- 4D Core Node -->
+  <symbol id="m4" viewBox="0 0 64 64">
+    <polygon points="32,5 55.4,18.5 55.4,45.5 32,59 8.6,45.5 8.6,18.5" fill="url(#gTile)" stroke="url(#gTile)" stroke-width="5" stroke-linejoin="round"/>
+    <polyline points="20.5,47 32,22 43.5,47" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="25" y1="39" x2="39" y2="39" stroke="#fff" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="32" cy="20" r="9" fill="#5cc8ff" opacity=".28"/>
+    <circle cx="32" cy="20" r="5.5" fill="url(#gCore)"/>
+  </symbol>
+
+  <!-- 4E Hex Letterform -->
+  <symbol id="m5" viewBox="0 0 64 64">
+    <polyline points="9.5,54 9.5,19 32,6 54.5,19 54.5,54" fill="none" stroke="url(#gBlue)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="14" y1="35" x2="50" y2="35" stroke="#5cc8ff" stroke-width="7" stroke-linecap="round"/>
+  </symbol>
+
+  <!-- 4F Release Seal -->
+  <symbol id="m6" viewBox="0 0 64 64">
+    <polygon points="32,3 57.1,17.5 57.1,46.5 32,61 6.9,46.5 6.9,17.5" fill="none" stroke="#3399cc" stroke-width="3" stroke-linejoin="round"/>
+    <polygon points="32,9.5 51.5,20.75 51.5,43.25 32,54.5 12.5,43.25 12.5,20.75" fill="url(#gTile)" stroke="url(#gTile)" stroke-width="3" stroke-linejoin="round"/>
+    <polyline points="23,43 32,22 41,43" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="26.3" y1="36.5" x2="37.7" y2="36.5" stroke="#5cc8ff" stroke-width="4" stroke-linecap="round"/>
+  </symbol>
+
+  <!-- 4G Carved Seal (4B + 4F) -->
+  <symbol id="m7" viewBox="0 0 64 64">
+    <defs>
+      <mask id="cutSeal" maskUnits="userSpaceOnUse" x="0" y="0" width="64" height="64">
+        <rect width="64" height="64" fill="#fff"/>
+        <polyline points="15.9,60 32,17 48.1,60" fill="none" stroke="#000" stroke-width="4.5" stroke-linejoin="miter"/>
+        <line x1="22" y1="40" x2="42" y2="40" stroke="#000" stroke-width="4"/>
+      </mask>
+    </defs>
+    <polygon points="32,3 57.1,17.5 57.1,46.5 32,61 6.9,46.5 6.9,17.5" fill="none" stroke="#3399cc" stroke-width="3" stroke-linejoin="round"/>
+    <g mask="url(#cutSeal)">
+      <polygon points="32,9.5 51.5,20.75 51.5,43.25 32,54.5 12.5,43.25 12.5,20.75" fill="url(#gTile)" stroke="url(#gTile)" stroke-width="3" stroke-linejoin="round"/>
+      <polygon points="32,21 38,38.5 26,38.5" fill="#5cc8ff"/>
+    </g>
+  </symbol>
+</svg>
+
+<div class="wrap">
+  <section class="intro">
+    <div>
+      <div class="eyebrow">Brand exploration · Round 2</div>
+      <h1>Seven takes on the Shipped Package</h1>
+      <p>Every variation keeps the hexagon from Concept 4, the finished app sealed as one deliverable. Each one then pushes a different part of the AUDI story: the unified layers, the AI core, the pipeline stages, or the letter A itself.</p>
+    </div>
+    <div class="base">
+      <svg aria-hidden="true"><use href="#m0"/></svg>
+      <div><b>Starting point: Concept 4</b><span>Hexagon package, white A, cyan crossbar</span></div>
+    </div>
+  </section>
+
+  <section class="preview" aria-label="Dashboard preview">
+    <div class="preview-top">
+      <h2 id="pvTitle">In context: 4G, Carved Seal</h2>
+      <span>Browser tab favicon at 16px and dashboard header at 28px</span>
+    </div>
+    <div class="browser">
+      <div class="tabs">
+        <div class="tab"><svg width="16" height="16" id="pvFav"><use href="#m7"/></svg>AUDI · Orchestrator Dashboard</div>
+        <div class="tab ghost">Figma – Bell Mobility</div>
+      </div>
+    </div>
+    <div class="dash-bar">
+      <div class="brand"><svg width="28" height="28" id="pvMark"><use href="#m7"/></svg><span class="word">AUDI</span></div>
+      <span class="sub">Orchestrator Dashboard</span>
+    </div>
+    <div class="dash-body" aria-hidden="true"><div></div><div></div><div></div></div>
+  </section>
+
+  <section class="grid" id="grid"></section>
+
+  <section class="note">
+    <div>
+      <h2>My recommendation</h2>
+      <p><strong>4A, Isometric Cube</strong>, is the strongest update to Concept 4. The three shaded faces make the package read as a real 3D box, and they carry meaning: Figma design, code and API joined into one deliverable. It is a solid shape with no fine detail, so it stays sharp at 16px. <strong>4D, Core Node</strong>, is the runner-up if you want the AI part to stand out more.</p>
+    </div>
+    <div>
+      <h2>After you choose</h2>
+      <p>I'll produce <code>favicon.svg</code>, a multi-size <code>favicon.ico</code> (16/32/48) and <code>apple-touch-icon.png</code> (180), wire them into <code>dashboard.html</code>, and replace the <code>.logo-badge</code> text with the new lockup.</p>
+    </div>
+  </section>
+</div>
+
+<script>
+const concepts = [
+  { id:7, code:'4G', name:'Carved Seal', tag:'New · 4B + 4F', rec:true,
+    why:'The package from 4B, with the A cut through it and a cyan core, set inside the outer ring from 4F. The A marks the product, and the ring says the release has passed its checks.',
+    reads:[['Augmented','The A is carved into the package'],['Delivery','Sealed and verified for release'],['Favicon','Ring and cuts thin out below 32px']] },
+  { id:1, code:'4A', name:'Isometric Cube', tag:'Strong favicon',
+    why:'The hexagon becomes a 3D box with three shaded faces. Each face stands for one layer of the flow, Figma design, code and API, joined into one package with the A on the front.',
+    reads:[['Unified','Three faces, one object'],['Delivery','A real box ready to ship'],['Favicon','Solid shading, no fine detail']] },
+  { id:2, code:'4B', name:'Carved', tag:'Negative space',
+    why:'The A is cut straight through the package, splitting it into pieces that still read as one shape. A cyan core fills the top of the A.',
+    reads:[['Augmented','The A is part of the package itself'],['Intelligence','Cyan core at the center'],['Favicon','Cut lines thin out at 16px']] },
+  { id:3, code:'4C', name:'Pipeline Ring', tag:'Stage mark',
+    why:'The hexagon becomes a loop of six stage nodes: spec, plan, tasks, build, test and ship. The glowing top node marks the stage AUDI is running now.',
+    reads:[['Unified','Every stage on one ring'],['Delivery','The loop closes on a release'],['Favicon','Busiest option; best above 32px']] },
+  { id:4, code:'4D', name:'Core Node', tag:'AI mark',
+    why:'The original package with a glowing node at the peak of the A. The intelligence sits on top of the delivery and steers it.',
+    reads:[['Intelligence','Orchestrator node crowns the A'],['Delivery','Same sealed package as Concept 4'],['Favicon','Glow reads as a bright dot']] },
+  { id:5, code:'4E', name:'Hex Letterform', tag:'Monogram',
+    why:'The top half of the hexagon is the A: two straight sides, a pointed roof and a cyan crossbar. The name and the package become one shape.',
+    reads:[['Augmented','Letter and package merged'],['Unified','One continuous stroke'],['Favicon','Very bold, highly legible']] },
+  { id:6, code:'4F', name:'Release Seal', tag:'Badge mark',
+    why:'A solid package inside a thin outer ring, like a stamp of approval. It suggests work that has passed its checks and is ready for release.',
+    reads:[['Delivery','Verified and released'],['Intelligence','Quality gates built in'],['Favicon','Outer ring fades below 32px']] },
+];
+
+const use = (id, s) => `<svg width="${s}" height="${s}" aria-hidden="true"><use href="#m${id}"/></svg>`;
+const grid = document.getElementById('grid');
+grid.innerHTML = concepts.map(c => `
+  <article class="concept${c.id===7?' active':''}" data-id="${c.id}">
+    <div class="concept-head"><h3>${c.code}. ${c.name}</h3><span class="tag${c.rec?' rec':''}">${c.tag}</span></div>
+    <div class="stage">${use(c.id,132)}</div>
+    <div class="lockup">${use(c.id,40)}<div><div class="word">AUDI</div><div class="expand">Augmented Unified Delivery Intelligence</div></div></div>
+    <div class="favs">
+      <div class="fav d">
+        <figure>${use(c.id,48)}<figcaption>48</figcaption></figure>
+        <figure>${use(c.id,32)}<figcaption>32</figcaption></figure>
+        <figure>${use(c.id,16)}<figcaption>16</figcaption></figure>
+      </div>
+      <div class="fav l">
+        <figure>${use(c.id,32)}<figcaption>32</figcaption></figure>
+        <figure>${use(c.id,16)}<figcaption>16</figcaption></figure>
+      </div>
+    </div>
+    <div class="body">
+      <p>${c.why}</p>
+      <ul class="reads">${c.reads.map(r=>`<li><span>${r[0]}</span>${r[1]}</li>`).join('')}</ul>
+      <button type="button" id="pv${c.id}">Preview in dashboard</button>
+    </div>
+  </article>`).join('');
+
+grid.addEventListener('click', e => {
+  const btn = e.target.closest('button'); if (!btn) return;
+  const card = btn.closest('.concept'); const id = +card.dataset.id;
+  const c = concepts.find(x => x.id === id);
+  document.querySelectorAll('.concept').forEach(el => el.classList.toggle('active', el === card));
+  document.querySelector('#pvFav use').setAttribute('href', '#m'+id);
+  document.querySelector('#pvMark use').setAttribute('href', '#m'+id);
+  document.getElementById('pvTitle').textContent = `In context: ${c.code}, ${c.name}`;
+  document.querySelector('.preview').scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block:'start'});
+});
+</script>
+</body>
+</html>

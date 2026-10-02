@@ -1,92 +1,169 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Audi Branding POC</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="page-shell">
-      <div id="loginScreen" class="screen login-screen">
-        <div class="login-card">
-          <div class="brand-block">
-            <span class="brand-mark">AUDI</span>
-            <p>Branding Proof of Concept</p>
-          </div>
-          <h1>Protected Access</h1>
-          <p class="subtitle">Enter the password to view the live concept.</p>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AUDI Logo Exploration</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  color-scheme: dark;
+  --bg:#0d0f18; --surf:#141720; --surf2:#1c2030; --border:#2a2f4a;
+  --text:#e2e8f0; --muted:#8a98b0; --accent:#3399cc; --accent-strong:#5cc8ff;
+  --thumb:#0d0f18; --thumb-border:#232842;
+  --display:'Plus Jakarta Sans', 'Segoe UI', system-ui, sans-serif;
+  --body:'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif;
+  --mono:'JetBrains Mono', ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    color-scheme: light;
+    --bg:#f4f6fa; --surf:#ffffff; --surf2:#eef2f7; --border:#d8dfea;
+    --text:#131a2a; --muted:#56647a; --accent:#0067A5; --accent-strong:#004f7c;
+  }
+}
+:root[data-theme="light"]{
+  color-scheme: light;
+  --bg:#f4f6fa; --surf:#ffffff; --surf2:#eef2f7; --border:#d8dfea;
+  --text:#131a2a; --muted:#56647a; --accent:#0067A5; --accent-strong:#004f7c;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:15px;line-height:1.55;margin:0}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:20px;padding-block:40px 64px;display:flex;flex-direction:column;gap:44px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.intro h1{font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:-.01em;margin-top:8px}
+.intro p{color:var(--muted);max-width:66ch;margin:12px 0 0}
+.stats{display:flex;gap:28px;flex-wrap:wrap;margin-top:20px;font-family:var(--mono);font-size:12px;color:var(--muted)}
+.stats b{display:block;font-family:var(--display);font-size:24px;color:var(--text);font-variant-numeric:tabular-nums}
+.section-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.section-head h2{font-size:22px;font-weight:800}
+.section-head span{font-size:13px;color:var(--muted)}
 
-          <form id="loginForm">
-            <label for="password" class="sr-only">Password</label>
-            <input id="password" type="password" placeholder="Password" autocomplete="off" />
-            <button type="submit">Unlock</button>
-          </form>
+.rounds{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:20px}
+.round{background:var(--surf);border:1px solid var(--border);border-radius:10px;display:flex;flex-direction:column;text-decoration:none;overflow:hidden;transition:border-color .2s}
+.round:hover{border-color:var(--accent)}
+.round:focus-visible{outline:2px solid var(--accent-strong);outline-offset:2px}
+.round-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--thumb-border)}
+.round-strip img{display:block;width:100%;aspect-ratio:1/1;object-fit:contain;padding:14px;background:var(--thumb)}
+.round-body{padding:14px 18px 18px;display:flex;flex-direction:column;gap:6px;flex:1}
+.round-meta{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.round-body h3{font-size:19px;font-weight:700}
+.round-body p{margin:0;color:var(--muted);font-size:14px}
+.round-body .open{margin-top:auto;padding-top:8px;font-weight:600;font-size:13px;color:var(--accent)}
 
-          <p id="errorMessage" class="error-message" aria-live="polite"></p>
-        </div>
-      </div>
+.files{display:flex;flex-direction:column}
+#files{display:flex;flex-direction:column;gap:28px}
+.file-group h3{font-size:15px;font-weight:700;margin-bottom:10px}
+.file-group h3 span{font-family:var(--mono);font-size:11px;color:var(--muted);font-weight:400;margin-left:8px}
+.file-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));gap:10px}
+.file{display:flex;flex-direction:column;background:var(--surf);border:1px solid var(--border);border-radius:8px;overflow:hidden;text-decoration:none;transition:border-color .2s}
+.file:hover{border-color:var(--accent)}
+.file:focus-visible{outline:2px solid var(--accent-strong);outline-offset:2px}
+.file img{display:block;width:100%;aspect-ratio:1/1;object-fit:contain;padding:16px;background:var(--thumb)}
+.file.photo img{padding:0;object-fit:cover;background:#e9edf2}
+.file span{padding:8px 10px;font-size:12px;line-height:1.35}
+.file span b{display:block;font-family:var(--mono);font-size:10.5px;color:var(--accent);font-weight:500}
 
-      <div id="contentScreen" class="screen content-screen hidden">
-        <header class="topbar">
-          <div class="logo">AUDI</div>
-          <div class="top-actions">
-            <button id="logoutBtn" class="logout-btn" type="button">Log out</button>
-          </div>
-        </header>
+.tree{background:var(--surf2);border:1px solid var(--border);border-radius:10px;padding:18px 22px;font-family:var(--mono);font-size:12.5px;line-height:1.7;overflow-x:auto;white-space:pre;margin:0}
+@media (prefers-reduced-motion: reduce){.round,.file{transition:none}}
+@media (max-width:760px){.rounds{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <section class="intro">
+    <div class="eyebrow">AUDI · Augmented Unified Delivery Intelligence</div>
+    <h1>AUDI logo exploration</h1>
+    <p>All the logo rounds for the AUDI Orchestrator Dashboard in one place. Open a round to compare its concepts side by side, with the name lockup, favicon sizes and a dashboard preview. Every logo is also available as its own SVG file below.</p>
+    <div class="stats" id="stats"></div>
+  </section>
 
-        <main class="content-wrap">
-          <section class="hero">
-            <div class="hero-copy">
-              <span class="eyebrow">Brand Experience</span>
-              <h2>Audi Brand Presentation</h2>
-              <p>
-                This is a demo concept page for sharing the branding direction, presentation,
-                and visual exploration in a protected environment.
-              </p>
-            </div>
-            <div class="hero-panel">
-              <div class="mock-card">
-                <span class="badge">POC</span>
-                <h3>Creative Direction</h3>
-                <p>Luxury, precision, innovation, and premium identity.</p>
-              </div>
-            </div>
-          </section>
+  <section>
+    <div class="section-head"><h2>Rounds</h2><span>Each opens a comparison page in <code>pages/</code></span></div>
+    <div class="rounds" id="rounds"></div>
+  </section>
 
-          <section class="grid">
-            <article class="panel">
-              <h3>Brand Pillars</h3>
-              <ul>
-                <li>Modern luxury</li>
-                <li>Performance identity</li>
-                <li>Precision craftsmanship</li>
-                <li>Digital-first experience</li>
-              </ul>
-            </article>
+  <section class="files">
+    <div class="section-head"><h2>All logo files</h2><span>SVG, 512 × 512, in <code>assets/</code></span></div>
+    <div id="files"></div>
+  </section>
 
-            <article class="panel">
-              <h3>Visual Language</h3>
-              <ul>
-                <li>Minimal typography</li>
-                <li>Elegant contrast</li>
-                <li>Premium editorial layout</li>
-                <li>High-end motion cues</li>
-              </ul>
-            </article>
+  <section>
+    <div class="section-head"><h2>Folder layout</h2></div>
+<pre class="tree">docs/brand/
+├── index.html          this page
+├── pages/              six comparison pages, one per round
+└── assets/             every logo as an SVG
+    └── alex-ai/        original image boards for round 6</pre>
+  </section>
+</div>
 
-            <article class="panel wide">
-              <h3>Proposed Messaging</h3>
-              <p>
-                “A deeper expression of design, performance, and digital elegance — crafted for
-                a modern audience who values sophistication and innovation.”
-              </p>
-            </article>
-          </section>
-        </main>
-      </div>
+<script>
+const rounds = [
+  { page:'audi-logo-concepts.html', label:'Round 1', name:'First concepts',
+    about:'Six starting directions, from a spec-to-build A to a spark tile. Concept 4, the hexagon package, led to round 2.',
+    files:[['1','1-blueprint-to-build','Blueprint to Build'],['2','2-agent-constellation','Agent Constellation'],['3','3-prompt','Prompt'],['4','4-shipped-package','Shipped Package'],['5','5-ascend','Ascend'],['6','6-spark-tile','Spark Tile']] },
+  { page:'audi-logo-hex-variations.html', label:'Round 2', name:'Hexagon variations',
+    about:'Seven takes on the Concept 4 package: cube, carved, pipeline ring, core node, letterform, seal, and carved seal.',
+    files:[['4A','4a-isometric-cube','Isometric Cube'],['4B','4b-carved','Carved'],['4C','4c-pipeline-ring','Pipeline Ring'],['4D','4d-core-node','Core Node'],['4E','4e-hex-letterform','Hex Letterform'],['4F','4f-release-seal','Release Seal'],['4G','4g-carved-seal','Carved Seal']] },
+  { page:'audi-logo-round3.html', label:'Round 3', name:'AI, media and software',
+    about:'Six marks that try to show AI, digital media and software production in one image.',
+    files:[['7','7-aperture','Aperture'],['8','8-pixel-a','Pixel A'],['9','9-neural-package','Neural Package'],['10','10-build-and-play','Build & Play'],['11','11-prism','Prism'],['12','12-prompt-bubble','Prompt Bubble']] },
+  { page:'audi-logo-round4-sketches.html', label:'Round 4', name:'From your sketches',
+    about:'Four variations of each hand sketch: the Linked A and the A with a dot.',
+    files:[['S1-A','s1a-linked-a-sketch','Linked A, as sketched'],['S1-B','s1b-linked-a-solid','Linked A Solid'],['S1-C','s1c-linked-hex','Linked Hex'],['S1-D','s1d-linked-a-glow','Linked A Glow'],['S2-A','s2a-insight-a-sketch','Insight A, as sketched'],['S2-B','s2b-node-a','Node A'],['S2-C','s2c-node-a-hex','Node A Hex'],['S2-D','s2d-insight-tile','Insight Tile']] },
+  { page:'audi-logo-round5-sketches.html', label:'Round 5', name:'More sketch directions',
+    about:'Six more styles for each sketch: punched, molecule, ribbons, orbit, flow, tiles and badges.',
+    files:[['S1-E','s1e-punched-a','Punched A'],['S1-F','s1f-molecule','Molecule'],['S1-G','s1g-ribbons','Ribbons'],['S1-H','s1h-orbit','Orbit'],['S1-I','s1i-flow','Flow'],['S1-J','s1j-linked-tile','Linked Tile'],['S2-E','s2e-sharp-delta','Sharp Delta'],['S2-F','s2f-ribbon-delta','Ribbon Delta'],['S2-G','s2g-exclamation-a','Exclamation A'],['S2-H','s2h-solid-delta','Solid Delta'],['S2-I','s2i-circle-badge','Circle Badge'],['S2-J','s2j-delta-hex','Delta Hex']] },
+  { page:'audi-logo-round6-alex-ai.html', label:'Round 6', name:'Alex AI concept set',
+    about:'Nine marks redrawn from the Alex AI image boards: the Ribbon A, the Lattice A, and two paired marks.',
+    files:[['X1','x1-ribbon-a','Ribbon A'],['X2','x2-ribbon-a-reversed','Ribbon A Reversed'],['X3','x3-play-ribbon','Play Ribbon'],['X4','x4-interconnected-intelligence','Interconnected Intelligence'],['X5','x5-lattice-glow','Lattice Glow'],['X6','x6-lattice-flare','Lattice Flare'],['X7','x7-lattice-line','Lattice Line'],['X8','x8-algorithmic-fusion','Algorithmic Fusion'],['X9','x9-unfolding-helix','Unfolding Helix']],
+    sources:[['ribbon-a-board','Ribbon A'],['ribbon-a-reversed-board','Ribbon A, reversed'],['play-ribbon-board','Play Ribbon'],['lattice-fusion-helix-board','Lattice, Fusion and Helix'],['lattice-dark-board','Lattice A, dark'],['lattice-flare-board','Lattice A, flare'],['lattice-dev-cycle-board','Lattice A, development cycle']] },
+];
+
+const svg = f => `assets/audi-logo-${f[1]}.svg`;
+const esc = s => s.replace(/&/g,'&amp;');
+const total = rounds.reduce((n, r) => n + r.files.length, 0);
+const sources = rounds.reduce((n, r) => n + (r.sources ? r.sources.length : 0), 0);
+
+document.getElementById('stats').innerHTML =
+  `<div><b>${rounds.length}</b>rounds</div><div><b>${total}</b>logo files</div><div><b>${sources}</b>source images</div>`;
+
+document.getElementById('rounds').innerHTML = rounds.map(r => `
+  <a class="round" href="pages/${r.page}">
+    <div class="round-strip">${r.files.slice(0,4).map(f => `<img src="${svg(f)}" alt="">`).join('')}</div>
+    <div class="round-body">
+      <div class="round-meta">${r.label} · ${r.files.length} logos</div>
+      <h3>${r.name}</h3>
+      <p>${r.about}</p>
+      <span class="open">Open ${r.label} →</span>
     </div>
+  </a>`).join('');
 
-    <script src="app.js"></script>
-  </body>
+document.getElementById('files').innerHTML = rounds.map(r => `
+  <div class="file-group">
+    <h3>${r.label}: ${r.name}<span>${r.files.length} files</span></h3>
+    <div class="file-grid">${r.files.map(f => `
+      <a class="file" href="${svg(f)}" title="audi-logo-${f[1]}.svg">
+        <img src="${svg(f)}" alt="${esc(f[2])} logo" loading="lazy">
+        <span><b>${f[0]}</b>${esc(f[2])}</span>
+      </a>`).join('')}
+    </div>
+  </div>
+  ${r.sources ? `
+  <div class="file-group">
+    <h3>${r.label}: source images<span>${r.sources.length} files in assets/alex-ai/</span></h3>
+    <div class="file-grid">${r.sources.map(s => `
+      <a class="file photo" href="assets/alex-ai/${s[0]}.png" title="${s[0]}.png">
+        <img src="assets/alex-ai/${s[0]}.png" alt="${esc(s[1])} source board" loading="lazy">
+        <span><b>PNG</b>${esc(s[1])}</span>
+      </a>`).join('')}
+    </div>
+  </div>` : ''}`).join('');
+</script>
+</body>
 </html>

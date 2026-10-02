@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="512" height="512"><defs><linearGradient id="gBlue" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3fa9e0"/><stop offset="1" stop-color="#0067A5"/></linearGradient><linearGradient id="gTile" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0a7cc2"/><stop offset="1" stop-color="#00456d"/></linearGradient><linearGradient id="gGlow" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5cc8ff"/><stop offset="1" stop-color="#0067A5"/></linearGradient><radialGradient id="gCore" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#d4f3ff"/><stop offset="1" stop-color="#5cc8ff"/></radialGradient></defs>
+    <g fill="none" stroke-width="6.5" stroke-linecap="round">
+      <path d="M32 13 C21 22 14 34 14 50" stroke="url(#gGlow)"/>
+      <path d="M32 13 C43 22 50 34 50 50" stroke="url(#gGlow)"/>
+      <path d="M20 38 C27 34 37 34 44 38" stroke="#3399cc" stroke-width="4"/>
+    </g>
+    <circle cx="32" cy="13" r="10" fill="#5cc8ff" opacity=".22"/>
+    <circle cx="32" cy="13" r="6.5" fill="url(#gCore)"/>
+    <circle cx="14" cy="50" r="5.5" fill="#0067A5"/>
+    <circle cx="50" cy="50" r="5.5" fill="#0067A5"/>
+</svg>

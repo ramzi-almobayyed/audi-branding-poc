@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AUDI Sketch Variations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  color-scheme: dark;
+  --bg:#0d0f18; --surf:#141720; --surf2:#1c2030; --border:#2a2f4a;
+  --text:#e2e8f0; --muted:#8a98b0; --accent:#3399cc; --accent-strong:#5cc8ff;
+  --tile-dark:#0d0f18; --tile-light:#f3f6fa; --tile-light-border:#d6dee8;
+  --btn-bg:#0067A5; --btn-text:#ffffff;
+  --display:'Plus Jakarta Sans', 'Segoe UI', system-ui, sans-serif;
+  --body:'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif;
+  --mono:'JetBrains Mono', ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    color-scheme: light;
+    --bg:#f4f6fa; --surf:#ffffff; --surf2:#eef2f7; --border:#d8dfea;
+    --text:#131a2a; --muted:#56647a; --accent:#0067A5; --accent-strong:#004f7c;
+  }
+}
+:root[data-theme="light"]{
+  color-scheme: light;
+  --bg:#f4f6fa; --surf:#ffffff; --surf2:#eef2f7; --border:#d8dfea;
+  --text:#131a2a; --muted:#56647a; --accent:#0067A5; --accent-strong:#004f7c;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:15px;line-height:1.55;margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:20px;padding-block:40px 64px;display:flex;flex-direction:column;gap:40px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.intro{display:grid;grid-template-columns:1.3fr 1fr;gap:32px;align-items:center}
+.intro h1{font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:-.01em;margin-top:8px}
+.intro p{color:var(--muted);max-width:62ch;margin:12px 0 0}
+.base{display:flex;align-items:center;gap:16px;background:var(--surf);border:1px solid var(--border);border-radius:10px;padding:16px 18px}
+.base svg{width:64px;height:64px;flex:none}
+.base b{font-family:var(--display);font-size:15px;display:block}
+.base span{color:var(--muted);font-size:13px}
+
+.preview{background:var(--surf);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.preview-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:14px 18px;border-bottom:1px solid var(--border)}
+.preview-top h2{font-size:15px;font-weight:700}
+.preview-top span{font-size:13px;color:var(--muted)}
+.browser{background:#0a0c13;padding:10px 12px 0}
+.tabs{display:flex;gap:4px}
+.tab{display:flex;align-items:center;gap:8px;background:#141720;color:#c9d3e0;font-size:12px;padding:8px 14px;border-radius:8px 8px 0 0;max-width:280px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tab.ghost{background:transparent;color:#5d6a80}
+.tab svg{flex:none}
+.dash-bar{background:#141720;border-bottom:1px solid #2a2f4a;display:flex;align-items:center;gap:12px;padding:12px 18px;color:#e2e8f0}
+.dash-bar .brand{display:flex;align-items:center;gap:10px}
+.dash-bar .word{font-family:var(--display);font-weight:800;letter-spacing:.14em;font-size:17px}
+.dash-bar .sub{color:#7888a0;font-size:14px;border-left:1px solid #2a2f4a;padding-left:12px}
+.dash-body{background:#0d0f18;padding:18px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.dash-body div{height:54px;border-radius:6px;background:#1c2030;border:1px solid #2a2f4a}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:20px}
+.concept{background:var(--surf);border:1px solid var(--border);border-radius:10px;display:flex;flex-direction:column;overflow:hidden;transition:border-color .2s}
+.concept.active{border-color:var(--accent)}
+.concept-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:16px 18px 0}
+.concept-head h3{font-size:19px;font-weight:700}
+.tag{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.tag.rec{color:var(--accent-strong)}
+.stage{margin:14px 18px 0;background:var(--tile-dark);border:1px solid #232842;border-radius:8px 8px 0 0;display:grid;place-items:center;padding:28px 0}
+.stage svg{width:132px;height:132px}
+.lockup{display:flex;align-items:center;gap:12px;margin:0 18px;padding:14px 16px;background:var(--tile-light);border:1px solid var(--tile-light-border);border-top:0;border-radius:0 0 8px 8px;color:#131a2a}
+.lockup svg{width:40px;height:40px;flex:none}
+.lockup .word{font-family:var(--display);font-weight:800;font-size:24px;letter-spacing:.14em;line-height:1}
+.lockup .expand{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;color:#56647a;text-transform:uppercase;margin-top:5px;line-height:1.3}
+.favs{display:flex;gap:10px;margin:14px 18px 0;flex-wrap:wrap}
+.fav{display:flex;align-items:flex-end;gap:12px;padding:10px 12px;border-radius:6px;flex:1;min-width:130px}
+.fav.d{background:var(--tile-dark);border:1px solid #232842}
+.fav.l{background:var(--tile-light);border:1px solid var(--tile-light-border)}
+.fav figure{margin:0;display:flex;flex-direction:column;align-items:center;gap:4px}
+.fav figcaption{font-family:var(--mono);font-size:9px;color:#7888a0;font-variant-numeric:tabular-nums}
+.body{padding:14px 18px 18px;display:flex;flex-direction:column;gap:10px;flex:1}
+.body p{margin:0;color:var(--muted);font-size:14px}
+.reads{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:5px;font-size:13px}
+.reads li{display:grid;grid-template-columns:92px 1fr;gap:8px}
+.reads span{font-family:var(--mono);font-size:11px;color:var(--accent);text-transform:uppercase;letter-spacing:.06em;padding-top:2px}
+.body button{margin-top:auto;align-self:flex-start;font:600 13px var(--body);background:transparent;color:var(--accent);border:1px solid var(--accent);border-radius:6px;padding:8px 14px;cursor:pointer}
+.body button:hover{background:var(--accent);color:var(--surf)}
+.body button:focus-visible{outline:2px solid var(--accent-strong);outline-offset:2px}
+.concept.active .body button{background:var(--btn-bg);color:var(--btn-text);border-color:var(--btn-bg)}
+
+.note{background:var(--surf2);border:1px solid var(--border);border-radius:10px;padding:20px 22px;display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.note h2{font-size:17px;margin-bottom:6px}
+.note p{margin:0;color:var(--muted);font-size:14px;max-width:60ch}
+.note code{font-family:var(--mono);font-size:12.5px;color:var(--text)}
+@media (prefers-reduced-motion: reduce){.concept{transition:none}}
+@media (max-width:760px){
+  .intro,.note{grid-template-columns:1fr}
+  .dash-body{grid-template-columns:1fr 1fr}
+  .dash-bar .sub{display:none}
+  .grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<style>
+.group{display:flex;flex-direction:column;gap:16px}
+.group-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.group-head h2{font-size:22px;font-weight:800}
+.group-head p{margin:0;color:var(--muted);font-size:14px;max-width:70ch}
+.group .grid{grid-template-columns:repeat(auto-fit,minmax(255px,1fr))}
+</style>
+
+<!-- Shared gradients and marks, drawn on a 64-unit grid -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="gBlue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3fa9e0"/><stop offset="1" stop-color="#0067A5"/>
+    </linearGradient>
+    <linearGradient id="gTile" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0a7cc2"/><stop offset="1" stop-color="#00456d"/>
+    </linearGradient>
+    <linearGradient id="gGlow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5cc8ff"/><stop offset="1" stop-color="#0067A5"/>
+    </linearGradient>
+    <radialGradient id="gCore" cx=".4" cy=".35" r=".7">
+      <stop offset="0" stop-color="#d4f3ff"/><stop offset="1" stop-color="#5cc8ff"/>
+    </radialGradient>
+  </defs>
+
+  <!-- S1-A Linked A, as sketched: asymmetric, outlined container -->
+  <symbol id="m21" viewBox="0 0 64 64">
+    <defs>
+      <mask id="ring21" maskUnits="userSpaceOnUse" x="0" y="0" width="64" height="64">
+        <polyline points="17,42 39,13 47,50" fill="none" stroke="#fff" stroke-width="21" stroke-linecap="round" stroke-linejoin="round"/>
+        <polyline points="17,42 39,13 47,50" fill="none" stroke="#000" stroke-width="15.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </mask>
+    </defs>
+    <rect width="64" height="64" fill="url(#gBlue)" mask="url(#ring21)"/>
+    <g stroke="#3399cc" stroke-width="2.8" stroke-linecap="round">
+      <line x1="39" y1="13" x2="17" y2="42"/><line x1="39" y1="13" x2="47" y2="50"/>
+    </g>
+    <circle cx="39" cy="13" r="6.5" fill="#0067A5"/>
+    <circle cx="17" cy="42" r="5.3" fill="#0067A5"/>
+    <circle cx="47" cy="50" r="5.3" fill="#0067A5"/>
+  </symbol>
+
+  <!-- S1-B Linked A Solid: symmetric, filled -->
+  <symbol id="m22" viewBox="0 0 64 64">
+    <polyline points="14,47 32,14 50,47" fill="none" stroke="url(#gTile)" stroke-width="21" stroke-linecap="round" stroke-linejoin="round"/>
+    <g stroke="#fff" stroke-opacity=".85" stroke-width="2.8" stroke-linecap="round">
+      <line x1="32" y1="14" x2="14" y2="47"/><line x1="32" y1="14" x2="50" y2="47"/>
+    </g>
+    <circle cx="32" cy="14" r="6.3" fill="url(#gCore)"/>
+    <circle cx="14" cy="47" r="5" fill="#fff"/>
+    <circle cx="50" cy="47" r="5" fill="#fff"/>
+  </symbol>
+
+  <!-- S1-C Linked Hex: concept 4 hexagon with the leg slot -->
+  <symbol id="m23" viewBox="0 0 64 64">
+    <defs>
+      <mask id="slot23" maskUnits="userSpaceOnUse" x="0" y="0" width="64" height="64">
+        <rect width="64" height="64" fill="#fff"/>
+        <polygon points="32,37 41,64 23,64" fill="#000" stroke="#000" stroke-width="3" stroke-linejoin="round"/>
+      </mask>
+    </defs>
+    <polygon points="32,5 55.4,18.5 55.4,45.5 32,59 8.6,45.5 8.6,18.5" fill="url(#gTile)" stroke="url(#gTile)" stroke-width="5" stroke-linejoin="round" mask="url(#slot23)"/>
+    <g stroke="#fff" stroke-opacity=".85" stroke-width="2.6" stroke-linecap="round">
+      <line x1="32" y1="17" x2="19" y2="43"/><line x1="32" y1="17" x2="45" y2="43"/>
+    </g>
+    <circle cx="32" cy="17" r="5.8" fill="url(#gCore)"/>
+    <circle cx="19" cy="43" r="4.6" fill="#fff"/>
+    <circle cx="45" cy="43" r="4.6" fill="#fff"/>
+  </symbol>
+
+  <!-- S1-D Linked A Glow: symmetric outline, glowing apex -->
+  <symbol id="m24" viewBox="0 0 64 64">
+    <defs>
+      <mask id="ring24" maskUnits="userSpaceOnUse" x="0" y="0" width="64" height="64">
+        <polyline points="14,47 32,14 50,47" fill="none" stroke="#fff" stroke-width="21" stroke-linecap="round" stroke-linejoin="round"/>
+        <polyline points="14,47 32,14 50,47" fill="none" stroke="#000" stroke-width="15.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </mask>
+    </defs>
+    <rect width="64" height="64" fill="url(#gGlow)" mask="url(#ring24)"/>
+    <g stroke="url(#gGlow)" stroke-width="2.8" stroke-linecap="round">
+      <line x1="32" y1="14" x2="14" y2="47"/><line x1="32" y1="14" x2="50" y2="47"/>
+    </g>
+    <circle cx="32" cy="14" r="7.5" fill="#5cc8ff" opacity=".3"/>
+    <circle cx="32" cy="14" r="5.3" fill="url(#gCore)"/>
+    <circle cx="14" cy="47" r="5" fill="#0067A5"/>
+    <circle cx="50" cy="47" r="5" fill="#0067A5"/>
+  </symbol>
+
+  <!-- S2-A Insight A, as sketched: tilted triangle and dot -->
+  <symbol id="m31" viewBox="0 0 64 64">
+    <polygon points="39,9 7,46 54.5,35.5" fill="none" stroke="url(#gBlue)" stroke-width="8" stroke-linejoin="round"/>
+    <circle cx="49" cy="51" r="6.5" fill="url(#gCore)"/>
+  </symbol>
+
+  <!-- S2-B Node A: upright, the dot is the right foot -->
+  <symbol id="m32" viewBox="0 0 64 64">
+    <g fill="none" stroke="url(#gBlue)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="32,8 17.3,40 46.7,40"/>
+      <line x1="17.3" y1="40" x2="10" y2="56"/>
+    </g>
+    <circle cx="53" cy="54" r="6.5" fill="url(#gCore)"/>
+  </symbol>
+
+  <!-- S2-C Node A Hex: node A on the concept 4 hexagon -->
+  <symbol id="m33" viewBox="0 0 64 64">
+    <polygon points="32,5 55.4,18.5 55.4,45.5 32,59 8.6,45.5 8.6,18.5" fill="url(#gTile)" stroke="url(#gTile)" stroke-width="5" stroke-linejoin="round"/>
+    <g fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="31,16 20.5,38 41.5,38"/>
+      <line x1="20.5" y1="38" x2="16.6" y2="46.5"/>
+    </g>
+    <circle cx="44.5" cy="45" r="4.6" fill="url(#gCore)"/>
+  </symbol>
+
+  <!-- S2-D Insight Tile: sketched form on an app tile -->
+  <symbol id="m34" viewBox="0 0 64 64">
+    <rect x="3" y="3" width="58" height="58" rx="14" fill="url(#gTile)"/>
+    <polygon points="36,13 13,41 48,33" fill="none" stroke="#fff" stroke-width="6" stroke-linejoin="round"/>
+    <circle cx="45" cy="47" r="7.5" fill="#5cc8ff" opacity=".3"/>
+    <circle cx="45" cy="47" r="5" fill="url(#gCore)"/>
+  </symbol>
+</svg>
+
+<div class="wrap">
+  <section class="intro">
+    <div>
+      <div class="eyebrow">Brand exploration · Round 4</div>
+      <h1>Variations from your sketches</h1>
+      <p>Four takes on each sketch. The first in each set stays close to your drawing; the others clean up the geometry, add the AI glow, or move the idea onto the Concept 4 hexagon and an app tile so it works as a favicon.</p>
+    </div>
+    <div class="acronym-sketch base">
+      <div style="display:flex;gap:10px"><svg aria-hidden="true"><use href="#m21"/></svg><svg aria-hidden="true"><use href="#m31"/></svg></div>
+      <div><b>Your two sketches</b><span>Left: Linked A. Right: A with a dot.</span></div>
+    </div>
+  </section>
+
+  <section class="preview" aria-label="Dashboard preview">
+    <div class="preview-top">
+      <h2 id="pvTitle">In context: S1-B, Linked A Solid</h2>
+      <span>Browser tab favicon at 16px and dashboard header at 28px</span>
+    </div>
+    <div class="browser">
+      <div class="tabs">
+        <div class="tab"><svg width="16" height="16" id="pvFav"><use href="#m22"/></svg>AUDI · Orchestrator Dashboard</div>
+        <div class="tab ghost">Figma – Bell Mobility</div>
+      </div>
+    </div>
+    <div class="dash-bar">
+      <div class="brand"><svg width="28" height="28" id="pvMark"><use href="#m22"/></svg><span class="word">AUDI</span></div>
+      <span class="sub">Orchestrator Dashboard</span>
+    </div>
+    <div class="dash-body" aria-hidden="true"><div></div><div></div><div></div></div>
+  </section>
+
+  <section class="group">
+    <div class="group-head">
+      <h2>Sketch 1: Linked A</h2>
+      <p>Three connected nodes inside a soft A shape. The top node is the AI orchestrator, and the two feet are what it delivers to.</p>
+    </div>
+    <div class="grid" id="grid1"></div>
+  </section>
+
+  <section class="group">
+    <div class="group-head">
+      <h2>Sketch 2: A with a dot</h2>
+      <p>A bold triangle A whose right foot is a separate dot. It also reads as an exclamation mark, the moment of insight.</p>
+    </div>
+    <div class="grid" id="grid2"></div>
+  </section>
+
+  <section class="note">
+    <div>
+      <h2>My recommendation</h2>
+      <p><strong>S1-B, Linked A Solid</strong>. It keeps everything in your first sketch: the soft A shape, the gap between the legs, and the three linked nodes. The solid fill makes it clear at 16px. The glowing top node says AI, and the network says connected software and media. From sketch 2, <strong>S2-D, Insight Tile</strong>, makes the best favicon.</p>
+    </div>
+    <div>
+      <h2>After you choose</h2>
+      <p>I'll make <code>favicon.svg</code>, a multi-size <code>favicon.ico</code> (16/32/48), <code>apple-touch-icon.png</code> (180) and a simplified 16px version if the mark needs one. I'll change <code>dashboard.html</code> only once you confirm.</p>
+    </div>
+  </section>
+</div>
+
+<script>
+const concepts = [
+  { id:21, group:1, code:'S1-A', name:'Linked A, as sketched', tag:'Closest to sketch',
+    why:'Your drawing redrawn cleanly: the slightly tilted shape, the rounded outline, the large top node and the two links down to the feet.',
+    reads:[['AI','Top node drives the others'],['Media','Shared, connected content'],['Software','Linked services'],['Favicon','Outline thins out at 16px']] },
+  { id:22, group:1, code:'S1-B', name:'Linked A Solid', tag:'Recommended', rec:true,
+    why:'A symmetric, solid version. The A is filled Bell blue, the nodes are white, and the top node glows cyan as the AI orchestrator.',
+    reads:[['AI','Glowing orchestrator node'],['Media','Network of connected content'],['Software','Nodes are services and agents'],['Favicon','Solid shape, very clear']] },
+  { id:23, group:1, code:'S1-C', name:'Linked Hex', tag:'Concept 4 family',
+    why:'Your linked nodes on the Concept 4 hexagon, with the slot from your sketch cut into the bottom to form the legs of the A.',
+    reads:[['AI','Glowing top node'],['Media','Connected nodes'],['Software','Hexagon package from Concept 4'],['Favicon','Solid hexagon, clear']] },
+  { id:24, group:1, code:'S1-D', name:'Linked A Glow', tag:'Light outline',
+    why:'The symmetric outline version, with a gradient from cyan at the top to Bell blue at the feet, as if the intelligence flows down from the top node.',
+    reads:[['AI','Glow flows from the top node'],['Media','Light and gradient'],['Software','Linked services'],['Favicon','Best at 32px and up']] },
+  { id:31, group:2, code:'S2-A', name:'Insight A, as sketched', tag:'Closest to sketch',
+    why:'Your second drawing redrawn cleanly: the tilted triangle with its open center and the dot below the right corner.',
+    reads:[['AI','The dot is the insight'],['Media','Motion from the tilt'],['Software','Direction and speed'],['Favicon','Good; the dot holds up']] },
+  { id:32, group:2, code:'S2-B', name:'Node A', tag:'Upright',
+    why:'An upright A. The triangle forms the top and the crossbar, the left leg reaches the ground, and the right foot is replaced by a glowing node.',
+    reads:[['AI','Glowing node as the foot'],['Media','Simple, iconic letterform'],['Software','A node where the work lands'],['Favicon','Bold strokes, clear']] },
+  { id:33, group:2, code:'S2-C', name:'Node A Hex', tag:'Concept 4 family',
+    why:'The upright Node A in white on the Concept 4 hexagon, with the cyan node as its right foot.',
+    reads:[['AI','Cyan node'],['Media','Letterform plus dot'],['Software','Hexagon package from Concept 4'],['Favicon','Solid hexagon, clear']] },
+  { id:34, group:2, code:'S2-D', name:'Insight Tile', tag:'Best favicon',
+    why:'The tilted form from your sketch, in white on a Bell-blue app tile, with a glowing cyan dot. It is shaped for browser tabs and app icons.',
+    reads:[['AI','Glowing insight dot'],['Media','App-icon shape'],['Software','Product tile'],['Favicon','Strongest at 16px']] },
+];
+
+const use = (id, s) => `<svg width="${s}" height="${s}" aria-hidden="true"><use href="#m${id}"/></svg>`;
+const card = c => `
+  <article class="concept${c.id===22?' active':''}" data-id="${c.id}">
+    <div class="concept-head"><h3>${c.code}. ${c.name}</h3><span class="tag${c.rec?' rec':''}">${c.tag}</span></div>
+    <div class="stage">${use(c.id,132)}</div>
+    <div class="lockup">${use(c.id,40)}<div><div class="word">AUDI</div><div class="expand">Augmented Unified Delivery Intelligence</div></div></div>
+    <div class="favs">
+      <div class="fav d">
+        <figure>${use(c.id,48)}<figcaption>48</figcaption></figure>
+        <figure>${use(c.id,32)}<figcaption>32</figcaption></figure>
+        <figure>${use(c.id,16)}<figcaption>16</figcaption></figure>
+      </div>
+      <div class="fav l">
+        <figure>${use(c.id,32)}<figcaption>32</figcaption></figure>
+        <figure>${use(c.id,16)}<figcaption>16</figcaption></figure>
+      </div>
+    </div>
+    <div class="body">
+      <p>${c.why}</p>
+      <ul class="reads">${c.reads.map(r=>`<li><span>${r[0]}</span>${r[1]}</li>`).join('')}</ul>
+      <button type="button" id="pv${c.id}">Preview in dashboard</button>
+    </div>
+  </article>`;
+document.getElementById('grid1').innerHTML = concepts.filter(c=>c.group===1).map(card).join('');
+document.getElementById('grid2').innerHTML = concepts.filter(c=>c.group===2).map(card).join('');
+
+document.addEventListener('click', e => {
+  const btn = e.target.closest('.concept button'); if (!btn) return;
+  const el = btn.closest('.concept'); const id = +el.dataset.id;
+  const c = concepts.find(x => x.id === id);
+  document.querySelectorAll('.concept').forEach(x => x.classList.toggle('active', x === el));
+  document.querySelector('#pvFav use').setAttribute('href', '#m'+id);
+  document.querySelector('#pvMark use').setAttribute('href', '#m'+id);
+  document.getElementById('pvTitle').textContent = `In context: ${c.code}, ${c.name}`;
+  document.querySelector('.preview').scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block:'start'});
+});
+</script>
+</body>
+</html>

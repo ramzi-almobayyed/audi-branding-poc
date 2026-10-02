@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AUDI Alex AI Concepts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  color-scheme: dark;
+  --bg:#0d0f18; --surf:#141720; --surf2:#1c2030; --border:#2a2f4a;
+  --text:#e2e8f0; --muted:#8a98b0; --accent:#3399cc; --accent-strong:#5cc8ff;
+  --tile-dark:#0d0f18; --tile-light:#f3f6fa; --tile-light-border:#d6dee8;
+  --btn-bg:#0067A5; --btn-text:#ffffff;
+  --display:'Plus Jakarta Sans', 'Segoe UI', system-ui, sans-serif;
+  --body:'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif;
+  --mono:'JetBrains Mono', ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    color-scheme: light;
+    --bg:#f4f6fa; --surf:#ffffff; --surf2:#eef2f7; --border:#d8dfea;
+    --text:#131a2a; --muted:#56647a; --accent:#0067A5; --accent-strong:#004f7c;
+  }
+}
+:root[data-theme="light"]{
+  color-scheme: light;
+  --bg:#f4f6fa; --surf:#ffffff; --surf2:#eef2f7; --border:#d8dfea;
+  --text:#131a2a; --muted:#56647a; --accent:#0067A5; --accent-strong:#004f7c;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:15px;line-height:1.55;margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:20px;padding-block:40px 64px;display:flex;flex-direction:column;gap:40px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.intro{display:grid;grid-template-columns:1.3fr 1fr;gap:32px;align-items:center}
+.intro h1{font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:-.01em;margin-top:8px}
+.intro p{color:var(--muted);max-width:62ch;margin:12px 0 0}
+.base{display:flex;align-items:center;gap:16px;background:var(--surf);border:1px solid var(--border);border-radius:10px;padding:16px 18px}
+.base svg{width:64px;height:64px;flex:none}
+.base b{font-family:var(--display);font-size:15px;display:block}
+.base span{color:var(--muted);font-size:13px}
+
+.preview{background:var(--surf);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.preview-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:14px 18px;border-bottom:1px solid var(--border)}
+.preview-top h2{font-size:15px;font-weight:700}
+.preview-top span{font-size:13px;color:var(--muted)}
+.browser{background:#0a0c13;padding:10px 12px 0}
+.tabs{display:flex;gap:4px}
+.tab{display:flex;align-items:center;gap:8px;background:#141720;color:#c9d3e0;font-size:12px;padding:8px 14px;border-radius:8px 8px 0 0;max-width:280px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tab.ghost{background:transparent;color:#5d6a80}
+.tab svg{flex:none}
+.dash-bar{background:#141720;border-bottom:1px solid #2a2f4a;display:flex;align-items:center;gap:12px;padding:12px 18px;color:#e2e8f0}
+.dash-bar .brand{display:flex;align-items:center;gap:10px}
+.dash-bar .word{font-family:var(--display);font-weight:800;letter-spacing:.14em;font-size:17px}
+.dash-bar .sub{color:#7888a0;font-size:14px;border-left:1px solid #2a2f4a;padding-left:12px}
+.dash-body{background:#0d0f18;padding:18px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.dash-body div{height:54px;border-radius:6px;background:#1c2030;border:1px solid #2a2f4a}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:20px}
+.concept{background:var(--surf);border:1px solid var(--border);border-radius:10px;display:flex;flex-direction:column;overflow:hidden;transition:border-color .2s}
+.concept.active{border-color:var(--accent)}
+.concept-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:16px 18px 0}
+.concept-head h3{font-size:19px;font-weight:700}
+.tag{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.tag.rec{color:var(--accent-strong)}
+.stage{margin:14px 18px 0;background:var(--tile-dark);border:1px solid #232842;border-radius:8px 8px 0 0;display:grid;place-items:center;padding:28px 0}
+.stage svg{width:132px;height:132px}
+.lockup{display:flex;align-items:center;gap:12px;margin:0 18px;padding:14px 16px;background:var(--tile-light);border:1px solid var(--tile-light-border);border-top:0;border-radius:0 0 8px 8px;color:#131a2a}
+.lockup svg{width:40px;height:40px;flex:none}
+.lockup .word{font-family:var(--display);font-weight:800;font-size:24px;letter-spacing:.14em;line-height:1}
+.lockup .expand{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;color:#56647a;text-transform:uppercase;margin-top:5px;line-height:1.3}
+.favs{display:flex;gap:10px;margin:14px 18px 0;flex-wrap:wrap}
+.fav{display:flex;align-items:flex-end;gap:12px;padding:10px 12px;border-radius:6px;flex:1;min-width:130px}
+.fav.d{background:var(--tile-dark);border:1px solid #232842}
+.fav.l{background:var(--tile-light);border:1px solid var(--tile-light-border)}
+.fav figure{margin:0;display:flex;flex-direction:column;align-items:center;gap:4px}
+.fav figcaption{font-family:var(--mono);font-size:9px;color:#7888a0;font-variant-numeric:tabular-nums}
+.body{padding:14px 18px 18px;display:flex;flex-direction:column;gap:10px;flex:1}
+.body p{margin:0;color:var(--muted);font-size:14px}
+.reads{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:5px;font-size:13px}
+.reads li{display:grid;grid-template-columns:92px 1fr;gap:8px}
+.reads span{font-family:var(--mono);font-size:11px;color:var(--accent);text-transform:uppercase;letter-spacing:.06em;padding-top:2px}
+.body button{margin-top:auto;align-self:flex-start;font:600 13px var(--body);background:transparent;color:var(--accent);border:1px solid var(--accent);border-radius:6px;padding:8px 14px;cursor:pointer}
+.body button:hover{background:var(--accent);color:var(--surf)}
+.body button:focus-visible{outline:2px solid var(--accent-strong);outline-offset:2px}
+.concept.active .body button{background:var(--btn-bg);color:var(--btn-text);border-color:var(--btn-bg)}
+
+.note{background:var(--surf2);border:1px solid var(--border);border-radius:10px;padding:20px 22px;display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.note h2{font-size:17px;margin-bottom:6px}
+.note p{margin:0;color:var(--muted);font-size:14px;max-width:60ch}
+.note code{font-family:var(--mono);font-size:12.5px;color:var(--text)}
+@media (prefers-reduced-motion: reduce){.concept{transition:none}}
+@media (max-width:760px){
+  .intro,.note{grid-template-columns:1fr}
+  .dash-body{grid-template-columns:1fr 1fr}
+  .dash-bar .sub{display:none}
+  .grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<style>
+.sources{display:flex;flex-direction:column;gap:16px}
+.sources-head h2{font-size:22px;font-weight:800}
+.sources-head p{margin:6px 0 0;color:var(--muted);font-size:14px;max-width:70ch}
+.source-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
+.source-grid figure{margin:0;background:var(--surf);border:1px solid var(--border);border-radius:10px;overflow:hidden;display:flex;flex-direction:column}
+.source-grid img{display:block;width:100%;aspect-ratio:1/1;object-fit:contain;background:#e9edf2}
+.source-grid figcaption{padding:10px 12px;font-size:13px;color:var(--muted)}
+.source-grid figcaption b{color:var(--text);font-weight:600;display:block}
+.base .pair{display:flex;gap:10px}
+</style>
+
+<!-- Shared gradients and marks, drawn on a 64-unit grid -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="gBlue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3fa9e0"/><stop offset="1" stop-color="#0067A5"/>
+    </linearGradient>
+    <linearGradient id="gPurple" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5470c4"/><stop offset="1" stop-color="#6b47ad"/>
+    </linearGradient>
+    <linearGradient id="gLattice" gradientUnits="userSpaceOnUse" x1="0" y1="6" x2="0" y2="56">
+      <stop offset="0" stop-color="#4fb3ea"/><stop offset="1" stop-color="#0f4f9a"/>
+    </linearGradient>
+    <radialGradient id="gCore" cx=".4" cy=".35" r=".7">
+      <stop offset="0" stop-color="#d4f3ff"/><stop offset="1" stop-color="#5cc8ff"/>
+    </radialGradient>
+    <radialGradient id="gFlare" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#ffffff"/><stop offset=".35" stop-color="#cfe3ff" stop-opacity=".7"/><stop offset="1" stop-color="#cfe3ff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- X1 Ribbon A -->
+  <symbol id="m61" viewBox="0 0 64 64">
+    <g stroke-width="9" stroke-linecap="round" fill="none">
+      <line x1="32" y1="9" x2="10.5" y2="53" stroke="#0d4f96"/>
+      <line x1="10.5" y1="53" x2="48.3" y2="41.3" stroke="#4db8db"/>
+      <line x1="32" y1="9" x2="54" y2="54" stroke="url(#gPurple)"/>
+    </g>
+  </symbol>
+
+  <!-- X2 Ribbon A Reversed -->
+  <symbol id="m62" viewBox="0 0 64 64">
+    <rect x="3" y="3" width="58" height="58" rx="14" fill="#0b4f80"/>
+    <g transform="translate(32 32) scale(.74) translate(-32 -32)" stroke-width="9" stroke-linecap="round" fill="none">
+      <line x1="32" y1="9" x2="10.5" y2="53" stroke="#ffffff"/>
+      <line x1="10.5" y1="53" x2="48.3" y2="41.3" stroke="#b9d0e4"/>
+      <line x1="32" y1="9" x2="54" y2="54" stroke="#dce7f2"/>
+    </g>
+  </symbol>
+
+  <!-- X3 Play Ribbon -->
+  <symbol id="m63" viewBox="0 0 64 64">
+    <g stroke-width="10" stroke-linecap="round" fill="none">
+      <line x1="12" y1="10" x2="52" y2="32" stroke="#4db8db"/>
+      <line x1="12" y1="10" x2="12" y2="54" stroke="#0d4f96"/>
+      <line x1="52" y1="32" x2="12" y2="54" stroke="url(#gPurple)"/>
+      <line x1="44" y1="27.6" x2="52" y2="32" stroke="#4db8db"/>
+    </g>
+  </symbol>
+
+  <!-- X4 Interconnected Intelligence: lattice with gold core -->
+  <symbol id="m64" viewBox="0 0 64 64">
+    <g fill="none" stroke="url(#gLattice)" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="32,6 56,54 32,40 8,54" stroke-width="4.5"/>
+      <path d="M32 6 C26 16 28 24 32 30 C36 24 38 16 32 6" stroke-width="2.6"/>
+      <g stroke-width="2.4">
+        <line x1="32" y1="30" x2="26" y2="18"/><line x1="32" y1="30" x2="38" y2="18"/>
+        <line x1="32" y1="30" x2="14" y2="42"/><line x1="32" y1="30" x2="50" y2="42"/>
+        <line x1="21.2" y1="27.6" x2="32" y2="40"/><line x1="42.8" y1="27.6" x2="32" y2="40"/>
+      </g>
+    </g>
+    <g stroke="#e0a84a" stroke-width="2.8" stroke-linecap="round">
+      <line x1="32" y1="30" x2="21.2" y2="27.6"/><line x1="32" y1="30" x2="42.8" y2="27.6"/>
+      <line x1="32" y1="30" x2="32" y2="40"/>
+    </g>
+    <circle cx="32" cy="30" r="6.5" fill="#f2c67a" opacity=".35"/>
+    <circle cx="32" cy="30" r="3.8" fill="#e8b25a"/>
+  </symbol>
+
+  <!-- X5 Lattice Glow: blue gradient with cyan core -->
+  <symbol id="m65" viewBox="0 0 64 64">
+    <g fill="none" stroke="url(#gLattice)" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="32,6 56,54 32,40 8,54" stroke-width="4.5"/>
+      <path d="M32 6 C26 16 28 24 32 30 C36 24 38 16 32 6" stroke-width="2.6"/>
+      <g stroke-width="2.4">
+        <line x1="32" y1="30" x2="26" y2="18"/><line x1="32" y1="30" x2="38" y2="18"/>
+        <line x1="32" y1="30" x2="21.2" y2="27.6"/><line x1="32" y1="30" x2="42.8" y2="27.6"/>
+        <line x1="32" y1="30" x2="14" y2="42"/><line x1="32" y1="30" x2="50" y2="42"/>
+        <line x1="21.2" y1="27.6" x2="32" y2="40"/><line x1="42.8" y1="27.6" x2="32" y2="40"/>
+        <line x1="32" y1="30" x2="32" y2="40"/>
+      </g>
+    </g>
+    <circle cx="32" cy="30" r="8" fill="#5cc8ff" opacity=".3"/>
+    <circle cx="32" cy="30" r="4" fill="url(#gCore)"/>
+  </symbol>
+
+  <!-- X6 Lattice Flare: navy with a light flare -->
+  <symbol id="m66" viewBox="0 0 64 64">
+    <g fill="none" stroke="#123f85" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="32,6 56,54 32,40 8,54" stroke-width="4.5"/>
+      <path d="M32 6 C26 16 28 24 32 30 C36 24 38 16 32 6" stroke-width="2.6"/>
+      <g stroke-width="2.4">
+        <line x1="32" y1="30" x2="26" y2="18"/><line x1="32" y1="30" x2="38" y2="18"/>
+        <line x1="32" y1="30" x2="21.2" y2="27.6"/><line x1="32" y1="30" x2="42.8" y2="27.6"/>
+        <line x1="32" y1="30" x2="14" y2="42"/><line x1="32" y1="30" x2="50" y2="42"/>
+        <line x1="21.2" y1="27.6" x2="32" y2="40"/><line x1="42.8" y1="27.6" x2="32" y2="40"/>
+        <line x1="32" y1="30" x2="32" y2="40"/>
+      </g>
+    </g>
+    <circle cx="32" cy="30" r="15" fill="url(#gFlare)"/>
+    <circle cx="32" cy="30" r="2.4" fill="#ffffff"/>
+  </symbol>
+
+  <!-- X7 Lattice Line: simplified monoline icon -->
+  <symbol id="m67" viewBox="0 0 64 64">
+    <g fill="none" stroke="#2a6fc4" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="32,6 56,54 32,40 8,54" stroke-width="5"/>
+      <path d="M32 6 C26 16 28 24 32 30 C36 24 38 16 32 6" stroke-width="3.4"/>
+      <g stroke-width="3.4">
+        <line x1="32" y1="30" x2="21.2" y2="27.6"/><line x1="32" y1="30" x2="42.8" y2="27.6"/>
+        <line x1="32" y1="30" x2="32" y2="40"/>
+      </g>
+    </g>
+  </symbol>
+
+  <!-- X8 Algorithmic Fusion: S-curve knot and A -->
+  <symbol id="m68" viewBox="0 0 64 64">
+    <path d="M18 8 C6 8 6 30 18 32 C30 34 30 56 18 56 C6 56 6 34 18 32 C30 30 30 8 18 8 Z" fill="none" stroke="#1f6fc0" stroke-width="6" stroke-linejoin="round"/>
+    <polyline points="33,56 46,8 59,56" fill="none" stroke="url(#gBlue)" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>
+    <path d="M9 44 C20 36 29 30 39 36 C47 41 53 32 60 22" fill="none" stroke="#e0a84a" stroke-width="5" stroke-linecap="round"/>
+  </symbol>
+
+  <!-- X9 Unfolding Helix: DNA helix and A -->
+  <symbol id="m69" viewBox="0 0 64 64">
+    <g stroke="#3399cc" stroke-width="2.2" stroke-linecap="round">
+      <line x1="12" y1="20" x2="24" y2="20"/><line x1="10.5" y1="24" x2="25.5" y2="24"/><line x1="12" y1="28" x2="24" y2="28"/>
+      <line x1="12" y1="38" x2="24" y2="38"/><line x1="10.5" y1="42" x2="25.5" y2="42"/><line x1="12" y1="46" x2="24" y2="46"/>
+    </g>
+    <g fill="none" stroke-width="4.5" stroke-linecap="round">
+      <path d="M26 6 C26 15 10 15 10 24 C10 33 26 33 26 42 C26 51 10 51 10 58" stroke="#4aa3e0"/>
+      <path d="M10 6 C10 15 26 15 26 24 C26 33 10 33 10 42 C10 51 26 51 26 58" stroke="#1f5fb0"/>
+    </g>
+    <polyline points="32,56 45,10 58,56" fill="none" stroke="url(#gBlue)" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>
+    <line x1="38" y1="40" x2="52" y2="40" stroke="#3fa9e0" stroke-width="5" stroke-linecap="round"/>
+  </symbol>
+</svg>
+
+<div class="wrap">
+  <section class="intro">
+    <div>
+      <div class="eyebrow">Brand exploration · Round 6</div>
+      <h1>The Alex AI concept set</h1>
+      <p>Nine logo ideas taken from the seven image boards in <code>audi-logo-alex-ai</code>, redrawn as clean vectors so they can be compared with the other rounds and tested at favicon sizes. The original boards are at the bottom of this page for reference.</p>
+    </div>
+    <div class="base">
+      <div class="pair"><svg aria-hidden="true"><use href="#m61"/></svg><svg aria-hidden="true"><use href="#m64"/></svg></div>
+      <div><b>Two families</b><span>Ribbon A and Lattice A, plus two paired marks</span></div>
+    </div>
+  </section>
+
+  <section class="preview" aria-label="Dashboard preview">
+    <div class="preview-top">
+      <h2 id="pvTitle">In context: X1, Ribbon A</h2>
+      <span>Browser tab favicon at 16px and dashboard header at 28px</span>
+    </div>
+    <div class="browser">
+      <div class="tabs">
+        <div class="tab"><svg width="16" height="16" id="pvFav"><use href="#m61"/></svg>AUDI · Orchestrator Dashboard</div>
+        <div class="tab ghost">Figma – Bell Mobility</div>
+      </div>
+    </div>
+    <div class="dash-bar">
+      <div class="brand"><svg width="28" height="28" id="pvMark"><use href="#m61"/></svg><span class="word">AUDI</span></div>
+      <span class="sub">Orchestrator Dashboard</span>
+    </div>
+    <div class="dash-body" aria-hidden="true"><div></div><div></div><div></div></div>
+  </section>
+
+  <section class="grid" id="grid"></section>
+
+  <section class="note">
+    <div>
+      <h2>My recommendation</h2>
+      <p><strong>X1, Ribbon A</strong>, is the strongest of this set. Three clean strokes in navy, cyan and purple form an A that folds over itself, which suggests the parts of the flow coming together. It holds up at 16px. The Lattice A family is rich at large sizes but too detailed for a favicon. The source boards say the same thing, since they each add a simplified icon; X7 is my version of that.</p>
+    </div>
+    <div>
+      <h2>About the source text</h2>
+      <p>The boards use different taglines, such as "Automation Development &amp; AI" (spelled "Automaation" in places) and "Specflow Orchestrator Dashboard". The lockups here use <strong>Augmented Unified Delivery Intelligence</strong> to match the other rounds. I can switch to any tagline you prefer.</p>
+    </div>
+  </section>
+
+  <section class="sources" aria-label="Source boards">
+    <div class="sources-head">
+      <h2>Source boards</h2>
+      <p>The original images, copied to <code>assets/alex-ai/</code>.</p>
+    </div>
+    <div class="source-grid">
+      <figure><img src="../assets/alex-ai/ribbon-a-board.png" alt="Ribbon A board with wordmark and favicon set" loading="lazy"><figcaption><b>Ribbon A</b>Source for X1</figcaption></figure>
+      <figure><img src="../assets/alex-ai/ribbon-a-reversed-board.png" alt="Ribbon A in white on a blue background" loading="lazy"><figcaption><b>Ribbon A, reversed</b>Source for X2</figcaption></figure>
+      <figure><img src="../assets/alex-ai/play-ribbon-board.png" alt="Play button ribbon mark with wordmark" loading="lazy"><figcaption><b>Play Ribbon</b>Source for X3</figcaption></figure>
+      <figure><img src="../assets/alex-ai/lattice-fusion-helix-board.png" alt="Three concepts: lattice A, S-curve fusion and DNA helix" loading="lazy"><figcaption><b>Lattice, Fusion and Helix</b>Source for X4, X8 and X9</figcaption></figure>
+      <figure><img src="../assets/alex-ai/lattice-dark-board.png" alt="Lattice A in silver and blue on a dark background" loading="lazy"><figcaption><b>Lattice A, dark</b>Source for X5</figcaption></figure>
+      <figure><img src="../assets/alex-ai/lattice-flare-board.png" alt="Navy lattice A with a light flare" loading="lazy"><figcaption><b>Lattice A, flare</b>Source for X6</figcaption></figure>
+      <figure><img src="../assets/alex-ai/lattice-dev-cycle-board.png" alt="Lattice A with code strands and a simplified icon" loading="lazy"><figcaption><b>Lattice A, development cycle</b>Source for X7</figcaption></figure>
+    </div>
+  </section>
+</div>
+
+<script>
+const concepts = [
+  { id:61, code:'X1', name:'Ribbon A', tag:'Recommended', rec:true,
+    why:'Three rounded strokes form the A: a navy left leg, a purple right leg, and a cyan crossbar that sweeps up from the left foot and tucks under the right leg.',
+    reads:[['AI','Purple adds a distinct AI accent'],['Media','Ribbon and motion'],['Software','Parts folding into one flow'],['Favicon','Clear at 16px']] },
+  { id:62, code:'X2', name:'Ribbon A Reversed', tag:'Mono tile',
+    why:'The same ribbon A in white and pale blues on a deep blue tile, as in the reversed board. It works where color is limited.',
+    reads:[['AI','Implied by the mark'],['Media','App icon shape'],['Software','Product tile'],['Favicon','Strong on any tab']] },
+  { id:63, code:'X3', name:'Play Ribbon', tag:'Media mark',
+    why:'The ribbon idea turned into a play button: a navy bar, a cyan top edge and a purple bottom edge, folded together.',
+    reads:[['AI','Not shown directly'],['Media','Play button, video'],['Software','Run and deliver'],['Favicon','Bold and clear']] },
+  { id:64, code:'X4', name:'Interconnected Intelligence', tag:'Lattice · gold',
+    why:'The "pillar" concept: an A built from a lattice of struts, with a teardrop loop at the top and a gold core where the lines meet.',
+    reads:[['AI','Network converging on a core'],['Media','Rich, crafted detail'],['Software','Structure and architecture'],['Favicon','Too detailed below 32px']] },
+  { id:65, code:'X5', name:'Lattice Glow', tag:'Lattice · cyan',
+    why:'The lattice A in a cyan-to-navy gradient with a glowing cyan core, from the dark-background board.',
+    reads:[['AI','Glowing core'],['Media','Light and gradient'],['Software','Structure and architecture'],['Favicon','Too detailed below 32px']] },
+  { id:66, code:'X6', name:'Lattice Flare', tag:'Lattice · navy',
+    why:'The lattice A in solid navy with a bright light flare at its center, like a spark of insight inside the structure.',
+    reads:[['AI','Flare of insight'],['Media','Photographic light effect'],['Software','Structure and architecture'],['Favicon','Flare is lost at 16px']] },
+  { id:67, code:'X7', name:'Lattice Line', tag:'Simplified icon',
+    why:'The lattice reduced to its outline, the top loop and three struts, so it can work as a small icon.',
+    reads:[['AI','Converging lines'],['Media','Clean line icon'],['Software','Simplified structure'],['Favicon','Best of the lattice set']] },
+  { id:68, code:'X8', name:'Algorithmic Fusion', tag:'Paired mark',
+    why:'An S-curve knot next to the A, joined by a gold ribbon that becomes the crossbar. The loop stands for algorithms and the gold for fusion.',
+    reads:[['AI','Algorithm loop'],['Media','Ribbon and color'],['Software','Logic joined to delivery'],['Favicon','Two shapes crowd at 16px']] },
+  { id:69, code:'X9', name:'Unfolding Helix', tag:'Paired mark',
+    why:'A DNA helix next to the A. The helix stands for the building blocks of development, and the A is what they grow into.',
+    reads:[['AI','Generated building blocks'],['Media','Organic, scientific'],['Software','The DNA of the product'],['Favicon','Rungs disappear at 16px']] },
+];
+
+const use = (id, s) => `<svg width="${s}" height="${s}" aria-hidden="true"><use href="#m${id}"/></svg>`;
+const grid = document.getElementById('grid');
+grid.innerHTML = concepts.map(c => `
+  <article class="concept${c.id===61?' active':''}" data-id="${c.id}">
+    <div class="concept-head"><h3>${c.code}. ${c.name}</h3><span class="tag${c.rec?' rec':''}">${c.tag}</span></div>
+    <div class="stage">${use(c.id,132)}</div>
+    <div class="lockup">${use(c.id,40)}<div><div class="word">AUDI</div><div class="expand">Augmented Unified Delivery Intelligence</div></div></div>
+    <div class="favs">
+      <div class="fav d">
+        <figure>${use(c.id,48)}<figcaption>48</figcaption></figure>
+        <figure>${use(c.id,32)}<figcaption>32</figcaption></figure>
+        <figure>${use(c.id,16)}<figcaption>16</figcaption></figure>
+      </div>
+      <div class="fav l">
+        <figure>${use(c.id,32)}<figcaption>32</figcaption></figure>
+        <figure>${use(c.id,16)}<figcaption>16</figcaption></figure>
+      </div>
+    </div>
+    <div class="body">
+      <p>${c.why}</p>
+      <ul class="reads">${c.reads.map(r=>`<li><span>${r[0]}</span>${r[1]}</li>`).join('')}</ul>
+      <button type="button" id="pv${c.id}">Preview in dashboard</button>
+    </div>
+  </article>`).join('');
+
+grid.addEventListener('click', e => {
+  const btn = e.target.closest('button'); if (!btn) return;
+  const card = btn.closest('.concept'); const id = +card.dataset.id;
+  const c = concepts.find(x => x.id === id);
+  document.querySelectorAll('.concept').forEach(el => el.classList.toggle('active', el === card));
+  document.querySelector('#pvFav use').setAttribute('href', '#m'+id);
+  document.querySelector('#pvMark use').setAttribute('href', '#m'+id);
+  document.getElementById('pvTitle').textContent = `In context: ${c.code}, ${c.name}`;
+  document.querySelector('.preview').scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block:'start'});
+});
+</script>
+</body>
+</html>

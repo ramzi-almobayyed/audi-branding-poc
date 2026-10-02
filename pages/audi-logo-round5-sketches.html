@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AUDI Sketch Directions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  color-scheme: dark;
+  --bg:#0d0f18; --surf:#141720; --surf2:#1c2030; --border:#2a2f4a;
+  --text:#e2e8f0; --muted:#8a98b0; --accent:#3399cc; --accent-strong:#5cc8ff;
+  --tile-dark:#0d0f18; --tile-light:#f3f6fa; --tile-light-border:#d6dee8;
+  --btn-bg:#0067A5; --btn-text:#ffffff;
+  --display:'Plus Jakarta Sans', 'Segoe UI', system-ui, sans-serif;
+  --body:'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif;
+  --mono:'JetBrains Mono', ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    color-scheme: light;
+    --bg:#f4f6fa; --surf:#ffffff; --surf2:#eef2f7; --border:#d8dfea;
+    --text:#131a2a; --muted:#56647a; --accent:#0067A5; --accent-strong:#004f7c;
+  }
+}
+:root[data-theme="light"]{
+  color-scheme: light;
+  --bg:#f4f6fa; --surf:#ffffff; --surf2:#eef2f7; --border:#d8dfea;
+  --text:#131a2a; --muted:#56647a; --accent:#0067A5; --accent-strong:#004f7c;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:15px;line-height:1.55;margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:20px;padding-block:40px 64px;display:flex;flex-direction:column;gap:40px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.intro{display:grid;grid-template-columns:1.3fr 1fr;gap:32px;align-items:center}
+.intro h1{font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:-.01em;margin-top:8px}
+.intro p{color:var(--muted);max-width:62ch;margin:12px 0 0}
+.base{display:flex;align-items:center;gap:16px;background:var(--surf);border:1px solid var(--border);border-radius:10px;padding:16px 18px}
+.base svg{width:64px;height:64px;flex:none}
+.base b{font-family:var(--display);font-size:15px;display:block}
+.base span{color:var(--muted);font-size:13px}
+
+.preview{background:var(--surf);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.preview-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:14px 18px;border-bottom:1px solid var(--border)}
+.preview-top h2{font-size:15px;font-weight:700}
+.preview-top span{font-size:13px;color:var(--muted)}
+.browser{background:#0a0c13;padding:10px 12px 0}
+.tabs{display:flex;gap:4px}
+.tab{display:flex;align-items:center;gap:8px;background:#141720;color:#c9d3e0;font-size:12px;padding:8px 14px;border-radius:8px 8px 0 0;max-width:280px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tab.ghost{background:transparent;color:#5d6a80}
+.tab svg{flex:none}
+.dash-bar{background:#141720;border-bottom:1px solid #2a2f4a;display:flex;align-items:center;gap:12px;padding:12px 18px;color:#e2e8f0}
+.dash-bar .brand{display:flex;align-items:center;gap:10px}
+.dash-bar .word{font-family:var(--display);font-weight:800;letter-spacing:.14em;font-size:17px}
+.dash-bar .sub{color:#7888a0;font-size:14px;border-left:1px solid #2a2f4a;padding-left:12px}
+.dash-body{background:#0d0f18;padding:18px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.dash-body div{height:54px;border-radius:6px;background:#1c2030;border:1px solid #2a2f4a}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:20px}
+.concept{background:var(--surf);border:1px solid var(--border);border-radius:10px;display:flex;flex-direction:column;overflow:hidden;transition:border-color .2s}
+.concept.active{border-color:var(--accent)}
+.concept-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:16px 18px 0}
+.concept-head h3{font-size:19px;font-weight:700}
+.tag{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.tag.rec{color:var(--accent-strong)}
+.stage{margin:14px 18px 0;background:var(--tile-dark);border:1px solid #232842;border-radius:8px 8px 0 0;display:grid;place-items:center;padding:28px 0}
+.stage svg{width:132px;height:132px}
+.lockup{display:flex;align-items:center;gap:12px;margin:0 18px;padding:14px 16px;background:var(--tile-light);border:1px solid var(--tile-light-border);border-top:0;border-radius:0 0 8px 8px;color:#131a2a}
+.lockup svg{width:40px;height:40px;flex:none}
+.lockup .word{font-family:var(--display);font-weight:800;font-size:24px;letter-spacing:.14em;line-height:1}
+.lockup .expand{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;color:#56647a;text-transform:uppercase;margin-top:5px;line-height:1.3}
+.favs{display:flex;gap:10px;margin:14px 18px 0;flex-wrap:wrap}
+.fav{display:flex;align-items:flex-end;gap:12px;padding:10px 12px;border-radius:6px;flex:1;min-width:130px}
+.fav.d{background:var(--tile-dark);border:1px solid #232842}
+.fav.l{background:var(--tile-light);border:1px solid var(--tile-light-border)}
+.fav figure{margin:0;display:flex;flex-direction:column;align-items:center;gap:4px}
+.fav figcaption{font-family:var(--mono);font-size:9px;color:#7888a0;font-variant-numeric:tabular-nums}
+.body{padding:14px 18px 18px;display:flex;flex-direction:column;gap:10px;flex:1}
+.body p{margin:0;color:var(--muted);font-size:14px}
+.reads{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:5px;font-size:13px}
+.reads li{display:grid;grid-template-columns:92px 1fr;gap:8px}
+.reads span{font-family:var(--mono);font-size:11px;color:var(--accent);text-transform:uppercase;letter-spacing:.06em;padding-top:2px}
+.body button{margin-top:auto;align-self:flex-start;font:600 13px var(--body);background:transparent;color:var(--accent);border:1px solid var(--accent);border-radius:6px;padding:8px 14px;cursor:pointer}
+.body button:hover{background:var(--accent);color:var(--surf)}
+.body button:focus-visible{outline:2px solid var(--accent-strong);outline-offset:2px}
+.concept.active .body button{background:var(--btn-bg);color:var(--btn-text);border-color:var(--btn-bg)}
+
+.note{background:var(--surf2);border:1px solid var(--border);border-radius:10px;padding:20px 22px;display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.note h2{font-size:17px;margin-bottom:6px}
+.note p{margin:0;color:var(--muted);font-size:14px;max-width:60ch}
+.note code{font-family:var(--mono);font-size:12.5px;color:var(--text)}
+@media (prefers-reduced-motion: reduce){.concept{transition:none}}
+@media (max-width:760px){
+  .intro,.note{grid-template-columns:1fr}
+  .dash-body{grid-template-columns:1fr 1fr}
+  .dash-bar .sub{display:none}
+  .grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<style>
+.group{display:flex;flex-direction:column;gap:16px}
+.group-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.group-head h2{font-size:22px;font-weight:800}
+.group-head p{margin:0;color:var(--muted);font-size:14px;max-width:70ch}
+.base .pair{display:flex;gap:10px}
+</style>
+
+<!-- Shared gradients and marks, drawn on a 64-unit grid -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="gBlue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3fa9e0"/><stop offset="1" stop-color="#0067A5"/>
+    </linearGradient>
+    <linearGradient id="gTile" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0a7cc2"/><stop offset="1" stop-color="#00456d"/>
+    </linearGradient>
+    <linearGradient id="gGlow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5cc8ff"/><stop offset="1" stop-color="#0067A5"/>
+    </linearGradient>
+    <radialGradient id="gCore" cx=".4" cy=".35" r=".7">
+      <stop offset="0" stop-color="#d4f3ff"/><stop offset="1" stop-color="#5cc8ff"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Reference: round 4 picks -->
+  <symbol id="m22" viewBox="0 0 64 64">
+    <polyline points="14,47 32,14 50,47" fill="none" stroke="url(#gTile)" stroke-width="21" stroke-linecap="round" stroke-linejoin="round"/>
+    <g stroke="#fff" stroke-opacity=".85" stroke-width="2.8" stroke-linecap="round">
+      <line x1="32" y1="14" x2="14" y2="47"/><line x1="32" y1="14" x2="50" y2="47"/>
+    </g>
+    <circle cx="32" cy="14" r="6.3" fill="url(#gCore)"/>
+    <circle cx="14" cy="47" r="5" fill="#fff"/><circle cx="50" cy="47" r="5" fill="#fff"/>
+  </symbol>
+  <symbol id="m31" viewBox="0 0 64 64">
+    <polygon points="39,9 7,46 54.5,35.5" fill="none" stroke="url(#gBlue)" stroke-width="8" stroke-linejoin="round"/>
+    <circle cx="49" cy="51" r="6.5" fill="url(#gCore)"/>
+  </symbol>
+
+  <!-- S1-E Punched A -->
+  <symbol id="m41" viewBox="0 0 64 64">
+    <defs>
+      <mask id="punch41" maskUnits="userSpaceOnUse" x="0" y="0" width="64" height="64">
+        <polyline points="14,47 32,14 50,47" fill="none" stroke="#fff" stroke-width="21" stroke-linecap="round" stroke-linejoin="round"/>
+        <g stroke="#000" stroke-width="2.6" stroke-linecap="round">
+          <line x1="32" y1="14" x2="14" y2="47"/><line x1="32" y1="14" x2="50" y2="47"/>
+        </g>
+        <g fill="#000"><circle cx="32" cy="14" r="6.5"/><circle cx="14" cy="47" r="5.5"/><circle cx="50" cy="47" r="5.5"/></g>
+        <g fill="#fff"><circle cx="32" cy="14" r="3.4"/><circle cx="14" cy="47" r="2.6"/><circle cx="50" cy="47" r="2.6"/></g>
+      </mask>
+    </defs>
+    <rect width="64" height="64" fill="url(#gTile)" mask="url(#punch41)"/>
+  </symbol>
+
+  <!-- S1-F Molecule -->
+  <symbol id="m42" viewBox="0 0 64 64">
+    <g stroke="#3399cc" stroke-width="7" stroke-linecap="round">
+      <line x1="32" y1="15" x2="13" y2="48"/><line x1="32" y1="15" x2="51" y2="48"/>
+    </g>
+    <circle cx="32" cy="15" r="13.5" fill="#5cc8ff" opacity=".2"/>
+    <circle cx="32" cy="15" r="9.5" fill="url(#gCore)"/>
+    <circle cx="13" cy="48" r="8" fill="#0067A5"/>
+    <circle cx="51" cy="48" r="8" fill="#0067A5"/>
+  </symbol>
+
+  <!-- S1-G Ribbons -->
+  <symbol id="m43" viewBox="0 0 64 64">
+    <line x1="32" y1="14" x2="14" y2="47" stroke="#0067A5" stroke-width="17" stroke-linecap="round"/>
+    <line x1="32" y1="14" x2="50" y2="47" stroke="#3fa9e0" stroke-width="17" stroke-linecap="round" opacity=".85"/>
+    <g stroke="#fff" stroke-opacity=".7" stroke-width="2" stroke-linecap="round">
+      <line x1="32" y1="14" x2="14" y2="47"/><line x1="32" y1="14" x2="50" y2="47"/>
+    </g>
+    <circle cx="32" cy="14" r="5.5" fill="#fff"/>
+    <circle cx="14" cy="47" r="4" fill="#fff"/><circle cx="50" cy="47" r="4" fill="#fff"/>
+  </symbol>
+
+  <!-- S1-H Orbit -->
+  <symbol id="m44" viewBox="0 0 64 64">
+    <circle cx="32" cy="32" r="26" fill="none" stroke="#3399cc" stroke-width="3"/>
+    <g stroke="url(#gGlow)" stroke-width="5.5" stroke-linecap="round">
+      <line x1="32" y1="6" x2="9.5" y2="45"/><line x1="32" y1="6" x2="54.5" y2="45"/>
+    </g>
+    <circle cx="32" cy="6" r="9" fill="#5cc8ff" opacity=".25"/>
+    <circle cx="32" cy="6" r="5.8" fill="url(#gCore)"/>
+    <circle cx="9.5" cy="45" r="5.5" fill="#0067A5"/>
+    <circle cx="54.5" cy="45" r="5.5" fill="#0067A5"/>
+  </symbol>
+
+  <!-- S1-I Flow -->
+  <symbol id="m45" viewBox="0 0 64 64">
+    <g fill="none" stroke-width="6.5" stroke-linecap="round">
+      <path d="M32 13 C21 22 14 34 14 50" stroke="url(#gGlow)"/>
+      <path d="M32 13 C43 22 50 34 50 50" stroke="url(#gGlow)"/>
+      <path d="M20 38 C27 34 37 34 44 38" stroke="#3399cc" stroke-width="4"/>
+    </g>
+    <circle cx="32" cy="13" r="10" fill="#5cc8ff" opacity=".22"/>
+    <circle cx="32" cy="13" r="6.5" fill="url(#gCore)"/>
+    <circle cx="14" cy="50" r="5.5" fill="#0067A5"/>
+    <circle cx="50" cy="50" r="5.5" fill="#0067A5"/>
+  </symbol>
+
+  <!-- S1-J Linked Tile -->
+  <symbol id="m46" viewBox="0 0 64 64">
+    <rect x="3" y="3" width="58" height="58" rx="14" fill="url(#gTile)"/>
+    <polyline points="19,44 32,19 45,44" fill="none" stroke="#fff" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+    <g stroke="#0067A5" stroke-width="2.2" stroke-linecap="round">
+      <line x1="32" y1="19" x2="19" y2="44"/><line x1="32" y1="19" x2="45" y2="44"/>
+    </g>
+    <circle cx="32" cy="19" r="6.5" fill="#5cc8ff" opacity=".45"/>
+    <circle cx="32" cy="19" r="4.4" fill="#0067A5"/>
+    <circle cx="19" cy="44" r="3.7" fill="#0067A5"/><circle cx="45" cy="44" r="3.7" fill="#0067A5"/>
+  </symbol>
+
+  <!-- S2-E Sharp Delta -->
+  <symbol id="m51" viewBox="0 0 64 64">
+    <polygon points="39,9 7,46 54.5,35.5" fill="none" stroke="url(#gBlue)" stroke-width="6.5" stroke-linejoin="miter"/>
+    <circle cx="49" cy="51" r="5" fill="#5cc8ff"/>
+  </symbol>
+
+  <!-- S2-F Ribbon Delta -->
+  <symbol id="m52" viewBox="0 0 64 64">
+    <g stroke-width="8" stroke-linecap="round" opacity=".92">
+      <line x1="39" y1="9" x2="7" y2="46" stroke="#0067A5"/>
+      <line x1="7" y1="46" x2="54.5" y2="35.5" stroke="#3399cc"/>
+      <line x1="54.5" y1="35.5" x2="39" y2="9" stroke="#5cc8ff"/>
+    </g>
+    <circle cx="49" cy="51" r="6" fill="url(#gCore)"/>
+  </symbol>
+
+  <!-- S2-G Exclamation A -->
+  <symbol id="m53" viewBox="0 0 64 64">
+    <g fill="none" stroke="url(#gBlue)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="46,8 26,40 46,40"/>
+      <line x1="26" y1="40" x2="16" y2="56"/>
+    </g>
+    <circle cx="46" cy="54" r="5.5" fill="url(#gCore)"/>
+  </symbol>
+
+  <!-- S2-H Solid Delta -->
+  <symbol id="m54" viewBox="0 0 64 64">
+    <polygon points="39,9 7,46 54.5,35.5" fill="url(#gBlue)" stroke="url(#gBlue)" stroke-width="6" stroke-linejoin="round"/>
+    <circle cx="49" cy="52" r="6.5" fill="url(#gCore)"/>
+  </symbol>
+
+  <!-- S2-I Circle Badge -->
+  <symbol id="m55" viewBox="0 0 64 64">
+    <circle cx="32" cy="32" r="29" fill="url(#gTile)"/>
+    <polygon points="36,15 15,42 48,35" fill="none" stroke="#fff" stroke-width="5.5" stroke-linejoin="round"/>
+    <circle cx="44" cy="48" r="7" fill="#5cc8ff" opacity=".3"/>
+    <circle cx="44" cy="48" r="4.8" fill="url(#gCore)"/>
+  </symbol>
+
+  <!-- S2-J Delta Hex -->
+  <symbol id="m56" viewBox="0 0 64 64">
+    <polygon points="32,5 55.4,18.5 55.4,45.5 32,59 8.6,45.5 8.6,18.5" fill="url(#gTile)" stroke="url(#gTile)" stroke-width="5" stroke-linejoin="round"/>
+    <polygon points="36,16 16,41 47,34" fill="none" stroke="#fff" stroke-width="5.5" stroke-linejoin="round"/>
+    <circle cx="43" cy="46" r="4.6" fill="url(#gCore)"/>
+  </symbol>
+</svg>
+
+<div class="wrap">
+  <section class="intro">
+    <div>
+      <div class="eyebrow">Brand exploration · Round 5</div>
+      <h1>Six more directions for each sketch</h1>
+      <p>Each version takes the same idea in a different direction: punched-out, molecular, overlapping ribbons, orbit, flowing curves and app badges. If none of them is right, the parts you like or dislike in each will show us where to go next.</p>
+    </div>
+    <div class="base">
+      <div class="pair"><svg aria-hidden="true"><use href="#m22"/></svg><svg aria-hidden="true"><use href="#m31"/></svg></div>
+      <div><b>Round 4 for reference</b><span>S1-B Linked A Solid and S2-A Insight A</span></div>
+    </div>
+  </section>
+
+  <section class="preview" aria-label="Dashboard preview">
+    <div class="preview-top">
+      <h2 id="pvTitle">In context: S1-F, Molecule</h2>
+      <span>Browser tab favicon at 16px and dashboard header at 28px</span>
+    </div>
+    <div class="browser">
+      <div class="tabs">
+        <div class="tab"><svg width="16" height="16" id="pvFav"><use href="#m42"/></svg>AUDI · Orchestrator Dashboard</div>
+        <div class="tab ghost">Figma – Bell Mobility</div>
+      </div>
+    </div>
+    <div class="dash-bar">
+      <div class="brand"><svg width="28" height="28" id="pvMark"><use href="#m42"/></svg><span class="word">AUDI</span></div>
+      <span class="sub">Orchestrator Dashboard</span>
+    </div>
+    <div class="dash-body" aria-hidden="true"><div></div><div></div><div></div></div>
+  </section>
+
+  <section class="group">
+    <div class="group-head">
+      <h2>Sketch 1: Linked A</h2>
+      <p>Three connected nodes in an A. The top node is the AI orchestrator, and the feet are what it delivers to.</p>
+    </div>
+    <div class="grid" id="grid1"></div>
+  </section>
+
+  <section class="group">
+    <div class="group-head">
+      <h2>Sketch 2: A with a dot</h2>
+      <p>A triangle A whose right foot is a dot. It also reads as an exclamation mark, the moment of insight.</p>
+    </div>
+    <div class="grid" id="grid2"></div>
+  </section>
+
+  <section class="note">
+    <div>
+      <h2>My recommendation</h2>
+      <p>From sketch 1, <strong>S1-F, Molecule</strong>. It drops the outline and lets the three nodes carry the A. The result is bold, reads instantly as connected intelligence, and stays clear at 16px. From sketch 2, <strong>S2-G, Exclamation A</strong>, is the most distinctive: it reads as both an A and an exclamation mark, which is closest to the idea in your drawing.</p>
+    </div>
+    <div>
+      <h2>To narrow it down</h2>
+      <p>Tell me what you like or dislike in any of them, for example "bolder", "less techy", "no glow", "should feel more like media". One word about each is enough to steer the next round.</p>
+    </div>
+  </section>
+</div>
+
+<script>
+const concepts = [
+  { id:41, group:1, code:'S1-E', name:'Punched A', tag:'Negative space',
+    why:'One solid A shape with the three nodes and links cut out of it as rings and lines. It looks precise, like a stamped or engineered part.',
+    reads:[['AI','Nodes punched into the form'],['Media','Clean single-color mark'],['Software','Engineered, precise'],['Favicon','Ring cut-outs fill in at 16px']] },
+  { id:42, group:1, code:'S1-F', name:'Molecule', tag:'Recommended', rec:true,
+    why:'No outline: three bold nodes and two thick bonds form the A. The top node glows as the orchestrator, and the bottom nodes are what it builds.',
+    reads:[['AI','Glowing core node'],['Media','Connected, social structure'],['Software','Services linked together'],['Favicon','Bold dots, very clear']] },
+  { id:43, group:1, code:'S1-G', name:'Ribbons', tag:'Overlap mark',
+    why:'Two rounded legs in different blues overlap at the top, where the colors mix. Two streams, design and code, merge into one at the apex node.',
+    reads:[['AI','Streams merge at the top'],['Media','Color and layering'],['Software','Design and code unified'],['Favicon','Solid, clear']] },
+  { id:44, group:1, code:'S1-H', name:'Orbit', tag:'Circle mark',
+    why:'The three nodes sit on a ring, and the links form the A inside it. The ring is the continuous delivery loop, with AI at the top.',
+    reads:[['AI','Glowing top node on the ring'],['Media','Lens and globe shape'],['Software','Continuous delivery loop'],['Favicon','Ring thins at 16px']] },
+  { id:45, group:1, code:'S1-I', name:'Flow', tag:'Organic mark',
+    why:'The links curve outward like a flowing A, with a curved crossbar. It feels friendlier and more human than a straight-line network.',
+    reads:[['AI','Intelligence flows down from the top'],['Media','Soft, fluid curves'],['Software','Flow from idea to delivery'],['Favicon','Reads well at 32px']] },
+  { id:46, group:1, code:'S1-J', name:'Linked Tile', tag:'App icon',
+    why:'The soft linked A in white on a Bell-blue app tile. It is the round 4 favorite turned into an app icon.',
+    reads:[['AI','Glowing top node'],['Media','App-store style icon'],['Software','Product tile'],['Favicon','Strongest at 16px']] },
+  { id:51, group:2, code:'S2-E', name:'Sharp Delta', tag:'Precise',
+    why:'Your triangle with sharp corners and a thinner stroke. It looks more exact and engineered than the rounded version.',
+    reads:[['AI','Dot is the insight'],['Media','Clean, minimal'],['Software','Precision and speed'],['Favicon','Good']] },
+  { id:52, group:2, code:'S2-F', name:'Ribbon Delta', tag:'Three-part mark',
+    why:'Each side of the triangle is a separate ribbon in its own blue: design, code and API, overlapping at the corners to form one A.',
+    reads:[['AI','Dot is the insight'],['Media','Color and layering'],['Software','Three layers in one shape'],['Favicon','Colors merge at 16px']] },
+  { id:53, group:2, code:'S2-G', name:'Exclamation A', tag:'Recommended', rec:true,
+    why:'The right side stands straight up with the dot underneath, so the mark reads as an A and an exclamation mark at once. It is the clearest version of your idea.',
+    reads:[['AI','The "aha" moment'],['Media','Strong, poster-like glyph'],['Software','Alerts, signals, action'],['Favicon','Bold, clear']] },
+  { id:54, group:2, code:'S2-H', name:'Solid Delta', tag:'Bold',
+    why:'The triangle filled solid with rounded corners. It reads like a forward or play arrow with a dot: fast delivery, media in motion.',
+    reads:[['AI','Glowing dot'],['Media','Play and forward shape'],['Software','Speed of delivery'],['Favicon','Strongest silhouette']] },
+  { id:55, group:2, code:'S2-I', name:'Circle Badge', tag:'Round icon',
+    why:'The tilted triangle in white on a round Bell-blue badge, with a glowing dot. It is softer than a square tile and works well as an avatar.',
+    reads:[['AI','Glowing dot'],['Media','Avatar and badge shape'],['Software','Product badge'],['Favicon','Very clear']] },
+  { id:56, group:2, code:'S2-J', name:'Delta Hex', tag:'Concept 4 family',
+    why:'The tilted triangle and dot in white on the Concept 4 hexagon, linking this sketch to the package idea from round 2.',
+    reads:[['AI','Cyan dot'],['Media','Letterform plus dot'],['Software','Hexagon package from Concept 4'],['Favicon','Solid hexagon, clear']] },
+];
+
+const use = (id, s) => `<svg width="${s}" height="${s}" aria-hidden="true"><use href="#m${id}"/></svg>`;
+const card = c => `
+  <article class="concept${c.id===42?' active':''}" data-id="${c.id}">
+    <div class="concept-head"><h3>${c.code}. ${c.name}</h3><span class="tag${c.rec?' rec':''}">${c.tag}</span></div>
+    <div class="stage">${use(c.id,132)}</div>
+    <div class="lockup">${use(c.id,40)}<div><div class="word">AUDI</div><div class="expand">Augmented Unified Delivery Intelligence</div></div></div>
+    <div class="favs">
+      <div class="fav d">
+        <figure>${use(c.id,48)}<figcaption>48</figcaption></figure>
+        <figure>${use(c.id,32)}<figcaption>32</figcaption></figure>
+        <figure>${use(c.id,16)}<figcaption>16</figcaption></figure>
+      </div>
+      <div class="fav l">
+        <figure>${use(c.id,32)}<figcaption>32</figcaption></figure>
+        <figure>${use(c.id,16)}<figcaption>16</figcaption></figure>
+      </div>
+    </div>
+    <div class="body">
+      <p>${c.why}</p>
+      <ul class="reads">${c.reads.map(r=>`<li><span>${r[0]}</span>${r[1]}</li>`).join('')}</ul>
+      <button type="button" id="pv${c.id}">Preview in dashboard</button>
+    </div>
+  </article>`;
+document.getElementById('grid1').innerHTML = concepts.filter(c=>c.group===1).map(card).join('');
+document.getElementById('grid2').innerHTML = concepts.filter(c=>c.group===2).map(card).join('');
+
+document.addEventListener('click', e => {
+  const btn = e.target.closest('.concept button'); if (!btn) return;
+  const el = btn.closest('.concept'); const id = +el.dataset.id;
+  const c = concepts.find(x => x.id === id);
+  document.querySelectorAll('.concept').forEach(x => x.classList.toggle('active', x === el));
+  document.querySelector('#pvFav use').setAttribute('href', '#m'+id);
+  document.querySelector('#pvMark use').setAttribute('href', '#m'+id);
+  document.getElementById('pvTitle').textContent = `In context: ${c.code}, ${c.name}`;
+  document.querySelector('.preview').scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block:'start'});
+});
+</script>
+</body>
+</html>

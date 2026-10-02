@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AUDI Media and AI Marks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  color-scheme: dark;
+  --bg:#0d0f18; --surf:#141720; --surf2:#1c2030; --border:#2a2f4a;
+  --text:#e2e8f0; --muted:#8a98b0; --accent:#3399cc; --accent-strong:#5cc8ff;
+  --tile-dark:#0d0f18; --tile-light:#f3f6fa; --tile-light-border:#d6dee8;
+  --btn-bg:#0067A5; --btn-text:#ffffff;
+  --display:'Plus Jakarta Sans', 'Segoe UI', system-ui, sans-serif;
+  --body:'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif;
+  --mono:'JetBrains Mono', ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    color-scheme: light;
+    --bg:#f4f6fa; --surf:#ffffff; --surf2:#eef2f7; --border:#d8dfea;
+    --text:#131a2a; --muted:#56647a; --accent:#0067A5; --accent-strong:#004f7c;
+  }
+}
+:root[data-theme="light"]{
+  color-scheme: light;
+  --bg:#f4f6fa; --surf:#ffffff; --surf2:#eef2f7; --border:#d8dfea;
+  --text:#131a2a; --muted:#56647a; --accent:#0067A5; --accent-strong:#004f7c;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:15px;line-height:1.55;margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:20px;padding-block:40px 64px;display:flex;flex-direction:column;gap:40px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.intro{display:grid;grid-template-columns:1.3fr 1fr;gap:32px;align-items:center}
+.intro h1{font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:-.01em;margin-top:8px}
+.intro p{color:var(--muted);max-width:62ch;margin:12px 0 0}
+.base{display:flex;align-items:center;gap:16px;background:var(--surf);border:1px solid var(--border);border-radius:10px;padding:16px 18px}
+.base svg{width:64px;height:64px;flex:none}
+.base b{font-family:var(--display);font-size:15px;display:block}
+.base span{color:var(--muted);font-size:13px}
+
+.preview{background:var(--surf);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.preview-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:14px 18px;border-bottom:1px solid var(--border)}
+.preview-top h2{font-size:15px;font-weight:700}
+.preview-top span{font-size:13px;color:var(--muted)}
+.browser{background:#0a0c13;padding:10px 12px 0}
+.tabs{display:flex;gap:4px}
+.tab{display:flex;align-items:center;gap:8px;background:#141720;color:#c9d3e0;font-size:12px;padding:8px 14px;border-radius:8px 8px 0 0;max-width:280px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tab.ghost{background:transparent;color:#5d6a80}
+.tab svg{flex:none}
+.dash-bar{background:#141720;border-bottom:1px solid #2a2f4a;display:flex;align-items:center;gap:12px;padding:12px 18px;color:#e2e8f0}
+.dash-bar .brand{display:flex;align-items:center;gap:10px}
+.dash-bar .word{font-family:var(--display);font-weight:800;letter-spacing:.14em;font-size:17px}
+.dash-bar .sub{color:#7888a0;font-size:14px;border-left:1px solid #2a2f4a;padding-left:12px}
+.dash-body{background:#0d0f18;padding:18px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.dash-body div{height:54px;border-radius:6px;background:#1c2030;border:1px solid #2a2f4a}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:20px}
+.concept{background:var(--surf);border:1px solid var(--border);border-radius:10px;display:flex;flex-direction:column;overflow:hidden;transition:border-color .2s}
+.concept.active{border-color:var(--accent)}
+.concept-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:16px 18px 0}
+.concept-head h3{font-size:19px;font-weight:700}
+.tag{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.tag.rec{color:var(--accent-strong)}
+.stage{margin:14px 18px 0;background:var(--tile-dark);border:1px solid #232842;border-radius:8px 8px 0 0;display:grid;place-items:center;padding:28px 0}
+.stage svg{width:132px;height:132px}
+.lockup{display:flex;align-items:center;gap:12px;margin:0 18px;padding:14px 16px;background:var(--tile-light);border:1px solid var(--tile-light-border);border-top:0;border-radius:0 0 8px 8px;color:#131a2a}
+.lockup svg{width:40px;height:40px;flex:none}
+.lockup .word{font-family:var(--display);font-weight:800;font-size:24px;letter-spacing:.14em;line-height:1}
+.lockup .expand{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;color:#56647a;text-transform:uppercase;margin-top:5px;line-height:1.3}
+.favs{display:flex;gap:10px;margin:14px 18px 0;flex-wrap:wrap}
+.fav{display:flex;align-items:flex-end;gap:12px;padding:10px 12px;border-radius:6px;flex:1;min-width:130px}
+.fav.d{background:var(--tile-dark);border:1px solid #232842}
+.fav.l{background:var(--tile-light);border:1px solid var(--tile-light-border)}
+.fav figure{margin:0;display:flex;flex-direction:column;align-items:center;gap:4px}
+.fav figcaption{font-family:var(--mono);font-size:9px;color:#7888a0;font-variant-numeric:tabular-nums}
+.body{padding:14px 18px 18px;display:flex;flex-direction:column;gap:10px;flex:1}
+.body p{margin:0;color:var(--muted);font-size:14px}
+.reads{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:5px;font-size:13px}
+.reads li{display:grid;grid-template-columns:92px 1fr;gap:8px}
+.reads span{font-family:var(--mono);font-size:11px;color:var(--accent);text-transform:uppercase;letter-spacing:.06em;padding-top:2px}
+.body button{margin-top:auto;align-self:flex-start;font:600 13px var(--body);background:transparent;color:var(--accent);border:1px solid var(--accent);border-radius:6px;padding:8px 14px;cursor:pointer}
+.body button:hover{background:var(--accent);color:var(--surf)}
+.body button:focus-visible{outline:2px solid var(--accent-strong);outline-offset:2px}
+.concept.active .body button{background:var(--btn-bg);color:var(--btn-text);border-color:var(--btn-bg)}
+
+.note{background:var(--surf2);border:1px solid var(--border);border-radius:10px;padding:20px 22px;display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.note h2{font-size:17px;margin-bottom:6px}
+.note p{margin:0;color:var(--muted);font-size:14px;max-width:60ch}
+.note code{font-family:var(--mono);font-size:12.5px;color:var(--text)}
+@media (prefers-reduced-motion: reduce){.concept{transition:none}}
+@media (max-width:760px){
+  .intro,.note{grid-template-columns:1fr}
+  .dash-body{grid-template-columns:1fr 1fr}
+  .dash-bar .sub{display:none}
+  .grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- Shared gradients and marks, drawn on a 64-unit grid -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="gBlue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3fa9e0"/><stop offset="1" stop-color="#0067A5"/>
+    </linearGradient>
+    <linearGradient id="gTile" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0a7cc2"/><stop offset="1" stop-color="#00456d"/>
+    </linearGradient>
+    <radialGradient id="gCore" cx=".4" cy=".35" r=".7">
+      <stop offset="0" stop-color="#d4f3ff"/><stop offset="1" stop-color="#5cc8ff"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Base: concept 4 -->
+  <symbol id="m0" viewBox="0 0 64 64">
+    <polygon points="32,5 55.4,18.5 55.4,45.5 32,59 8.6,45.5 8.6,18.5" fill="url(#gTile)" stroke="url(#gTile)" stroke-width="5" stroke-linejoin="round"/>
+    <polyline points="20.5,46 32,20 43.5,46" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="25" y1="38" x2="39" y2="38" stroke="#5cc8ff" stroke-width="5" stroke-linecap="round"/>
+  </symbol>
+
+  <!-- 7 Aperture -->
+  <symbol id="m7" viewBox="0 0 64 64">
+    <circle cx="32" cy="32" r="28" fill="url(#gTile)"/>
+    <g stroke="#9fdcff" stroke-opacity=".6" stroke-width="1.8" stroke-linecap="round">
+      <line x1="32" y1="21" x2="13.96" y2="10.58"/>
+      <line x1="32" y1="21" x2="13.96" y2="10.58" transform="rotate(60 32 32)"/>
+      <line x1="32" y1="21" x2="13.96" y2="10.58" transform="rotate(120 32 32)"/>
+      <line x1="32" y1="21" x2="13.96" y2="10.58" transform="rotate(180 32 32)"/>
+      <line x1="32" y1="21" x2="13.96" y2="10.58" transform="rotate(240 32 32)"/>
+      <line x1="32" y1="21" x2="13.96" y2="10.58" transform="rotate(300 32 32)"/>
+    </g>
+    <polygon points="32,21 41.5,26.5 41.5,37.5 32,43 22.5,37.5 22.5,26.5" fill="#06182a"/>
+    <circle cx="32" cy="32" r="8" fill="#5cc8ff" opacity=".25"/>
+    <circle cx="32" cy="32" r="4.8" fill="url(#gCore)"/>
+  </symbol>
+
+  <!-- 8 Pixel A -->
+  <symbol id="m8" viewBox="0 0 64 64">
+    <g fill="#5cc8ff">
+      <rect x="28.2" y="3.6" width="7" height="7" rx="1.4"/>
+      <rect x="44.6" y="3.6" width="7" height="7" rx="1.4" opacity=".5"/>
+      <rect x="52.8" y="11.8" width="7" height="7" rx="1.4" opacity=".25"/>
+    </g>
+    <g fill="#3399cc">
+      <rect x="20" y="11.8" width="7" height="7" rx="1.4"/><rect x="36.4" y="11.8" width="7" height="7" rx="1.4"/>
+      <rect x="20" y="20" width="7" height="7" rx="1.4"/><rect x="36.4" y="20" width="7" height="7" rx="1.4"/>
+    </g>
+    <g fill="#5cc8ff">
+      <rect x="11.8" y="28.2" width="7" height="7" rx="1.4"/><rect x="20" y="28.2" width="7" height="7" rx="1.4"/>
+      <rect x="28.2" y="28.2" width="7" height="7" rx="1.4"/><rect x="36.4" y="28.2" width="7" height="7" rx="1.4"/>
+      <rect x="44.6" y="28.2" width="7" height="7" rx="1.4"/>
+    </g>
+    <g fill="#0067A5">
+      <rect x="11.8" y="36.4" width="7" height="7" rx="1.4"/><rect x="44.6" y="36.4" width="7" height="7" rx="1.4"/>
+      <rect x="3.6" y="44.6" width="7" height="7" rx="1.4"/><rect x="52.8" y="44.6" width="7" height="7" rx="1.4"/>
+      <rect x="3.6" y="52.8" width="7" height="7" rx="1.4"/><rect x="52.8" y="52.8" width="7" height="7" rx="1.4"/>
+    </g>
+  </symbol>
+
+  <!-- 9 Neural Package -->
+  <symbol id="m9" viewBox="0 0 64 64">
+    <polygon points="32,5 55.4,18.5 55.4,45.5 32,59 8.6,45.5 8.6,18.5" fill="url(#gTile)" stroke="url(#gTile)" stroke-width="5" stroke-linejoin="round"/>
+    <g stroke="#fff" stroke-linecap="round">
+      <g stroke-opacity=".45" stroke-width="1.8">
+        <line x1="25" y1="33" x2="32" y2="47"/><line x1="39" y1="33" x2="32" y2="47"/>
+        <line x1="25" y1="33" x2="45" y2="47"/><line x1="39" y1="33" x2="19" y2="47"/>
+      </g>
+      <g stroke-width="2.8">
+        <line x1="32" y1="18" x2="25" y2="33"/><line x1="32" y1="18" x2="39" y2="33"/>
+        <line x1="25" y1="33" x2="39" y2="33"/>
+        <line x1="25" y1="33" x2="19" y2="47"/><line x1="39" y1="33" x2="45" y2="47"/>
+      </g>
+    </g>
+    <g fill="#fff">
+      <circle cx="25" cy="33" r="3.3"/><circle cx="39" cy="33" r="3.3"/>
+      <circle cx="19" cy="47" r="3.3"/><circle cx="32" cy="47" r="3.3"/><circle cx="45" cy="47" r="3.3"/>
+    </g>
+    <circle cx="32" cy="18" r="7.5" fill="#5cc8ff" opacity=".3"/>
+    <circle cx="32" cy="18" r="4.6" fill="url(#gCore)"/>
+  </symbol>
+
+  <!-- 10 Build & Play -->
+  <symbol id="m10" viewBox="0 0 64 64">
+    <polygon points="32,5 55.4,18.5 55.4,45.5 32,59 8.6,45.5 8.6,18.5" fill="url(#gTile)" stroke="url(#gTile)" stroke-width="5" stroke-linejoin="round"/>
+    <g fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="21,24 14,32 21,40"/><polyline points="43,24 50,32 43,40"/>
+    </g>
+    <polygon points="27.5,24.5 38.5,32 27.5,39.5" fill="#5cc8ff" stroke="#5cc8ff" stroke-width="3" stroke-linejoin="round"/>
+  </symbol>
+
+  <!-- 11 Prism -->
+  <symbol id="m11" viewBox="0 0 64 64">
+    <line x1="2" y1="38.5" x2="20" y2="34" stroke="#8fa3b8" stroke-width="3" stroke-linecap="round"/>
+    <g stroke-width="3.2" stroke-linecap="round">
+      <line x1="44" y1="34" x2="62" y2="27" stroke="#5cc8ff"/>
+      <line x1="45" y1="36" x2="62" y2="37" stroke="#3399cc"/>
+      <line x1="46" y1="38" x2="62" y2="47" stroke="#0067A5"/>
+    </g>
+    <polygon points="32,9 52,50 12,50" fill="url(#gBlue)" stroke="url(#gBlue)" stroke-width="3" stroke-linejoin="round"/>
+    <line x1="20" y1="34" x2="44.5" y2="36" stroke="#fff" stroke-opacity=".75" stroke-width="2.4" stroke-linecap="round"/>
+    <line x1="25" y1="42" x2="39" y2="42" stroke="#fff" stroke-opacity=".35" stroke-width="2" stroke-linecap="round"/>
+  </symbol>
+
+  <!-- 12 Prompt Bubble -->
+  <symbol id="m12" viewBox="0 0 64 64">
+    <polygon points="14,42.6 24,48.4 10,59" fill="url(#gTile)" stroke="url(#gTile)" stroke-width="3" stroke-linejoin="round"/>
+    <polygon points="32,5 52.8,17 52.8,41 32,53 11.2,41 11.2,17" fill="url(#gTile)" stroke="url(#gTile)" stroke-width="4" stroke-linejoin="round"/>
+    <polyline points="22,41 31,18 40,41" fill="none" stroke="#fff" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="25" y1="34" x2="37" y2="34" stroke="#fff" stroke-width="4.5" stroke-linecap="round"/>
+    <path d="M45 13.5 Q45.9 19.1 51.5 20 Q45.9 20.9 45 26.5 Q44.1 20.9 38.5 20 Q44.1 19.1 45 13.5 Z" fill="#9fe3ff"/>
+  </symbol>
+</svg>
+
+<div class="wrap">
+  <section class="intro">
+    <div>
+      <div class="eyebrow">Brand exploration · Round 3</div>
+      <h1>Marks for AI, digital media and software production</h1>
+      <p>This round looks for one image that shows all three ideas at once: an intelligent system, media and screens, and software that gets built and shipped. Four of the six keep the hexagon from Concept 4 so they stay in the same family. Each card shows how each concept represents AI, media and software, and how it holds up as a favicon.</p>
+    </div>
+    <div class="base">
+      <svg aria-hidden="true"><use href="#m0"/></svg>
+      <div><b>Family link: Concept 4</b><span>The hexagon package you liked in round 1</span></div>
+    </div>
+  </section>
+
+  <section class="preview" aria-label="Dashboard preview">
+    <div class="preview-top">
+      <h2 id="pvTitle">In context: 7, Aperture</h2>
+      <span>Browser tab favicon at 16px and dashboard header at 28px</span>
+    </div>
+    <div class="browser">
+      <div class="tabs">
+        <div class="tab"><svg width="16" height="16" id="pvFav"><use href="#m7"/></svg>AUDI · Orchestrator Dashboard</div>
+        <div class="tab ghost">Figma – Bell Mobility</div>
+      </div>
+    </div>
+    <div class="dash-bar">
+      <div class="brand"><svg width="28" height="28" id="pvMark"><use href="#m7"/></svg><span class="word">AUDI</span></div>
+      <span class="sub">Orchestrator Dashboard</span>
+    </div>
+    <div class="dash-body" aria-hidden="true"><div></div><div></div><div></div></div>
+  </section>
+
+  <section class="grid" id="grid"></section>
+
+  <section class="note">
+    <div>
+      <h2>My recommendation</h2>
+      <p><strong>7, Aperture</strong>, covers all three ideas in one simple shape. The camera iris says digital media, the glowing center reads as an AI eye, and the opening is the same hexagon as Concept 4. The solid circle stays clear at 16px. <strong>9, Neural Package</strong>, is the runner-up: it is Concept 4 rebuilt as a neural network, so it says "AI + software" most clearly, but it says less about media.</p>
+    </div>
+    <div>
+      <h2>After you choose</h2>
+      <p>I'll make <code>favicon.svg</code>, a multi-size <code>favicon.ico</code> (16/32/48), <code>apple-touch-icon.png</code> (180) and a simplified 16px version if the mark needs one. I'll change <code>dashboard.html</code> only once you confirm.</p>
+    </div>
+  </section>
+</div>
+
+<script>
+const concepts = [
+  { id:7, name:'Aperture', tag:'Recommended', rec:true,
+    why:'A camera iris with six blades. Its opening is the Concept 4 hexagon, with a glowing AI eye at the center: AUDI looks at the Figma design and builds the product from it.',
+    reads:[['AI','Glowing eye at the center'],['Media','Camera and lens iris'],['Software','Hexagon package at the core'],['Favicon','Solid circle, very clear']] },
+  { id:8, name:'Pixel A', tag:'Digital mark',
+    why:'An A built from screen pixels that is still being assembled. Loose cyan pixels at the top right show the AI generating the next part of the build.',
+    reads:[['AI','Pixels generate themselves'],['Media','Screens, rendering, UI'],['Software','Built block by block'],['Favicon','Crisp; pixel art suits small sizes']] },
+  { id:9, name:'Neural Package', tag:'AI mark',
+    why:'Concept 4 rebuilt as a neural network. The nodes and links form the A, and the glowing top node is the orchestrator that drives the layers below.',
+    reads:[['AI','Neural network forms the A'],['Media','Implied only'],['Software','Same sealed package as Concept 4'],['Favicon','Network blurs below 32px']] },
+  { id:10, name:'Build & Play', tag:'Media + code',
+    why:'Code brackets around a play button inside the hexagon. It puts software production and digital media in one symbol: AUDI builds the app, and it runs.',
+    reads:[['AI','Not shown directly'],['Media','Play button, video, motion'],['Software','Code brackets, shipped package'],['Favicon','Bold shapes, reads well']] },
+  { id:11, name:'Prism', tag:'Transform mark',
+    why:'An A-shaped prism. One beam goes in (the spec) and splits into three outputs (UI, code and API), the way AI turns one input into many results.',
+    reads:[['AI','Turns one input into many'],['Media','Light, color, spectrum'],['Software','Spec in, deliverables out'],['Favicon','Triangle holds; rays thin out']] },
+  { id:12, name:'Prompt Bubble', tag:'Conversation mark',
+    why:'The hexagon becomes a chat bubble with the A and an AI spark inside. AUDI works by conversation: you describe what you need, and it gets built.',
+    reads:[['AI','Chat prompt and spark'],['Media','Messaging, interaction'],['Software','Package shape from Concept 4'],['Favicon','Solid shape, good contrast']] },
+];
+
+const use = (id, s) => `<svg width="${s}" height="${s}" aria-hidden="true"><use href="#m${id}"/></svg>`;
+const grid = document.getElementById('grid');
+grid.innerHTML = concepts.map(c => `
+  <article class="concept${c.id===7?' active':''}" data-id="${c.id}">
+    <div class="concept-head"><h3>${c.id}. ${c.name}</h3><span class="tag${c.rec?' rec':''}">${c.tag}</span></div>
+    <div class="stage">${use(c.id,132)}</div>
+    <div class="lockup">${use(c.id,40)}<div><div class="word">AUDI</div><div class="expand">Augmented Unified Delivery Intelligence</div></div></div>
+    <div class="favs">
+      <div class="fav d">
+        <figure>${use(c.id,48)}<figcaption>48</figcaption></figure>
+        <figure>${use(c.id,32)}<figcaption>32</figcaption></figure>
+        <figure>${use(c.id,16)}<figcaption>16</figcaption></figure>
+      </div>
+      <div class="fav l">
+        <figure>${use(c.id,32)}<figcaption>32</figcaption></figure>
+        <figure>${use(c.id,16)}<figcaption>16</figcaption></figure>
+      </div>
+    </div>
+    <div class="body">
+      <p>${c.why}</p>
+      <ul class="reads">${c.reads.map(r=>`<li><span>${r[0]}</span>${r[1]}</li>`).join('')}</ul>
+      <button type="button" id="pv${c.id}">Preview in dashboard</button>
+    </div>
+  </article>`).join('');
+
+grid.addEventListener('click', e => {
+  const btn = e.target.closest('button'); if (!btn) return;
+  const card = btn.closest('.concept'); const id = +card.dataset.id;
+  const c = concepts.find(x => x.id === id);
+  document.querySelectorAll('.concept').forEach(el => el.classList.toggle('active', el === card));
+  document.querySelector('#pvFav use').setAttribute('href', '#m'+id);
+  document.querySelector('#pvMark use').setAttribute('href', '#m'+id);
+  document.getElementById('pvTitle').textContent = `In context: ${c.id}, ${c.name}`;
+  document.querySelector('.preview').scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block:'start'});
+});
+</script>
+</body>
+</html>
