@@ -68,17 +68,93 @@ h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0}
 .file span{padding:8px 10px;font-size:12px;line-height:1.35}
 .file span b{display:block;font-family:var(--mono);font-size:10.5px;color:var(--accent);font-weight:500}
 
-.tree{background:var(--surf2);border:1px solid var(--border);border-radius:10px;padding:18px 22px;font-family:var(--mono);font-size:12.5px;line-height:1.7;overflow-x:auto;white-space:pre;margin:0}
+tree{background:var(--surf2);border:1px solid var(--border);border-radius:10px;padding:18px 22px;font-family:var(--mono);font-size:12.5px;line-height:1.7;overflow-x:auto;white-space:pre;margin:0}
 @media (prefers-reduced-motion: reduce){.round,.file{transition:none}}
 @media (max-width:760px){.rounds{grid-template-columns:1fr}}
+
+#guard {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(13, 15, 24, 0.84);
+  backdrop-filter: blur(8px);
+  z-index: 9999;
+}
+#guard.hidden { display:none; }
+.guard-panel {
+  width:min(92vw, 420px);
+  background: rgba(20, 23, 32, 0.96);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 0 18px 45px rgba(0,0,0,0.42);
+  padding: 24px 22px 20px;
+}
+.guard-panel .eyebrow {
+  display:block;
+  margin-bottom: 10px;
+}
+.guard-panel h2 {
+  margin: 0 0 8px;
+  font-size: 28px;
+  letter-spacing: -0.04em;
+}
+.guard-panel p {
+  margin: 0 0 16px;
+  color: var(--muted);
+}
+.guard-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.guard-form input {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: rgba(9,12,18,0.8);
+  color: var(--text);
+  padding: 12px 14px;
+  font: inherit;
+}
+.guard-form button {
+  border: 1px solid var(--accent);
+  border-radius: 10px;
+  background: var(--accent);
+  color: #06111a;
+  font-weight: 700;
+  font: inherit;
+  padding: 12px 14px;
+  cursor: pointer;
+}
+.guard-error {
+  min-height: 18px;
+  margin-top: 6px;
+  color: #ffb3b3;
+  font-size: 13px;
+}
 </style>
 </head>
 <body>
+<div id="guard" aria-live="polite">
+  <div class="guard-panel">
+    <div class="eyebrow">Protected access</div>
+    <h2>AUDI brand review</h2>
+    <p>Enter the password to continue.</p>
+    <form id="guardForm" class="guard-form">
+      <input id="guardInput" type="password" placeholder="Password" aria-label="Password" autocomplete="off">
+      <button type="submit">Enter</button>
+    </form>
+    <div id="guardError" class="guard-error" aria-live="polite"></div>
+  </div>
+</div>
+
 <div class="wrap">
   <section class="intro">
     <div class="eyebrow">AUDI · Augmented Unified Delivery Intelligence</div>
     <h1>AUDI logo exploration</h1>
-    <p>All the logo rounds for the AUDI Orchestrator Dashboard in one place. Open a round to compare its concepts side by side, with the name lockup, favicon sizes and a dashboard preview. Every logo is also available as its own SVG file below.</p>
+    <p>All the logo rounds for the AUDI Orchestrator Dashboard in one place. Open a round to compare its concepts side by side, with the name lockup, favicon sizes and a dashboard preview. Every logo is delivered as a clean SVG so it can be reused in product surfaces, marketing pages and presentation decks.</p>
     <div class="stats" id="stats"></div>
   </section>
 
@@ -103,32 +179,60 @@ h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0}
 </div>
 
 <script>
+const password = 'AudiLogoPOC';
+const guard = document.getElementById('guard');
+const guardForm = document.getElementById('guardForm');
+const guardInput = document.getElementById('guardInput');
+const guardError = document.getElementById('guardError');
+
+const unlock = () => {
+  guard.classList.add('hidden');
+  sessionStorage.setItem('audiBrandAccess', 'true');
+};
+
+if (sessionStorage.getItem('audiBrandAccess') === 'true') {
+  unlock();
+} else {
+  guardInput.focus();
+}
+
+guardForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const value = guardInput.value.trim();
+  if (value === password) {
+    unlock();
+    return;
+  }
+  guardError.textContent = 'Incorrect password. Please try again.';
+  guardInput.value = '';
+  guardInput.focus();
+});
+
 const rounds = [
   { page:'audi-logo-concepts.html', label:'Round 1', name:'First concepts',
     about:'Six starting directions, from a spec-to-build A to a spark tile. Concept 4, the hexagon package, led to round 2.',
-    files:[['1','1-blueprint-to-build','Blueprint to Build'],['2','2-agent-constellation','Agent Constellation'],['3','3-prompt','Prompt'],['4','4-shipped-package','Shipped Package'],['5','5-ascend','Ascend'],['6','6-spark-tile','Spark Tile']] },
+    files:[['1','1-blueprint-to-build','Blueprint to Build'],['2','2-agent-constellation','Agent Constellation'],['3','3-prompt','Prompt'],['4','4-shipped-package','Shipped Package'],['5','5-ask','Ask'],['6','6-signal','Signal']] },
   { page:'audi-logo-hex-variations.html', label:'Round 2', name:'Hexagon variations',
     about:'Seven takes on the Concept 4 package: cube, carved, pipeline ring, core node, letterform, seal, and carved seal.',
-    files:[['4A','4a-isometric-cube','Isometric Cube'],['4B','4b-carved','Carved'],['4C','4c-pipeline-ring','Pipeline Ring'],['4D','4d-core-node','Core Node'],['4E','4e-hex-letterform','Hex Letterform'],['4F','4f-release-seal','Release Seal'],['4G','4g-carved-seal','Carved Seal']] },
+    files:[['4A','4a-isometric-cube','Isometric Cube'],['4B','4b-carved','Carved'],['4C','4c-pipeline-ring','Pipeline Ring'],['4D','4d-core-node','Core Node'],['4E','4e-hex-letterform','Hex Letterform'],['4F','4f-seal','Seal'],['4G','4g-carved-seal','Carved Seal']] },
   { page:'audi-logo-round3.html', label:'Round 3', name:'AI, media and software',
     about:'Six marks that try to show AI, digital media and software production in one image.',
-    files:[['7','7-aperture','Aperture'],['8','8-pixel-a','Pixel A'],['9','9-neural-package','Neural Package'],['10','10-build-and-play','Build & Play'],['11','11-prism','Prism'],['12','12-prompt-bubble','Prompt Bubble']] },
+    files:[['7','7-aperture','Aperture'],['8','8-pixel-a','Pixel A'],['9','9-neural-package','Neural Package'],['10','10-build-and-play','Build & Play'],['11','11-prism','Prism'],['12','12-prompt-turn','Prompt Turn']] },
   { page:'audi-logo-round4-sketches.html', label:'Round 4', name:'From your sketches',
     about:'Four variations of each hand sketch: the Linked A and the A with a dot.',
-    files:[['S1-A','s1a-linked-a-sketch','Linked A, as sketched'],['S1-B','s1b-linked-a-solid','Linked A Solid'],['S1-C','s1c-linked-hex','Linked Hex'],['S1-D','s1d-linked-a-glow','Linked A Glow'],['S2-A','s2a-insight-a-sketch','Insight A, as sketched'],['S2-B','s2b-node-a','Node A'],['S2-C','s2c-node-a-hex','Node A Hex'],['S2-D','s2d-insight-tile','Insight Tile']] },
+    files:[['S1-A','s1a-linked-a-sketch','Linked A, as sketched'],['S1-B','s1b-linked-a-solid','Linked A Solid'],['S1-C','s1c-linked-hex','Linked Hex'],['S1-D','s1d-linked-a-glow','Linked A Glow']] },
   { page:'audi-logo-round5-sketches.html', label:'Round 5', name:'More sketch directions',
     about:'Six more styles for each sketch: punched, molecule, ribbons, orbit, flow, tiles and badges.',
-    files:[['S1-E','s1e-punched-a','Punched A'],['S1-F','s1f-molecule','Molecule'],['S1-G','s1g-ribbons','Ribbons'],['S1-H','s1h-orbit','Orbit'],['S1-I','s1i-flow','Flow'],['S1-J','s1j-linked-tile','Linked Tile'],['S2-E','s2e-sharp-delta','Sharp Delta'],['S2-F','s2f-ribbon-delta','Ribbon Delta'],['S2-G','s2g-exclamation-a','Exclamation A'],['S2-H','s2h-solid-delta','Solid Delta'],['S2-I','s2i-circle-badge','Circle Badge'],['S2-J','s2j-delta-hex','Delta Hex']] },
+    files:[['S1-E','s1e-punched-a','Punched A'],['S1-F','s1f-molecule','Molecule'],['S1-G','s1g-ribbons','Ribbons'],['S1-H','s1h-orbit','Orbit'],['S1-I','s1i-flow','Flow'],['S1-J','s1j-linked-tiles','Linked Tiles']] },
   { page:'audi-logo-round6-alex-ai.html', label:'Round 6', name:'Alex AI concept set',
     about:'Nine marks redrawn from the Alex AI image boards: the Ribbon A, the Lattice A, and two paired marks.',
-    files:[['X1','x1-ribbon-a','Ribbon A'],['X2','x2-ribbon-a-reversed','Ribbon A Reversed'],['X3','x3-play-ribbon','Play Ribbon'],['X4','x4-interconnected-intelligence','Interconnected Intelligence'],['X5','x5-lattice-glow','Lattice Glow'],['X6','x6-lattice-flare','Lattice Flare'],['X7','x7-lattice-line','Lattice Line'],['X8','x8-algorithmic-fusion','Algorithmic Fusion'],['X9','x9-unfolding-helix','Unfolding Helix']],
-    sources:[['ribbon-a-board','Ribbon A'],['ribbon-a-reversed-board','Ribbon A, reversed'],['play-ribbon-board','Play Ribbon'],['lattice-fusion-helix-board','Lattice, Fusion and Helix'],['lattice-dark-board','Lattice A, dark'],['lattice-flare-board','Lattice A, flare'],['lattice-dev-cycle-board','Lattice A, development cycle']] },
+    files:[['X1','x1-ribbon-a','Ribbon A'],['X2','x2-ribbon-a-reversed','Ribbon A Reversed'],['X3','x3-play-ribbon','Play Ribbon'],['X4','x4-interconnected-intelligence','Interconnected Intelligence'],['X5','x5-lattice-fusion','Lattice Fusion'],['X6','x6-helix-loop','Helix Loop']] }
 ];
 
 const svg = f => `assets/audi-logo-${f[1]}.svg`;
 const esc = s => s.replace(/&/g,'&amp;');
 const total = rounds.reduce((n, r) => n + r.files.length, 0);
-const sources = rounds.reduce((n, r) => n + (r.sources ? r.sources.length : 0), 0);
+const sources = 0;
 
 document.getElementById('stats').innerHTML =
   `<div><b>${rounds.length}</b>rounds</div><div><b>${total}</b>logo files</div><div><b>${sources}</b>source images</div>`;
@@ -153,17 +257,7 @@ document.getElementById('files').innerHTML = rounds.map(r => `
         <span><b>${f[0]}</b>${esc(f[2])}</span>
       </a>`).join('')}
     </div>
-  </div>
-  ${r.sources ? `
-  <div class="file-group">
-    <h3>${r.label}: source images<span>${r.sources.length} files in assets/alex-ai/</span></h3>
-    <div class="file-grid">${r.sources.map(s => `
-      <a class="file photo" href="assets/alex-ai/${s[0]}.png" title="${s[0]}.png">
-        <img src="assets/alex-ai/${s[0]}.png" alt="${esc(s[1])} source board" loading="lazy">
-        <span><b>PNG</b>${esc(s[1])}</span>
-      </a>`).join('')}
-    </div>
-  </div>` : ''}`).join('');
+  </div>`).join('');
 </script>
 </body>
 </html>
