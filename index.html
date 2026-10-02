@@ -94,15 +94,17 @@ tree{background:var(--surf2);border:1px solid var(--border);border-radius:10px;p
 .guard-panel .eyebrow {
   display:block;
   margin-bottom: 10px;
+  color: #ffffff;
 }
 .guard-panel h2 {
   margin: 0 0 8px;
   font-size: 28px;
   letter-spacing: -0.04em;
+  color: #ffffff;
 }
 .guard-panel p {
   margin: 0 0 16px;
-  color: var(--muted);
+  color: #ffffff;
 }
 .guard-form {
   display: flex;
@@ -114,9 +116,12 @@ tree{background:var(--surf2);border:1px solid var(--border);border-radius:10px;p
   border: 1px solid var(--border);
   border-radius: 10px;
   background: rgba(9,12,18,0.8);
-  color: var(--text);
+  color: #ffffff;
   padding: 12px 14px;
   font: inherit;
+}
+.guard-form input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
 }
 .guard-form button {
   border: 1px solid var(--accent);
