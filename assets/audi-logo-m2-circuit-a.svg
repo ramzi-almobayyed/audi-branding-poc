@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="512" height="512"><defs><linearGradient id="gTile" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0a7cc2"/><stop offset="1" stop-color="#00456d"/></linearGradient></defs>
+<g fill="none" stroke="#0067A5" stroke-width="4" stroke-linejoin="miter">
+    <path d="M10 54 V42 H18 V28 H26 V14 H38 V28 H46 V42 H54 V54"/>
+    <path d="M18 36 H46"/>
+  </g>
+  <rect x="4" y="50" width="12" height="10" rx="2" fill="#0067A5"/><rect x="8" y="53" width="4" height="4" fill="#5cc8ff"/>
+  <rect x="48" y="50" width="12" height="10" rx="2" fill="#0067A5"/><rect x="52" y="53" width="4" height="4" fill="#5cc8ff"/>
+  <rect x="26" y="8" width="12" height="12" rx="2" fill="#5cc8ff"/>
+</svg>

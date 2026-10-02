@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AUDI Pixel Machine Marks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  color-scheme: dark;
+  --bg:#0d0f18; --surf:#141720; --surf2:#1c2030; --border:#2a2f4a;
+  --text:#e2e8f0; --muted:#8a98b0; --accent:#3399cc; --accent-strong:#5cc8ff;
+  --tile-dark:#0d0f18; --tile-light:#f3f6fa; --tile-light-border:#d6dee8;
+  --btn-bg:#0067A5; --btn-text:#ffffff;
+  --display:'Plus Jakarta Sans', 'Segoe UI', system-ui, sans-serif;
+  --body:'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif;
+  --mono:'JetBrains Mono', ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    color-scheme: light;
+    --bg:#f4f6fa; --surf:#ffffff; --surf2:#eef2f7; --border:#d8dfea;
+    --text:#131a2a; --muted:#56647a; --accent:#0067A5; --accent-strong:#004f7c;
+  }
+}
+:root[data-theme="light"]{
+  color-scheme: light;
+  --bg:#f4f6fa; --surf:#ffffff; --surf2:#eef2f7; --border:#d8dfea;
+  --text:#131a2a; --muted:#56647a; --accent:#0067A5; --accent-strong:#004f7c;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:15px;line-height:1.55;margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:20px;padding-block:40px 64px;display:flex;flex-direction:column;gap:40px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.intro{display:grid;grid-template-columns:1.3fr 1fr;gap:32px;align-items:center}
+.intro h1{font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:-.01em;margin-top:8px}
+.intro p{color:var(--muted);max-width:62ch;margin:12px 0 0}
+.base{display:flex;align-items:center;gap:16px;background:var(--surf);border:1px solid var(--border);border-radius:10px;padding:16px 18px}
+.base svg{width:64px;height:64px;flex:none}
+.base b{font-family:var(--display);font-size:15px;display:block}
+.base span{color:var(--muted);font-size:13px}
+
+.preview{background:var(--surf);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.preview-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:14px 18px;border-bottom:1px solid var(--border)}
+.preview-top h2{font-size:15px;font-weight:700}
+.preview-top span{font-size:13px;color:var(--muted)}
+.browser{background:#0a0c13;padding:10px 12px 0}
+.tabs{display:flex;gap:4px}
+.tab{display:flex;align-items:center;gap:8px;background:#141720;color:#c9d3e0;font-size:12px;padding:8px 14px;border-radius:8px 8px 0 0;max-width:280px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tab.ghost{background:transparent;color:#5d6a80}
+.tab svg{flex:none}
+.dash-bar{background:#141720;border-bottom:1px solid #2a2f4a;display:flex;align-items:center;gap:12px;padding:12px 18px;color:#e2e8f0}
+.dash-bar .brand{display:flex;align-items:center;gap:10px}
+.dash-bar .word{font-family:var(--display);font-weight:800;letter-spacing:.14em;font-size:17px}
+.dash-bar .sub{color:#7888a0;font-size:14px;border-left:1px solid #2a2f4a;padding-left:12px}
+.dash-body{background:#0d0f18;padding:18px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.dash-body div{height:54px;border-radius:6px;background:#1c2030;border:1px solid #2a2f4a}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:20px}
+.concept{background:var(--surf);border:1px solid var(--border);border-radius:10px;display:flex;flex-direction:column;overflow:hidden;transition:border-color .2s}
+.concept.active{border-color:var(--accent)}
+.concept-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:16px 18px 0}
+.concept-head h3{font-size:19px;font-weight:700}
+.tag{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.tag.rec{color:var(--accent-strong)}
+.stage{margin:14px 18px 0;background:var(--tile-dark);border:1px solid #232842;border-radius:8px 8px 0 0;display:grid;place-items:center;padding:28px 0}
+.stage svg{width:132px;height:132px}
+.lockup{display:flex;align-items:center;gap:12px;margin:0 18px;padding:14px 16px;background:var(--tile-light);border:1px solid var(--tile-light-border);border-top:0;border-radius:0 0 8px 8px;color:#131a2a}
+.lockup svg{width:40px;height:40px;flex:none}
+.lockup .word{font-family:var(--display);font-weight:800;font-size:24px;letter-spacing:.14em;line-height:1}
+.lockup .expand{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;color:#56647a;text-transform:uppercase;margin-top:5px;line-height:1.3}
+.favs{display:flex;gap:10px;margin:14px 18px 0;flex-wrap:wrap}
+.fav{display:flex;align-items:flex-end;gap:12px;padding:10px 12px;border-radius:6px;flex:1;min-width:130px}
+.fav.d{background:var(--tile-dark);border:1px solid #232842}
+.fav.l{background:var(--tile-light);border:1px solid var(--tile-light-border)}
+.fav figure{margin:0;display:flex;flex-direction:column;align-items:center;gap:4px}
+.fav figcaption{font-family:var(--mono);font-size:9px;color:#7888a0;font-variant-numeric:tabular-nums}
+.body{padding:14px 18px 18px;display:flex;flex-direction:column;gap:10px;flex:1}
+.body p{margin:0;color:var(--muted);font-size:14px}
+.reads{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:5px;font-size:13px}
+.reads li{display:grid;grid-template-columns:92px 1fr;gap:8px}
+.reads span{font-family:var(--mono);font-size:11px;color:var(--accent);text-transform:uppercase;letter-spacing:.06em;padding-top:2px}
+.body button{margin-top:auto;align-self:flex-start;font:600 13px var(--body);background:transparent;color:var(--accent);border:1px solid var(--accent);border-radius:6px;padding:8px 14px;cursor:pointer}
+.body button:hover{background:var(--accent);color:var(--surf)}
+.body button:focus-visible{outline:2px solid var(--accent-strong);outline-offset:2px}
+.concept.active .body button{background:var(--btn-bg);color:var(--btn-text);border-color:var(--btn-bg)}
+
+.note{background:var(--surf2);border:1px solid var(--border);border-radius:10px;padding:20px 22px;display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.note h2{font-size:17px;margin-bottom:6px}
+.note p{margin:0;color:var(--muted);font-size:14px;max-width:60ch}
+.note code{font-family:var(--mono);font-size:12.5px;color:var(--text)}
+@media (prefers-reduced-motion: reduce){.concept{transition:none}}
+@media (max-width:760px){
+  .intro,.note{grid-template-columns:1fr}
+  .dash-body{grid-template-columns:1fr 1fr}
+  .dash-bar .sub{display:none}
+  .grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- Shared gradients and marks, drawn on a 64-unit grid -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="gTile" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0a7cc2"/><stop offset="1" stop-color="#00456d"/>
+    </linearGradient>
+  </defs>
+  <symbol id="m70" viewBox="0 0 64 64"><g fill="#5cc8ff">
+      <rect x="28.2" y="3.6" width="7" height="7" rx="1.4"/>
+      <rect x="44.6" y="3.6" width="7" height="7" rx="1.4" opacity=".5"/>
+      <rect x="52.8" y="11.8" width="7" height="7" rx="1.4" opacity=".25"/>
+    </g>
+    <g fill="#3399cc">
+      <rect x="20" y="11.8" width="7" height="7" rx="1.4"/><rect x="36.4" y="11.8" width="7" height="7" rx="1.4"/>
+      <rect x="20" y="20" width="7" height="7" rx="1.4"/><rect x="36.4" y="20" width="7" height="7" rx="1.4"/>
+    </g>
+    <g fill="#5cc8ff">
+      <rect x="11.8" y="28.2" width="7" height="7" rx="1.4"/><rect x="20" y="28.2" width="7" height="7" rx="1.4"/>
+      <rect x="28.2" y="28.2" width="7" height="7" rx="1.4"/><rect x="36.4" y="28.2" width="7" height="7" rx="1.4"/>
+      <rect x="44.6" y="28.2" width="7" height="7" rx="1.4"/>
+    </g>
+    <g fill="#0067A5">
+      <rect x="11.8" y="36.4" width="7" height="7" rx="1.4"/><rect x="44.6" y="36.4" width="7" height="7" rx="1.4"/>
+      <rect x="3.6" y="44.6" width="7" height="7" rx="1.4"/><rect x="52.8" y="44.6" width="7" height="7" rx="1.4"/>
+      <rect x="3.6" y="52.8" width="7" height="7" rx="1.4"/><rect x="52.8" y="52.8" width="7" height="7" rx="1.4"/>
+    </g></symbol>
+  <!-- M1 Visor A -->
+  <symbol id="m81" viewBox="0 0 64 64"><rect x="24.5" y="0.5" width="7" height="7" rx="1.2" fill="#0067A5"/><rect x="32.5" y="0.5" width="7" height="7" rx="1.2" fill="#0067A5"/><rect x="16.5" y="8.5" width="7" height="7" rx="1.2" fill="#0067A5"/><rect x="24.5" y="8.5" width="7" height="7" rx="1.2" fill="#0067A5"/><rect x="32.5" y="8.5" width="7" height="7" rx="1.2" fill="#0067A5"/><rect x="40.5" y="8.5" width="7" height="7" rx="1.2" fill="#0067A5"/><rect x="8.5" y="16.5" width="7" height="7" rx="1.2" fill="#0067A5"/><rect x="16.5" y="16.5" width="7" height="7" rx="1.2" fill="#0067A5"/><rect x="40.5" y="16.5" width="7" height="7" rx="1.2" fill="#0067A5"/><rect x="48.5" y="16.5" width="7" height="7" rx="1.2" fill="#0067A5"/><rect x="8.5" y="24.5" width="7" height="7" rx="1.2" fill="#0067A5"/><rect x="16.5" y="24.5" width="7" height="7" rx="1.2" fill="#0067A5"/><rect x="40.5" y="24.5" width="7" height="7" rx="1.2" fill="#0067A5"/><rect x="48.5" y="24.5" width="7" height="7" rx="1.2" fill="#0067A5"/><rect x="0.5" y="40.5" width="7" height="7" rx="1.2" fill="#0067A5"/><rect x="8.5" y="40.5" width="7" height="7" rx="1.2" fill="#0067A5"/><rect x="48.5" y="40.5" width="7" height="7" rx="1.2" fill="#0067A5"/><rect x="56.5" y="40.5" width="7" height="7" rx="1.2" fill="#0067A5"/><rect x="0.5" y="48.5" width="7" height="7" rx="1.2" fill="#0067A5"/><rect x="8.5" y="48.5" width="7" height="7" rx="1.2" fill="#0067A5"/><rect x="48.5" y="48.5" width="7" height="7" rx="1.2" fill="#0067A5"/><rect x="56.5" y="48.5" width="7" height="7" rx="1.2" fill="#0067A5"/><rect x="0.5" y="56.5" width="7" height="7" rx="1.2" fill="#0067A5"/><rect x="8.5" y="56.5" width="7" height="7" rx="1.2" fill="#0067A5"/><rect x="48.5" y="56.5" width="7" height="7" rx="1.2" fill="#0067A5"/><rect x="56.5" y="56.5" width="7" height="7" rx="1.2" fill="#0067A5"/><rect x="8.5" y="32.5" width="47" height="7" rx="1.2" fill="#5cc8ff"/>
+     <rect x="17.5" y="34.5" width="5" height="3" rx=".8" fill="#0b2a4a"/>
+     <rect x="41.5" y="34.5" width="5" height="3" rx=".8" fill="#0b2a4a"/></symbol>
+  <!-- M2 Circuit A -->
+  <symbol id="m82" viewBox="0 0 64 64"><g fill="none" stroke="#0067A5" stroke-width="4" stroke-linejoin="miter">
+    <path d="M10 54 V42 H18 V28 H26 V14 H38 V28 H46 V42 H54 V54"/>
+    <path d="M18 36 H46"/>
+  </g>
+  <rect x="4" y="50" width="12" height="10" rx="2" fill="#0067A5"/><rect x="8" y="53" width="4" height="4" fill="#5cc8ff"/>
+  <rect x="48" y="50" width="12" height="10" rx="2" fill="#0067A5"/><rect x="52" y="53" width="4" height="4" fill="#5cc8ff"/>
+  <rect x="26" y="8" width="12" height="12" rx="2" fill="#5cc8ff"/></symbol>
+  <!-- M3 Gripper A -->
+  <symbol id="m83" viewBox="0 0 64 64"><rect x="24.5" y="0.5" width="7" height="7" rx="1.2" fill="#5cc8ff"/><rect x="32.5" y="0.5" width="7" height="7" rx="1.2" fill="#5cc8ff"/><rect x="24.5" y="8.5" width="7" height="7" rx="1.2" fill="#5cc8ff"/><rect x="32.5" y="8.5" width="7" height="7" rx="1.2" fill="#5cc8ff"/><rect x="16.5" y="16.5" width="7" height="7" rx="1.2" fill="#0067A5"/><rect x="40.5" y="16.5" width="7" height="7" rx="1.2" fill="#0067A5"/><rect x="8.5" y="24.5" width="7" height="7" rx="1.2" fill="#0067A5"/><rect x="48.5" y="24.5" width="7" height="7" rx="1.2" fill="#0067A5"/><rect x="8.5" y="32.5" width="7" height="7" rx="1.2" fill="#0067A5"/><rect x="24.5" y="32.5" width="7" height="7" rx="1.2" fill="#5cc8ff"/><rect x="32.5" y="32.5" width="7" height="7" rx="1.2" fill="#5cc8ff"/><rect x="48.5" y="32.5" width="7" height="7" rx="1.2" fill="#0067A5"/><rect x="0.5" y="40.5" width="7" height="7" rx="1.2" fill="#0067A5"/><rect x="56.5" y="40.5" width="7" height="7" rx="1.2" fill="#0067A5"/><rect x="0.5" y="48.5" width="7" height="7" rx="1.2" fill="#0067A5"/><rect x="56.5" y="48.5" width="7" height="7" rx="1.2" fill="#0067A5"/><rect x="0.5" y="56.5" width="7" height="7" rx="1.2" fill="#0067A5"/><rect x="56.5" y="56.5" width="7" height="7" rx="1.2" fill="#0067A5"/></symbol>
+  <!-- M4 Chip A -->
+  <symbol id="m84" viewBox="0 0 64 64"><g fill="#3399cc">
+  <rect x="18" y="5" width="4" height="6" rx="1"/><rect x="18" y="53" width="4" height="6" rx="1"/>
+  <rect x="5" y="18" width="6" height="4" rx="1"/><rect x="53" y="18" width="6" height="4" rx="1"/>
+  <rect x="28" y="5" width="4" height="6" rx="1"/><rect x="28" y="53" width="4" height="6" rx="1"/>
+  <rect x="5" y="28" width="6" height="4" rx="1"/><rect x="53" y="28" width="6" height="4" rx="1"/>
+  <rect x="38" y="5" width="4" height="6" rx="1"/><rect x="38" y="53" width="4" height="6" rx="1"/>
+  <rect x="5" y="38" width="6" height="4" rx="1"/><rect x="53" y="38" width="6" height="4" rx="1"/></g>
+  <rect x="12" y="12" width="40" height="40" rx="5" fill="url(#gTile)"/><rect x="29" y="17" width="5" height="5" rx=".8" fill="#ffffff"/><rect x="23" y="23" width="5" height="5" rx=".8" fill="#ffffff"/><rect x="35" y="23" width="5" height="5" rx=".8" fill="#ffffff"/><rect x="23" y="29" width="5" height="5" rx=".8" fill="#5cc8ff"/><rect x="29" y="29" width="5" height="5" rx=".8" fill="#5cc8ff"/><rect x="35" y="29" width="5" height="5" rx=".8" fill="#5cc8ff"/><rect x="17" y="35" width="5" height="5" rx=".8" fill="#ffffff"/><rect x="41" y="35" width="5" height="5" rx=".8" fill="#ffffff"/><rect x="17" y="41" width="5" height="5" rx=".8" fill="#ffffff"/><rect x="41" y="41" width="5" height="5" rx=".8" fill="#ffffff"/></symbol>
+  <!-- M5 Scan Line -->
+  <symbol id="m85" viewBox="0 0 64 64"><rect x="24.5" y="0.5" width="7" height="7" rx="1.2" fill="#3399cc"/><rect x="32.5" y="0.5" width="7" height="7" rx="1.2" fill="#3399cc"/><rect x="16.5" y="8.5" width="7" height="7" rx="1.2" fill="#3399cc"/><rect x="24.5" y="8.5" width="7" height="7" rx="1.2" fill="#3399cc"/><rect x="32.5" y="8.5" width="7" height="7" rx="1.2" fill="#3399cc"/><rect x="40.5" y="8.5" width="7" height="7" rx="1.2" fill="#3399cc"/><rect x="8.5" y="16.5" width="7" height="7" rx="1.2" fill="#3399cc"/><rect x="16.5" y="16.5" width="7" height="7" rx="1.2" fill="#3399cc"/><rect x="40.5" y="16.5" width="7" height="7" rx="1.2" fill="#3399cc"/><rect x="48.5" y="16.5" width="7" height="7" rx="1.2" fill="#3399cc"/><rect x="8.5" y="24.5" width="7" height="7" rx="1.2" fill="#3399cc"/><rect x="16.5" y="24.5" width="7" height="7" rx="1.2" fill="#3399cc"/><rect x="40.5" y="24.5" width="7" height="7" rx="1.2" fill="#3399cc"/><rect x="48.5" y="24.5" width="7" height="7" rx="1.2" fill="#3399cc"/><rect x="0.5" y="40.5" width="7" height="7" rx="1.2" fill="#0067A5" opacity=".45"/><rect x="8.5" y="40.5" width="7" height="7" rx="1.2" fill="#0067A5" opacity=".45"/><rect x="48.5" y="40.5" width="7" height="7" rx="1.2" fill="#0067A5" opacity=".45"/><rect x="56.5" y="40.5" width="7" height="7" rx="1.2" fill="#0067A5" opacity=".45"/><rect x="0.5" y="48.5" width="7" height="7" rx="1.2" fill="#0067A5" opacity=".45"/><rect x="8.5" y="48.5" width="7" height="7" rx="1.2" fill="#0067A5" opacity=".45"/><rect x="48.5" y="48.5" width="7" height="7" rx="1.2" fill="#0067A5" opacity=".45"/><rect x="56.5" y="48.5" width="7" height="7" rx="1.2" fill="#0067A5" opacity=".45"/><rect x="0.5" y="56.5" width="7" height="7" rx="1.2" fill="#0067A5" opacity=".45"/><rect x="8.5" y="56.5" width="7" height="7" rx="1.2" fill="#0067A5" opacity=".45"/><rect x="48.5" y="56.5" width="7" height="7" rx="1.2" fill="#0067A5" opacity=".45"/><rect x="56.5" y="56.5" width="7" height="7" rx="1.2" fill="#0067A5" opacity=".45"/><rect x="2" y="31" width="60" height="10" rx="2" fill="#5cc8ff" opacity=".18"/>
+     <rect x="4" y="34.5" width="56" height="3" rx="1.5" fill="#5cc8ff"/></symbol>
+  <!-- M6 Modular A -->
+  <symbol id="m86" viewBox="0 0 64 64"><rect x="26" y="3.5" width="12" height="12" rx="2.4" fill="#5cc8ff"/><rect x="11" y="18.5" width="12" height="12" rx="2.4" fill="#3399cc"/><rect x="41" y="18.5" width="12" height="12" rx="2.4" fill="#3399cc"/><rect x="11" y="33.5" width="12" height="12" rx="2.4" fill="#5cc8ff"/><rect x="26" y="33.5" width="12" height="12" rx="2.4" fill="#5cc8ff"/><rect x="41" y="33.5" width="12" height="12" rx="2.4" fill="#5cc8ff"/><rect x="11" y="48.5" width="12" height="12" rx="2.4" fill="#0067A5"/><rect x="41" y="48.5" width="12" height="12" rx="2.4" fill="#0067A5"/></symbol>
+</svg>
+
+<div class="wrap">
+  <section class="intro">
+    <div>
+      <div class="eyebrow">Brand exploration · Round 8</div>
+      <h1>Pixel marks with a machine mind</h1>
+      <p>Six new pixel designs. Each one hints at machines that build, see and work on their own through shape alone: a visor, a circuit trace, a gripper, a chip, a scan beam and snap-together modules. They are kept as simple as possible so they read instantly at any size.</p>
+    </div>
+    <div class="base">
+      <svg aria-hidden="true"><use href="#m70"/></svg>
+      <div><b>Starting point: Concept 8</b><span>The pixel idea, taken somewhere new</span></div>
+    </div>
+  </section>
+
+  <section class="preview" aria-label="Dashboard preview">
+    <div class="preview-top">
+      <h2 id="pvTitle">In context: M1, Visor A</h2>
+      <span>Browser tab favicon at 16px and dashboard header at 28px</span>
+    </div>
+    <div class="browser">
+      <div class="tabs">
+        <div class="tab"><svg width="16" height="16" id="pvFav"><use href="#m81"/></svg>AUDI · Orchestrator Dashboard</div>
+        <div class="tab ghost">Figma – Bell Mobility</div>
+      </div>
+    </div>
+    <div class="dash-bar">
+      <div class="brand"><svg width="28" height="28" id="pvMark"><use href="#m81"/></svg><span class="word">AUDI</span></div>
+      <span class="sub">Orchestrator Dashboard</span>
+    </div>
+    <div class="dash-body" aria-hidden="true"><div></div><div></div><div></div></div>
+  </section>
+
+  <section class="grid" id="grid"></section>
+
+  <section class="note">
+    <div>
+      <h2>My recommendation</h2>
+      <p><strong>M1, Visor A</strong>. The lit visor gives the A a quiet machine personality without spelling anything out, and it is still clearly a letter. It sits on the same 8 × 8 grid as the pixel-perfect favicon, so it stays sharp at 16px. <strong>M6, Modular A</strong>, is the most minimal option if you want something even simpler.</p>
+    </div>
+    <div>
+      <h2>After you choose</h2>
+      <p>I'll make <code>favicon.svg</code>, a multi-size <code>favicon.ico</code> (16/32/48) and <code>apple-touch-icon.png</code> (180).</p>
+    </div>
+  </section>
+</div>
+
+<script>
+const concepts = [
+ {
+  "id": 81,
+  "code": "M1",
+  "file": "m1-visor-a",
+  "name": "Visor A",
+  "tag": "Recommended",
+  "rec": true,
+  "why": "The crossbar becomes a lit visor with two dark eyes. The A turns into a calm, helpful machine face without losing the letter.",
+  "reads": [
+   [
+    "AI",
+    "A face that watches and helps"
+   ],
+   [
+    "Media",
+    "Screen-lit visor"
+   ],
+   [
+    "Software",
+    "Pixel-built letter"
+   ],
+   [
+    "Favicon",
+    "Sharp on the 8 × 8 grid"
+   ]
+  ]
+ },
+ {
+  "id": 82,
+  "code": "M2",
+  "file": "m2-circuit-a",
+  "name": "Circuit A",
+  "tag": "Engineered",
+  "why": "The A is one stepped trace, like a line on a circuit board, ending in solder pads. The cyan pad at the top is where the signal starts.",
+  "reads": [
+   [
+    "AI",
+    "Signal flows from the top"
+   ],
+   [
+    "Media",
+    "Clean line art"
+   ],
+   [
+    "Software",
+    "Hardware-level precision"
+   ],
+   [
+    "Favicon",
+    "Clear at 32px"
+   ]
+  ]
+ },
+ {
+  "id": 83,
+  "code": "M3",
+  "file": "m3-gripper-a",
+  "name": "Gripper A",
+  "tag": "Builder mark",
+  "why": "Two arms hinge on a cyan joint and hold a block where the crossbar would be. The A shows a machine building the product piece by piece.",
+  "reads": [
+   [
+    "AI",
+    "A joint that moves on its own"
+   ],
+   [
+    "Media",
+    "Simple pixel figure"
+   ],
+   [
+    "Software",
+    "Placing each piece"
+   ],
+   [
+    "Favicon",
+    "Open shape; best at 32px"
+   ]
+  ]
+ },
+ {
+  "id": 84,
+  "code": "M4",
+  "file": "m4-chip-a",
+  "name": "Chip A",
+  "tag": "Hardware mark",
+  "why": "A pixel A sits on a chip with pins on every side. It says powerful, engineered technology in one familiar shape.",
+  "reads": [
+   [
+    "AI",
+    "The A is the processor"
+   ],
+   [
+    "Media",
+    "Icon-ready square"
+   ],
+   [
+    "Software",
+    "Built on solid hardware"
+   ],
+   [
+    "Favicon",
+    "Very clear"
+   ]
+  ]
+ },
+ {
+  "id": 85,
+  "code": "M5",
+  "file": "m5-scan-line",
+  "name": "Scan Line",
+  "tag": "Vision mark",
+  "why": "A cyan beam passes through the A as its crossbar. Rows above it are already read and lit, and rows below are still waiting.",
+  "reads": [
+   [
+    "AI",
+    "Machine vision reading the design"
+   ],
+   [
+    "Media",
+    "Scanner and screen light"
+   ],
+   [
+    "Software",
+    "Checks running on their own"
+   ],
+   [
+    "Favicon",
+    "Beam stays visible at 16px"
+   ]
+  ]
+ },
+ {
+  "id": 86,
+  "code": "M6",
+  "file": "m6-modular-a",
+  "name": "Modular A",
+  "tag": "Simplest",
+  "why": "Eight large modules on a 3 × 4 grid form the A. It is the simplest possible pixel letter, like standard parts snapped together on a line.",
+  "reads": [
+   [
+    "AI",
+    "Parts assembled in order"
+   ],
+   [
+    "Media",
+    "Bold, minimal"
+   ],
+   [
+    "Software",
+    "Reusable components"
+   ],
+   [
+    "Favicon",
+    "Strongest at 16px"
+   ]
+  ]
+ }
+];
+
+const use = (id, s) => `<svg width="${s}" height="${s}" aria-hidden="true"><use href="#m${id}"/></svg>`;
+const grid = document.getElementById('grid');
+grid.innerHTML = concepts.map(c => `
+  <article class="concept${c.id===81?' active':''}" data-id="${c.id}">
+    <div class="concept-head"><h3>${c.code}. ${c.name}</h3><span class="tag${c.rec?' rec':''}">${c.tag}</span></div>
+    <div class="stage">${use(c.id,132)}</div>
+    <div class="lockup">${use(c.id,40)}<div><div class="word">AUDI</div><div class="expand">Augmented Unified Delivery Intelligence</div></div></div>
+    <div class="favs">
+      <div class="fav d">
+        <figure>${use(c.id,48)}<figcaption>48</figcaption></figure>
+        <figure>${use(c.id,32)}<figcaption>32</figcaption></figure>
+        <figure>${use(c.id,16)}<figcaption>16</figcaption></figure>
+      </div>
+      <div class="fav l">
+        <figure>${use(c.id,32)}<figcaption>32</figcaption></figure>
+        <figure>${use(c.id,16)}<figcaption>16</figcaption></figure>
+      </div>
+    </div>
+    <div class="body">
+      <p>${c.why}</p>
+      <ul class="reads">${c.reads.map(r=>`<li><span>${r[0]}</span>${r[1]}</li>`).join('')}</ul>
+      <button type="button" id="pv${c.id}">Preview in dashboard</button>
+    </div>
+  </article>`).join('');
+
+grid.addEventListener('click', e => {
+  const btn = e.target.closest('button'); if (!btn) return;
+  const card = btn.closest('.concept'); const id = +card.dataset.id;
+  const c = concepts.find(x => x.id === id);
+  document.querySelectorAll('.concept').forEach(el => el.classList.toggle('active', el === card));
+  document.querySelector('#pvFav use').setAttribute('href', '#m'+id);
+  document.querySelector('#pvMark use').setAttribute('href', '#m'+id);
+  document.getElementById('pvTitle').textContent = `In context: ${c.code}, ${c.name}`;
+  document.querySelector('.preview').scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block:'start'});
+});
+</script>
+</body>
+</html>
