@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AUDI Wordmark Fonts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  color-scheme: dark;
+  --bg:#0d0f18; --surf:#141720; --surf2:#1c2030; --border:#2a2f4a;
+  --text:#e2e8f0; --muted:#8a98b0; --accent:#3399cc; --accent-strong:#5cc8ff;
+  --tile-dark:#0d0f18; --tile-light:#f3f6fa; --tile-light-border:#d6dee8;
+  --btn-bg:#0067A5; --btn-text:#ffffff;
+  --display:'Plus Jakarta Sans', 'Segoe UI', system-ui, sans-serif;
+  --body:'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif;
+  --mono:'JetBrains Mono', ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    color-scheme: light;
+    --bg:#f4f6fa; --surf:#ffffff; --surf2:#eef2f7; --border:#d8dfea;
+    --text:#131a2a; --muted:#56647a; --accent:#0067A5; --accent-strong:#004f7c;
+  }
+}
+:root[data-theme="light"]{
+  color-scheme: light;
+  --bg:#f4f6fa; --surf:#ffffff; --surf2:#eef2f7; --border:#d8dfea;
+  --text:#131a2a; --muted:#56647a; --accent:#0067A5; --accent-strong:#004f7c;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:15px;line-height:1.55;margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:20px;padding-block:40px 64px;display:flex;flex-direction:column;gap:40px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.intro{display:grid;grid-template-columns:1.3fr 1fr;gap:32px;align-items:center}
+.intro h1{font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:-.01em;margin-top:8px}
+.intro p{color:var(--muted);max-width:62ch;margin:12px 0 0}
+.base{display:flex;align-items:center;gap:16px;background:var(--surf);border:1px solid var(--border);border-radius:10px;padding:16px 18px}
+.base svg{width:64px;height:64px;flex:none}
+.base b{font-family:var(--display);font-size:15px;display:block}
+.base span{color:var(--muted);font-size:13px}
+
+.preview{background:var(--surf);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.preview-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:14px 18px;border-bottom:1px solid var(--border)}
+.preview-top h2{font-size:15px;font-weight:700}
+.preview-top span{font-size:13px;color:var(--muted)}
+.browser{background:#0a0c13;padding:10px 12px 0}
+.tabs{display:flex;gap:4px}
+.tab{display:flex;align-items:center;gap:8px;background:#141720;color:#c9d3e0;font-size:12px;padding:8px 14px;border-radius:8px 8px 0 0;max-width:280px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tab.ghost{background:transparent;color:#5d6a80}
+.tab svg{flex:none}
+.dash-bar{background:#141720;border-bottom:1px solid #2a2f4a;display:flex;align-items:center;gap:12px;padding:12px 18px;color:#e2e8f0}
+.dash-bar .brand{display:flex;align-items:center;gap:10px}
+.dash-bar .word{font-family:var(--display);font-weight:800;letter-spacing:.14em;font-size:17px}
+.dash-bar .sub{color:#7888a0;font-size:14px;border-left:1px solid #2a2f4a;padding-left:12px}
+.dash-body{background:#0d0f18;padding:18px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.dash-body div{height:54px;border-radius:6px;background:#1c2030;border:1px solid #2a2f4a}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:20px}
+.concept{background:var(--surf);border:1px solid var(--border);border-radius:10px;display:flex;flex-direction:column;overflow:hidden;transition:border-color .2s}
+.concept.active{border-color:var(--accent)}
+.concept-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:16px 18px 0}
+.concept-head h3{font-size:19px;font-weight:700}
+.tag{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.tag.rec{color:var(--accent-strong)}
+.stage{margin:14px 18px 0;background:var(--tile-dark);border:1px solid #232842;border-radius:8px 8px 0 0;display:grid;place-items:center;padding:28px 0}
+.stage svg{width:132px;height:132px}
+.lockup{display:flex;align-items:center;gap:12px;margin:0 18px;padding:14px 16px;background:var(--tile-light);border:1px solid var(--tile-light-border);border-top:0;border-radius:0 0 8px 8px;color:#131a2a}
+.lockup svg{width:40px;height:40px;flex:none}
+.lockup .word{font-family:var(--display);font-weight:800;font-size:24px;letter-spacing:.14em;line-height:1}
+.lockup .expand{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;color:#56647a;text-transform:uppercase;margin-top:5px;line-height:1.3}
+.favs{display:flex;gap:10px;margin:14px 18px 0;flex-wrap:wrap}
+.fav{display:flex;align-items:flex-end;gap:12px;padding:10px 12px;border-radius:6px;flex:1;min-width:130px}
+.fav.d{background:var(--tile-dark);border:1px solid #232842}
+.fav.l{background:var(--tile-light);border:1px solid var(--tile-light-border)}
+.fav figure{margin:0;display:flex;flex-direction:column;align-items:center;gap:4px}
+.fav figcaption{font-family:var(--mono);font-size:9px;color:#7888a0;font-variant-numeric:tabular-nums}
+.body{padding:14px 18px 18px;display:flex;flex-direction:column;gap:10px;flex:1}
+.body p{margin:0;color:var(--muted);font-size:14px}
+.reads{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:5px;font-size:13px}
+.reads li{display:grid;grid-template-columns:92px 1fr;gap:8px}
+.reads span{font-family:var(--mono);font-size:11px;color:var(--accent);text-transform:uppercase;letter-spacing:.06em;padding-top:2px}
+.body button{margin-top:auto;align-self:flex-start;font:600 13px var(--body);background:transparent;color:var(--accent);border:1px solid var(--accent);border-radius:6px;padding:8px 14px;cursor:pointer}
+.body button:hover{background:var(--accent);color:var(--surf)}
+.body button:focus-visible{outline:2px solid var(--accent-strong);outline-offset:2px}
+.concept.active .body button{background:var(--btn-bg);color:var(--btn-text);border-color:var(--btn-bg)}
+
+.note{background:var(--surf2);border:1px solid var(--border);border-radius:10px;padding:20px 22px;display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.note h2{font-size:17px;margin-bottom:6px}
+.note p{margin:0;color:var(--muted);font-size:14px;max-width:60ch}
+.note code{font-family:var(--mono);font-size:12.5px;color:var(--text)}
+@media (prefers-reduced-motion: reduce){.concept{transition:none}}
+@media (max-width:760px){
+  .intro,.note{grid-template-columns:1fr}
+  .dash-body{grid-template-columns:1fr 1fr}
+  .dash-bar .sub{display:none}
+  .grid{grid-template-columns:1fr}
+}
+</style>
+
+<style>
+@font-face{font-family:'f-astronoma-regular';src:url('../assets/fonts/astronoma/regular.otf') format('opentype');font-display:swap}
+@font-face{font-family:'f-chipen-regular';src:url('../assets/fonts/chipen/regular.woff') format('woff');font-display:swap}
+@font-face{font-family:'f-chipen-italic';src:url('../assets/fonts/chipen/italic.woff') format('woff');font-display:swap}
+@font-face{font-family:'f-chipen-expanded';src:url('../assets/fonts/chipen/expanded.woff') format('woff');font-display:swap}
+@font-face{font-family:'f-chipen-expanded-italic';src:url('../assets/fonts/chipen/expanded-italic.woff') format('woff');font-display:swap}
+@font-face{font-family:'f-cyber-city-regular';src:url('../assets/fonts/cyber-city/regular.otf') format('opentype');font-display:swap}
+@font-face{font-family:'f-epyon-mech-style-1';src:url('../assets/fonts/epyon-mech/style-1.otf') format('opentype');font-display:swap}
+@font-face{font-family:'f-epyon-mech-style-2';src:url('../assets/fonts/epyon-mech/style-2.otf') format('opentype');font-display:swap}
+@font-face{font-family:'f-epyon-mech-style-3';src:url('../assets/fonts/epyon-mech/style-3.otf') format('opentype');font-display:swap}
+@font-face{font-family:'f-fauna-thin';src:url('../assets/fonts/fauna/thin.ttf') format('truetype');font-display:swap}
+@font-face{font-family:'f-fauna-light';src:url('../assets/fonts/fauna/light.ttf') format('truetype');font-display:swap}
+@font-face{font-family:'f-fauna-regular';src:url('../assets/fonts/fauna/regular.ttf') format('truetype');font-display:swap}
+@font-face{font-family:'f-fauna-medium';src:url('../assets/fonts/fauna/medium.ttf') format('truetype');font-display:swap}
+@font-face{font-family:'f-fauna-bold';src:url('../assets/fonts/fauna/bold.ttf') format('truetype');font-display:swap}
+@font-face{font-family:'f-gr-fatient-fatient';src:url('../assets/fonts/gr-fatient/fatient.woff') format('woff');font-display:swap}
+@font-face{font-family:'f-gr-fatient-patient';src:url('../assets/fonts/gr-fatient/patient.otf') format('opentype');font-display:swap}
+@font-face{font-family:'f-genesis-three-solid';src:url('../assets/fonts/genesis-three/solid.woff') format('woff');font-display:swap}
+@font-face{font-family:'f-genesis-three-outline';src:url('../assets/fonts/genesis-three/outline.woff') format('woff');font-display:swap}
+@font-face{font-family:'f-genesis-three-mono';src:url('../assets/fonts/genesis-three/mono.woff') format('woff');font-display:swap}
+@font-face{font-family:'f-luna-parc-solid';src:url('../assets/fonts/luna-parc/solid.otf') format('opentype');font-display:swap}
+@font-face{font-family:'f-luna-parc-line';src:url('../assets/fonts/luna-parc/line.otf') format('opentype');font-display:swap}
+@font-face{font-family:'f-mbf-atom-regular';src:url('../assets/fonts/mbf-atom/regular.woff') format('woff');font-display:swap}
+@font-face{font-family:'f-mbf-canno-regular';src:url('../assets/fonts/mbf-canno/regular.woff') format('woff');font-display:swap}
+@font-face{font-family:'f-mbf-necoma-regular';src:url('../assets/fonts/mbf-necoma/regular.woff') format('woff');font-display:swap}
+@font-face{font-family:'f-mostest-mono-width-550';src:url('../assets/fonts/mostest-mono/width-550.woff2') format('woff2');font-display:swap}
+@font-face{font-family:'f-mostest-mono-width-825';src:url('../assets/fonts/mostest-mono/width-825.woff2') format('woff2');font-display:swap}
+@font-face{font-family:'f-mostest-mono-width-1100';src:url('../assets/fonts/mostest-mono/width-1100.woff2') format('woff2');font-display:swap}
+@font-face{font-family:'f-mostest-mono-width-1375';src:url('../assets/fonts/mostest-mono/width-1375.woff2') format('woff2');font-display:swap}
+@font-face{font-family:'f-mostest-mono-width-1650';src:url('../assets/fonts/mostest-mono/width-1650.woff2') format('woff2');font-display:swap}
+@font-face{font-family:'f-mostest-mono-width-1925';src:url('../assets/fonts/mostest-mono/width-1925.woff2') format('woff2');font-display:swap}
+@font-face{font-family:'f-mostest-mono-width-2200';src:url('../assets/fonts/mostest-mono/width-2200.woff2') format('woff2');font-display:swap}
+@font-face{font-family:'f-nort-mono-regular';src:url('../assets/fonts/nort-mono/regular.otf') format('opentype');font-display:swap}
+@font-face{font-family:'f-praxo-io-light';src:url('../assets/fonts/praxo-io/light.otf') format('opentype');font-display:swap}
+@font-face{font-family:'f-praxo-io-regular';src:url('../assets/fonts/praxo-io/regular.otf') format('opentype');font-display:swap}
+@font-face{font-family:'f-praxo-io-bold';src:url('../assets/fonts/praxo-io/bold.otf') format('opentype');font-display:swap}
+@font-face{font-family:'f-praxo-io-atg-thin';src:url('../assets/fonts/praxo-io/atg-thin.otf') format('opentype');font-display:swap}
+@font-face{font-family:'f-praxo-io-atg-light';src:url('../assets/fonts/praxo-io/atg-light.otf') format('opentype');font-display:swap}
+@font-face{font-family:'f-praxo-io-atg-regular';src:url('../assets/fonts/praxo-io/atg-regular.otf') format('opentype');font-display:swap}
+@font-face{font-family:'f-praxo-io-atg-bold';src:url('../assets/fonts/praxo-io/atg-bold.otf') format('opentype');font-display:swap}
+@font-face{font-family:'f-proto-mono-light';src:url('../assets/fonts/proto-mono/light.otf') format('opentype');font-display:swap}
+@font-face{font-family:'f-proto-mono-regular';src:url('../assets/fonts/proto-mono/regular.otf') format('opentype');font-display:swap}
+@font-face{font-family:'f-proto-mono-medium';src:url('../assets/fonts/proto-mono/medium.otf') format('opentype');font-display:swap}
+@font-face{font-family:'f-proto-mono-semibold';src:url('../assets/fonts/proto-mono/semibold.otf') format('opentype');font-display:swap}
+@font-face{font-family:'f-proto-mono-light-shadow';src:url('../assets/fonts/proto-mono/light-shadow.otf') format('opentype');font-display:swap}
+@font-face{font-family:'f-proto-mono-regular-shadow';src:url('../assets/fonts/proto-mono/regular-shadow.otf') format('opentype');font-display:swap}
+@font-face{font-family:'f-proto-mono-medium-shadow';src:url('../assets/fonts/proto-mono/medium-shadow.otf') format('opentype');font-display:swap}
+@font-face{font-family:'f-proto-mono-semibold-shadow';src:url('../assets/fonts/proto-mono/semibold-shadow.otf') format('opentype');font-display:swap}
+@font-face{font-family:'f-robonix-book';src:url('../assets/fonts/robonix/book.woff') format('woff');font-display:swap}
+@font-face{font-family:'f-robonix-regular';src:url('../assets/fonts/robonix/regular.woff') format('woff');font-display:swap}
+@font-face{font-family:'f-robonix-semibold';src:url('../assets/fonts/robonix/semibold.woff') format('woff');font-display:swap}
+@font-face{font-family:'f-robonix-bold';src:url('../assets/fonts/robonix/bold.woff') format('woff');font-display:swap}
+@font-face{font-family:'f-robonix-ultrabold';src:url('../assets/fonts/robonix/ultrabold.woff') format('woff');font-display:swap}
+@font-face{font-family:'f-robonix-book-shadow';src:url('../assets/fonts/robonix/book-shadow.woff') format('woff');font-display:swap}
+@font-face{font-family:'f-robonix-regular-shadow';src:url('../assets/fonts/robonix/regular-shadow.woff') format('woff');font-display:swap}
+@font-face{font-family:'f-robonix-semibold-shadow';src:url('../assets/fonts/robonix/semibold-shadow.woff') format('woff');font-display:swap}
+@font-face{font-family:'f-robonix-bold-shadow';src:url('../assets/fonts/robonix/bold-shadow.woff') format('woff');font-display:swap}
+@font-face{font-family:'f-robonix-ultrabold-shadow';src:url('../assets/fonts/robonix/ultrabold-shadow.woff') format('woff');font-display:swap}
+@font-face{font-family:'f-squiver-regular';src:url('../assets/fonts/squiver/regular.woff') format('woff');font-display:swap}
+@font-face{font-family:'f-studio-grotesk-thin';src:url('../assets/fonts/studio-grotesk/thin.otf') format('opentype');font-display:swap}
+@font-face{font-family:'f-studio-grotesk-light';src:url('../assets/fonts/studio-grotesk/light.otf') format('opentype');font-display:swap}
+@font-face{font-family:'f-studio-grotesk-regular';src:url('../assets/fonts/studio-grotesk/regular.otf') format('opentype');font-display:swap}
+@font-face{font-family:'f-studio-grotesk-bold';src:url('../assets/fonts/studio-grotesk/bold.otf') format('opentype');font-display:swap}
+@font-face{font-family:'f-studio-grotesk-extra-bold';src:url('../assets/fonts/studio-grotesk/extra-bold.otf') format('opentype');font-display:swap}
+@font-face{font-family:'f-swavao-tech-sans-regular';src:url('../assets/fonts/swavao-tech-sans/regular.woff') format('woff');font-display:swap}
+</style>
+</head>
+<body>
+<style>
+.controls{display:flex;align-items:center;gap:14px;flex-wrap:wrap;background:var(--surf);border:1px solid var(--border);border-radius:10px;padding:12px 16px;position:sticky;top:8px;z-index:5}
+.controls label{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.controls input[type=range]{width:min(260px,50vw);accent-color:#0871B2}
+.controls output{font-family:var(--mono);font-size:12px;font-variant-numeric:tabular-nums;min-width:5ch}
+.controls .count{margin-left:auto;font-size:13px;color:var(--muted)}
+.fgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:20px}
+.fcard{background:var(--surf);border:1px solid var(--border);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;--ls:.08em}
+.fhead{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:16px 18px 12px}
+.fhead h3{font-size:19px;font-weight:700}
+.fhead .tag{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.mock{margin:0 18px;border-radius:8px;overflow:hidden;border:1px solid #232842}
+.mock .mtabs{background:#0a0c13;padding:8px 10px 0;display:flex;gap:4px}
+.mock .mtab{display:flex;align-items:center;gap:8px;background:#141720;color:#c9d3e0;font:12px var(--body);padding:7px 12px;border-radius:7px 7px 0 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mock .mtab.ghost{background:transparent;color:#5d6a80}
+.mock .mbar{background:#141720;border-bottom:1px solid #2a2f4a;display:flex;align-items:center;gap:12px;padding:12px 16px;color:#e2e8f0;min-height:56px}
+.mock .mbrand{display:flex;align-items:center;gap:10px}
+.wm{font-family:var(--wm), 'Segoe UI', sans-serif;font-weight:400;font-style:normal;line-height:1;letter-spacing:var(--ls);white-space:nowrap;display:inline-block}
+.mock .wm{font-size:calc(var(--s) * 22px)}
+.mock .msub{color:#7888a0;font:14px var(--body);border-left:1px solid #2a2f4a;padding-left:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mock .mbody{background:#0d0f18;padding:12px 16px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.mock .mbody div{height:26px;border-radius:5px;background:#1c2030;border:1px solid #2a2f4a}
+.flock{margin:12px 18px 0;background:#f3f6fa;border:1px solid #d6dee8;border-radius:8px;padding:18px 16px;display:flex;align-items:center;gap:14px;color:#0d1626;min-height:104px}
+.flock svg{flex:none}
+.flock .wm{font-size:calc(var(--s) * 44px)}
+.flock .tg{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;color:#56647a;text-transform:uppercase;margin-top:8px;line-height:1.3}
+.chips{display:flex;flex-wrap:wrap;gap:6px;padding:14px 18px 18px;margin-top:auto}
+.chips button{font:500 12px var(--body);background:transparent;color:var(--muted);border:1px solid var(--border);border-radius:6px;padding:5px 10px;cursor:pointer}
+.chips button:hover{border-color:var(--accent);color:var(--text)}
+.chips button[aria-pressed="true"]{background:#0871B2;border-color:#0871B2;color:#fff}
+.chips button:focus-visible{outline:2px solid var(--accent-strong);outline-offset:2px}
+.foot{color:var(--muted);font-size:13px;max-width:80ch}
+@media (max-width:760px){.fgrid{grid-template-columns:1fr}.controls{position:static}.mock .msub{display:none}}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="chipA" viewBox="0 0 64 64"><g fill="#3399cc"><rect x="20" y="5" width="4" height="6" rx="1"/><rect x="20" y="53" width="4" height="6" rx="1"/><rect x="5" y="20" width="6" height="4" rx="1"/><rect x="53" y="20" width="6" height="4" rx="1"/><rect x="30" y="5" width="4" height="6" rx="1"/><rect x="30" y="53" width="4" height="6" rx="1"/><rect x="5" y="30" width="6" height="4" rx="1"/><rect x="53" y="30" width="6" height="4" rx="1"/><rect x="40" y="5" width="4" height="6" rx="1"/><rect x="40" y="53" width="4" height="6" rx="1"/><rect x="5" y="40" width="6" height="4" rx="1"/><rect x="53" y="40" width="6" height="4" rx="1"/></g><rect x="12" y="12" width="40" height="40" rx="5" fill="#0871B2"/><rect x="29" y="17" width="5" height="5" rx=".8" fill="#ffffff"/><rect x="23" y="23" width="5" height="5" rx=".8" fill="#ffffff"/><rect x="35" y="23" width="5" height="5" rx=".8" fill="#ffffff"/><rect x="23" y="29" width="5" height="5" rx=".8" fill="#5cc8ff"/><rect x="29" y="29" width="5" height="5" rx=".8" fill="#5cc8ff"/><rect x="35" y="29" width="5" height="5" rx=".8" fill="#5cc8ff"/><rect x="17" y="35" width="5" height="5" rx=".8" fill="#ffffff"/><rect x="41" y="35" width="5" height="5" rx=".8" fill="#ffffff"/><rect x="17" y="41" width="5" height="5" rx=".8" fill="#ffffff"/><rect x="41" y="41" width="5" height="5" rx=".8" fill="#ffffff"/></symbol>
+</svg>
+
+<div class="wrap">
+  <section class="intro">
+    <div>
+      <div class="eyebrow">Brand exploration · Round 11</div>
+      <h1>Wordmark fonts for AUDI</h1>
+      <p>The blue Chip A next to the word AUDI, set in each of the 19 font families from The Future Tech Font Bundle. Every card is a mock of the Orchestrator Dashboard header, with the lockup below it. Use the buttons on a card to switch between that family's weights and styles.</p>
+    </div>
+  </section>
+
+  <div class="controls">
+    <label for="ls">Letter spacing</label>
+    <input id="ls" type="range" min="0" max="0.3" step="0.01" value="0.08">
+    <output id="lsv" for="ls">0.08em</output>
+    <span class="count">19 families · 64 styles</span>
+  </div>
+
+  <section class="fgrid" id="fgrid"></section>
+
+  <p class="foot">Fonts: The Future Tech Font Bundle by Pixel Surplus, Extended Commercial Use License. Each wordmark is sized so that AUDI has a similar width across fonts, which makes the comparison fair. Wide and narrow fonts therefore differ in height.</p>
+</div>
+
+<script>
+const families = [{"name":"Astronoma","def":0,"styles":[{"label":"Regular","id":"f-astronoma-regular","scale":1.02,"file":"assets/fonts/astronoma/regular.otf"}]},{"name":"Chipen","def":0,"styles":[{"label":"Regular","id":"f-chipen-regular","scale":1.3,"file":"assets/fonts/chipen/regular.woff"},{"label":"Italic","id":"f-chipen-italic","scale":1.3,"file":"assets/fonts/chipen/italic.woff"},{"label":"Expanded","id":"f-chipen-expanded","scale":0.99,"file":"assets/fonts/chipen/expanded.woff"},{"label":"Expanded Italic","id":"f-chipen-expanded-italic","scale":0.99,"file":"assets/fonts/chipen/expanded-italic.woff"}]},{"name":"Cyber City","def":0,"styles":[{"label":"Regular","id":"f-cyber-city-regular","scale":0.58,"file":"assets/fonts/cyber-city/regular.otf"}]},{"name":"Epyon Mech","def":0,"styles":[{"label":"Style 1","id":"f-epyon-mech-style-1","scale":1.07,"file":"assets/fonts/epyon-mech/style-1.otf"},{"label":"Style 2","id":"f-epyon-mech-style-2","scale":1.07,"file":"assets/fonts/epyon-mech/style-2.otf"},{"label":"Style 3","id":"f-epyon-mech-style-3","scale":1.07,"file":"assets/fonts/epyon-mech/style-3.otf"}]},{"name":"Fauna","def":4,"styles":[{"label":"Thin","id":"f-fauna-thin","scale":0.71,"file":"assets/fonts/fauna/thin.ttf"},{"label":"Light","id":"f-fauna-light","scale":0.71,"file":"assets/fonts/fauna/light.ttf"},{"label":"Regular","id":"f-fauna-regular","scale":0.71,"file":"assets/fonts/fauna/regular.ttf"},{"label":"Medium","id":"f-fauna-medium","scale":0.71,"file":"assets/fonts/fauna/medium.ttf"},{"label":"Bold","id":"f-fauna-bold","scale":0.7,"file":"assets/fonts/fauna/bold.ttf"}]},{"name":"GR Fatient","def":0,"styles":[{"label":"Fatient","id":"f-gr-fatient-fatient","scale":0.77,"file":"assets/fonts/gr-fatient/fatient.woff"},{"label":"Patient","id":"f-gr-fatient-patient","scale":0.77,"file":"assets/fonts/gr-fatient/patient.otf"}]},{"name":"Genesis Three","def":0,"styles":[{"label":"Solid","id":"f-genesis-three-solid","scale":0.55,"file":"assets/fonts/genesis-three/solid.woff"},{"label":"Outline","id":"f-genesis-three-outline","scale":0.55,"file":"assets/fonts/genesis-three/outline.woff"},{"label":"Mono","id":"f-genesis-three-mono","scale":1.01,"file":"assets/fonts/genesis-three/mono.woff"}]},{"name":"Luna Parc","def":0,"styles":[{"label":"Solid","id":"f-luna-parc-solid","scale":0.95,"file":"assets/fonts/luna-parc/solid.otf"},{"label":"Line","id":"f-luna-parc-line","scale":0.95,"file":"assets/fonts/luna-parc/line.otf"}]},{"name":"MBF Atom","def":0,"styles":[{"label":"Regular","id":"f-mbf-atom-regular","scale":1.11,"file":"assets/fonts/mbf-atom/regular.woff"}]},{"name":"MBF Canno","def":0,"styles":[{"label":"Regular","id":"f-mbf-canno-regular","scale":1.11,"file":"assets/fonts/mbf-canno/regular.woff"}]},{"name":"MBF Necoma","def":0,"styles":[{"label":"Regular","id":"f-mbf-necoma-regular","scale":0.57,"file":"assets/fonts/mbf-necoma/regular.woff"}]},{"name":"Mostest Mono","def":2,"styles":[{"label":"Width 550","id":"f-mostest-mono-width-550","scale":0.91,"file":"assets/fonts/mostest-mono/width-550.woff2"},{"label":"Width 825","id":"f-mostest-mono-width-825","scale":0.61,"file":"assets/fonts/mostest-mono/width-825.woff2"},{"label":"Width 1100","id":"f-mostest-mono-width-1100","scale":0.55,"file":"assets/fonts/mostest-mono/width-1100.woff2"},{"label":"Width 1375","id":"f-mostest-mono-width-1375","scale":0.55,"file":"assets/fonts/mostest-mono/width-1375.woff2"},{"label":"Width 1650","id":"f-mostest-mono-width-1650","scale":0.55,"file":"assets/fonts/mostest-mono/width-1650.woff2"},{"label":"Width 1925","id":"f-mostest-mono-width-1925","scale":0.55,"file":"assets/fonts/mostest-mono/width-1925.woff2"},{"label":"Width 2200","id":"f-mostest-mono-width-2200","scale":0.55,"file":"assets/fonts/mostest-mono/width-2200.woff2"}]},{"name":"Nort Mono","def":0,"styles":[{"label":"Regular","id":"f-nort-mono-regular","scale":0.89,"file":"assets/fonts/nort-mono/regular.otf"}]},{"name":"Praxo iO","def":2,"styles":[{"label":"Light","id":"f-praxo-io-light","scale":0.86,"file":"assets/fonts/praxo-io/light.otf"},{"label":"Regular","id":"f-praxo-io-regular","scale":0.85,"file":"assets/fonts/praxo-io/regular.otf"},{"label":"Bold","id":"f-praxo-io-bold","scale":0.84,"file":"assets/fonts/praxo-io/bold.otf"},{"label":"ATG Thin","id":"f-praxo-io-atg-thin","scale":1.09,"file":"assets/fonts/praxo-io/atg-thin.otf"},{"label":"ATG Light","id":"f-praxo-io-atg-light","scale":1.08,"file":"assets/fonts/praxo-io/atg-light.otf"},{"label":"ATG Regular","id":"f-praxo-io-atg-regular","scale":1.06,"file":"assets/fonts/praxo-io/atg-regular.otf"},{"label":"ATG Bold","id":"f-praxo-io-atg-bold","scale":1.05,"file":"assets/fonts/praxo-io/atg-bold.otf"}]},{"name":"Proto Mono","def":3,"styles":[{"label":"Light","id":"f-proto-mono-light","scale":0.98,"file":"assets/fonts/proto-mono/light.otf"},{"label":"Regular","id":"f-proto-mono-regular","scale":0.98,"file":"assets/fonts/proto-mono/regular.otf"},{"label":"Medium","id":"f-proto-mono-medium","scale":0.98,"file":"assets/fonts/proto-mono/medium.otf"},{"label":"SemiBold","id":"f-proto-mono-semibold","scale":0.98,"file":"assets/fonts/proto-mono/semibold.otf"},{"label":"Light Shadow","id":"f-proto-mono-light-shadow","scale":0.98,"file":"assets/fonts/proto-mono/light-shadow.otf"},{"label":"Regular Shadow","id":"f-proto-mono-regular-shadow","scale":0.98,"file":"assets/fonts/proto-mono/regular-shadow.otf"},{"label":"Medium Shadow","id":"f-proto-mono-medium-shadow","scale":0.98,"file":"assets/fonts/proto-mono/medium-shadow.otf"},{"label":"SemiBold Shadow","id":"f-proto-mono-semibold-shadow","scale":0.98,"file":"assets/fonts/proto-mono/semibold-shadow.otf"}]},{"name":"Robonix","def":3,"styles":[{"label":"Book","id":"f-robonix-book","scale":1.3,"file":"assets/fonts/robonix/book.woff"},{"label":"Regular","id":"f-robonix-regular","scale":1.28,"file":"assets/fonts/robonix/regular.woff"},{"label":"Semibold","id":"f-robonix-semibold","scale":1.25,"file":"assets/fonts/robonix/semibold.woff"},{"label":"Bold","id":"f-robonix-bold","scale":1.23,"file":"assets/fonts/robonix/bold.woff"},{"label":"Ultrabold","id":"f-robonix-ultrabold","scale":1.2,"file":"assets/fonts/robonix/ultrabold.woff"},{"label":"Book Shadow","id":"f-robonix-book-shadow","scale":1.3,"file":"assets/fonts/robonix/book-shadow.woff"},{"label":"Regular Shadow","id":"f-robonix-regular-shadow","scale":1.28,"file":"assets/fonts/robonix/regular-shadow.woff"},{"label":"Semibold Shadow","id":"f-robonix-semibold-shadow","scale":1.25,"file":"assets/fonts/robonix/semibold-shadow.woff"},{"label":"Bold Shadow","id":"f-robonix-bold-shadow","scale":1.23,"file":"assets/fonts/robonix/bold-shadow.woff"},{"label":"Ultrabold Shadow","id":"f-robonix-ultrabold-shadow","scale":1.2,"file":"assets/fonts/robonix/ultrabold-shadow.woff"}]},{"name":"Squiver","def":0,"styles":[{"label":"Regular","id":"f-squiver-regular","scale":0.7,"file":"assets/fonts/squiver/regular.woff"}]},{"name":"Studio Grotesk","def":3,"styles":[{"label":"Thin","id":"f-studio-grotesk-thin","scale":1.3,"file":"assets/fonts/studio-grotesk/thin.otf"},{"label":"Light","id":"f-studio-grotesk-light","scale":1.3,"file":"assets/fonts/studio-grotesk/light.otf"},{"label":"Regular","id":"f-studio-grotesk-regular","scale":1.3,"file":"assets/fonts/studio-grotesk/regular.otf"},{"label":"Bold","id":"f-studio-grotesk-bold","scale":1.24,"file":"assets/fonts/studio-grotesk/bold.otf"},{"label":"Extra Bold","id":"f-studio-grotesk-extra-bold","scale":1.24,"file":"assets/fonts/studio-grotesk/extra-bold.otf"}]},{"name":"Swavao Tech Sans","def":0,"styles":[{"label":"Regular","id":"f-swavao-tech-sans-regular","scale":0.96,"file":"assets/fonts/swavao-tech-sans/regular.woff"}]}];
+const chip = (s) => '<svg width="' + s + '" height="' + s + '" aria-hidden="true"><use href="#chipA"/></svg>';
+const esc = s => s.replace(/&/g, '&amp;');
+const grid = document.getElementById('fgrid');
+
+grid.innerHTML = families.map((f, i) => `
+  <article class="fcard" data-i="${i}">
+    <div class="fhead"><h3>${esc(f.name)}</h3><span class="tag">${f.styles.length} style${f.styles.length > 1 ? 's' : ''}</span></div>
+    <div class="mock">
+      <div class="mtabs"><div class="mtab">${chip(16)}AUDI · Orchestrator Dashboard</div><div class="mtab ghost">Figma – Bell Mobility</div></div>
+      <div class="mbar"><div class="mbrand">${chip(28)}<span class="wm">AUDI</span></div><span class="msub">Orchestrator Dashboard</span></div>
+      <div class="mbody" aria-hidden="true"><div></div><div></div><div></div></div>
+    </div>
+    <div class="flock">${chip(52)}<div><div class="wm">AUDI</div><div class="tg">Augmented Unified Delivery Intelligence</div></div></div>
+    <div class="chips" role="group" aria-label="${esc(f.name)} styles">${f.styles.map((s, j) =>
+      '<button type="button" id="b' + i + '-' + j + '" data-j="' + j + '" aria-pressed="' + (j === f.def) + '">' + esc(s.label) + '</button>').join('')}</div>
+  </article>`).join('');
+
+function setStyle(card, j) {
+  const f = families[+card.dataset.i], s = f.styles[j];
+  card.style.setProperty('--wm', "'" + s.id + "'");
+  card.style.setProperty('--s', s.scale);
+  card.querySelectorAll('.chips button').forEach(b => b.setAttribute('aria-pressed', String(+b.dataset.j === j)));
+}
+grid.querySelectorAll('.fcard').forEach(c => setStyle(c, families[+c.dataset.i].def));
+grid.addEventListener('click', e => {
+  const b = e.target.closest('.chips button'); if (!b) return;
+  setStyle(b.closest('.fcard'), +b.dataset.j);
+});
+
+const ls = document.getElementById('ls'), lsv = document.getElementById('lsv');
+ls.addEventListener('input', () => {
+  lsv.textContent = (+ls.value).toFixed(2) + 'em';
+  grid.querySelectorAll('.fcard').forEach(c => c.style.setProperty('--ls', ls.value + 'em'));
+});
+</script>
+</body>
+</html>
