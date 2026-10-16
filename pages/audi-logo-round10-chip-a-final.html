@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AUDI Chip A Final</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  color-scheme: dark;
+  --bg:#0d0f18; --surf:#141720; --surf2:#1c2030; --border:#2a2f4a;
+  --text:#e2e8f0; --muted:#8a98b0; --accent:#3399cc; --accent-strong:#5cc8ff;
+  --tile-dark:#0d0f18; --tile-light:#f3f6fa; --tile-light-border:#d6dee8;
+  --btn-bg:#0067A5; --btn-text:#ffffff;
+  --display:'Plus Jakarta Sans', 'Segoe UI', system-ui, sans-serif;
+  --body:'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif;
+  --mono:'JetBrains Mono', ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    color-scheme: light;
+    --bg:#f4f6fa; --surf:#ffffff; --surf2:#eef2f7; --border:#d8dfea;
+    --text:#131a2a; --muted:#56647a; --accent:#0067A5; --accent-strong:#004f7c;
+  }
+}
+:root[data-theme="light"]{
+  color-scheme: light;
+  --bg:#f4f6fa; --surf:#ffffff; --surf2:#eef2f7; --border:#d8dfea;
+  --text:#131a2a; --muted:#56647a; --accent:#0067A5; --accent-strong:#004f7c;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:15px;line-height:1.55;margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:20px;padding-block:40px 64px;display:flex;flex-direction:column;gap:40px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.intro{display:grid;grid-template-columns:1.3fr 1fr;gap:32px;align-items:center}
+.intro h1{font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:-.01em;margin-top:8px}
+.intro p{color:var(--muted);max-width:62ch;margin:12px 0 0}
+.base{display:flex;align-items:center;gap:16px;background:var(--surf);border:1px solid var(--border);border-radius:10px;padding:16px 18px}
+.base svg{width:64px;height:64px;flex:none}
+.base b{font-family:var(--display);font-size:15px;display:block}
+.base span{color:var(--muted);font-size:13px}
+
+.preview{background:var(--surf);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.preview-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:14px 18px;border-bottom:1px solid var(--border)}
+.preview-top h2{font-size:15px;font-weight:700}
+.preview-top span{font-size:13px;color:var(--muted)}
+.browser{background:#0a0c13;padding:10px 12px 0}
+.tabs{display:flex;gap:4px}
+.tab{display:flex;align-items:center;gap:8px;background:#141720;color:#c9d3e0;font-size:12px;padding:8px 14px;border-radius:8px 8px 0 0;max-width:280px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tab.ghost{background:transparent;color:#5d6a80}
+.tab svg{flex:none}
+.dash-bar{background:#141720;border-bottom:1px solid #2a2f4a;display:flex;align-items:center;gap:12px;padding:12px 18px;color:#e2e8f0}
+.dash-bar .brand{display:flex;align-items:center;gap:10px}
+.dash-bar .word{font-family:var(--display);font-weight:800;letter-spacing:.14em;font-size:17px}
+.dash-bar .sub{color:#7888a0;font-size:14px;border-left:1px solid #2a2f4a;padding-left:12px}
+.dash-body{background:#0d0f18;padding:18px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.dash-body div{height:54px;border-radius:6px;background:#1c2030;border:1px solid #2a2f4a}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:20px}
+.concept{background:var(--surf);border:1px solid var(--border);border-radius:10px;display:flex;flex-direction:column;overflow:hidden;transition:border-color .2s}
+.concept.active{border-color:var(--accent)}
+.concept-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:16px 18px 0}
+.concept-head h3{font-size:19px;font-weight:700}
+.tag{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.tag.rec{color:var(--accent-strong)}
+.stage{margin:14px 18px 0;background:var(--tile-dark);border:1px solid #232842;border-radius:8px 8px 0 0;display:grid;place-items:center;padding:28px 0}
+.stage svg{width:132px;height:132px}
+.lockup{display:flex;align-items:center;gap:12px;margin:0 18px;padding:14px 16px;background:var(--tile-light);border:1px solid var(--tile-light-border);border-top:0;border-radius:0 0 8px 8px;color:#131a2a}
+.lockup svg{width:40px;height:40px;flex:none}
+.lockup .word{font-family:var(--display);font-weight:800;font-size:24px;letter-spacing:.14em;line-height:1}
+.lockup .expand{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;color:#56647a;text-transform:uppercase;margin-top:5px;line-height:1.3}
+.favs{display:flex;gap:10px;margin:14px 18px 0;flex-wrap:wrap}
+.fav{display:flex;align-items:flex-end;gap:12px;padding:10px 12px;border-radius:6px;flex:1;min-width:130px}
+.fav.d{background:var(--tile-dark);border:1px solid #232842}
+.fav.l{background:var(--tile-light);border:1px solid var(--tile-light-border)}
+.fav figure{margin:0;display:flex;flex-direction:column;align-items:center;gap:4px}
+.fav figcaption{font-family:var(--mono);font-size:9px;color:#7888a0;font-variant-numeric:tabular-nums}
+.body{padding:14px 18px 18px;display:flex;flex-direction:column;gap:10px;flex:1}
+.body p{margin:0;color:var(--muted);font-size:14px}
+.reads{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:5px;font-size:13px}
+.reads li{display:grid;grid-template-columns:92px 1fr;gap:8px}
+.reads span{font-family:var(--mono);font-size:11px;color:var(--accent);text-transform:uppercase;letter-spacing:.06em;padding-top:2px}
+.body button{margin-top:auto;align-self:flex-start;font:600 13px var(--body);background:transparent;color:var(--accent);border:1px solid var(--accent);border-radius:6px;padding:8px 14px;cursor:pointer}
+.body button:hover{background:var(--accent);color:var(--surf)}
+.body button:focus-visible{outline:2px solid var(--accent-strong);outline-offset:2px}
+.concept.active .body button{background:var(--btn-bg);color:var(--btn-text);border-color:var(--btn-bg)}
+
+.note{background:var(--surf2);border:1px solid var(--border);border-radius:10px;padding:20px 22px;display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.note h2{font-size:17px;margin-bottom:6px}
+.note p{margin:0;color:var(--muted);font-size:14px;max-width:60ch}
+.note code{font-family:var(--mono);font-size:12.5px;color:var(--text)}
+@media (prefers-reduced-motion: reduce){.concept{transition:none}}
+@media (max-width:760px){
+  .intro,.note{grid-template-columns:1fr}
+  .dash-body{grid-template-columns:1fr 1fr}
+  .dash-bar .sub{display:none}
+  .grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<style>
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.pair figure{margin:0;background:#0d0f18;border:1px solid #232842;border-radius:10px;display:grid;justify-items:center;gap:10px;padding:26px 0 14px;color:#8a98b0;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+.pair svg{width:170px;height:170px}
+.changes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:0;padding:0;list-style:none}
+.changes li{background:var(--surf);border:1px solid var(--border);border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;gap:4px}
+.changes b{font-family:var(--display);font-size:15px}
+.changes span{color:var(--muted);font-size:14px}
+.section-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.section-head h2{font-size:22px;font-weight:800}
+.section-head span{font-size:13px;color:var(--muted)}
+.vgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.vcard{background:var(--surf);border:1px solid var(--border);border-radius:10px;overflow:hidden;display:flex;flex-direction:column}
+.vcard .vstage{margin:14px 18px 0;border:1px solid;border-radius:8px 8px 0 0;display:grid;place-items:center;padding:28px 0}
+.vcard .vstage svg{width:132px;height:132px}
+.vrow{margin:0 18px;border:1px solid;border-top:0;padding:14px 16px;display:flex;align-items:center;gap:12px}
+.vrow svg{flex:none}
+.vrow .word{font-family:var(--display);font-weight:800;font-size:24px;letter-spacing:.14em;line-height:1}
+.vrow .expand{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;margin-top:5px;line-height:1.3}
+.vfav{gap:22px;align-items:flex-end;border-radius:0 0 8px 8px}
+.vfav figure{margin:0;display:flex;flex-direction:column;align-items:center;gap:4px}
+.vfav figcaption{font-family:var(--mono);font-size:9px;font-variant-numeric:tabular-nums}
+.swatches{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:8px 14px;font-size:13px}
+.swatches li{display:flex;align-items:center;gap:8px}
+.swatches i{width:16px;height:16px;border-radius:4px;border:1px solid rgba(128,128,128,.5);flex:none}
+.swatches code{font-family:var(--mono);font-size:11px;color:var(--muted);margin-left:auto}
+.ct{margin:0;color:var(--muted);font-size:13px}
+.dl{font-family:var(--mono);font-size:12px;color:var(--accent);word-break:break-all}
+.tilegroups{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.tilegroup h3{font-size:15px;margin-bottom:10px}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.tiles figure{margin:0;border:1px solid var(--border);border-radius:8px;display:grid;justify-items:center;gap:8px;padding:18px 0 10px}
+.tiles figcaption{font-size:12px}
+.tiles figcaption b{font-family:var(--mono);font-weight:500;margin-left:4px}
+.ctx{display:flex;flex-direction:column;gap:16px}
+.ctxrow{border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.ctxrow .label{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:10px 16px;background:var(--surf);border-bottom:1px solid var(--border)}
+.lightbar{background:#f4f6fa;border-bottom:1px solid #d8dfea;color:#131a2a}
+.lightbar .sub{color:#56647a;border-left-color:#d8dfea}
+.lighttabs{background:#dfe5ee;padding:10px 12px 0}
+.lighttabs .tab{background:#f4f6fa;color:#131a2a}
+.lighttabs .tab.ghost{background:transparent;color:#6b7a90}
+.lightbody{background:#e9edf3;padding:18px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.lightbody div{height:54px;border-radius:6px;background:#ffffff;border:1px solid #d8dfea}
+@media (max-width:760px){
+  .pair,.changes,.tilegroups{grid-template-columns:1fr}
+  .tiles{grid-template-columns:1fr 1fr 1fr}
+}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="gTile" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0a7cc2"/><stop offset="1" stop-color="#00456d"/></linearGradient>
+  </defs>
+  <symbol id="m100" viewBox="0 0 64 64"><defs><linearGradient id="gTile" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0a7cc2"/><stop offset="1" stop-color="#00456d"/></linearGradient></defs>
+<g fill="#3399cc">
+  <rect x="18" y="5" width="4" height="6" rx="1"/><rect x="18" y="53" width="4" height="6" rx="1"/>
+  <rect x="5" y="18" width="6" height="4" rx="1"/><rect x="53" y="18" width="6" height="4" rx="1"/>
+  <rect x="28" y="5" width="4" height="6" rx="1"/><rect x="28" y="53" width="4" height="6" rx="1"/>
+  <rect x="5" y="28" width="6" height="4" rx="1"/><rect x="53" y="28" width="6" height="4" rx="1"/>
+  <rect x="38" y="5" width="4" height="6" rx="1"/><rect x="38" y="53" width="4" height="6" rx="1"/>
+  <rect x="5" y="38" width="6" height="4" rx="1"/><rect x="53" y="38" width="6" height="4" rx="1"/></g>
+  <rect x="12" y="12" width="40" height="40" rx="5" fill="url(#gTile)"/><rect x="29" y="17" width="5" height="5" rx=".8" fill="#ffffff"/><rect x="23" y="23" width="5" height="5" rx=".8" fill="#ffffff"/><rect x="35" y="23" width="5" height="5" rx=".8" fill="#ffffff"/><rect x="23" y="29" width="5" height="5" rx=".8" fill="#5cc8ff"/><rect x="29" y="29" width="5" height="5" rx=".8" fill="#5cc8ff"/><rect x="35" y="29" width="5" height="5" rx=".8" fill="#5cc8ff"/><rect x="17" y="35" width="5" height="5" rx=".8" fill="#ffffff"/><rect x="41" y="35" width="5" height="5" rx=".8" fill="#ffffff"/><rect x="17" y="41" width="5" height="5" rx=".8" fill="#ffffff"/><rect x="41" y="41" width="5" height="5" rx=".8" fill="#ffffff"/></symbol>
+  <symbol id="m101" viewBox="0 0 64 64"><g fill="#3399cc">
+  <rect x="20" y="5" width="4" height="6" rx="1"/><rect x="20" y="53" width="4" height="6" rx="1"/>
+  <rect x="5" y="20" width="6" height="4" rx="1"/><rect x="53" y="20" width="6" height="4" rx="1"/>
+  <rect x="30" y="5" width="4" height="6" rx="1"/><rect x="30" y="53" width="4" height="6" rx="1"/>
+  <rect x="5" y="30" width="6" height="4" rx="1"/><rect x="53" y="30" width="6" height="4" rx="1"/>
+  <rect x="40" y="5" width="4" height="6" rx="1"/><rect x="40" y="53" width="4" height="6" rx="1"/>
+  <rect x="5" y="40" width="6" height="4" rx="1"/><rect x="53" y="40" width="6" height="4" rx="1"/></g>
+  <rect x="12" y="12" width="40" height="40" rx="5" fill="#0871B2"/><rect x="29" y="17" width="5" height="5" rx=".8" fill="#ffffff"/><rect x="23" y="23" width="5" height="5" rx=".8" fill="#ffffff"/><rect x="35" y="23" width="5" height="5" rx=".8" fill="#ffffff"/><rect x="23" y="29" width="5" height="5" rx=".8" fill="#5cc8ff"/><rect x="29" y="29" width="5" height="5" rx=".8" fill="#5cc8ff"/><rect x="35" y="29" width="5" height="5" rx=".8" fill="#5cc8ff"/><rect x="17" y="35" width="5" height="5" rx=".8" fill="#ffffff"/><rect x="41" y="35" width="5" height="5" rx=".8" fill="#ffffff"/><rect x="17" y="41" width="5" height="5" rx=".8" fill="#ffffff"/><rect x="41" y="41" width="5" height="5" rx=".8" fill="#ffffff"/></symbol>
+  <symbol id="m102" viewBox="0 0 64 64"><g fill="#c4c4c4">
+  <rect x="20" y="5" width="4" height="6" rx="1"/><rect x="20" y="53" width="4" height="6" rx="1"/>
+  <rect x="5" y="20" width="6" height="4" rx="1"/><rect x="53" y="20" width="6" height="4" rx="1"/>
+  <rect x="30" y="5" width="4" height="6" rx="1"/><rect x="30" y="53" width="4" height="6" rx="1"/>
+  <rect x="5" y="30" width="6" height="4" rx="1"/><rect x="53" y="30" width="6" height="4" rx="1"/>
+  <rect x="40" y="5" width="4" height="6" rx="1"/><rect x="40" y="53" width="4" height="6" rx="1"/>
+  <rect x="5" y="40" width="6" height="4" rx="1"/><rect x="53" y="40" width="6" height="4" rx="1"/></g>
+  <rect x="12" y="12" width="40" height="40" rx="5" fill="#ffffff"/><rect x="29" y="17" width="5" height="5" rx=".8" fill="#0d0d0d"/><rect x="23" y="23" width="5" height="5" rx=".8" fill="#0d0d0d"/><rect x="35" y="23" width="5" height="5" rx=".8" fill="#0d0d0d"/><rect x="23" y="29" width="5" height="5" rx=".8" fill="#5a5a5a"/><rect x="29" y="29" width="5" height="5" rx=".8" fill="#5a5a5a"/><rect x="35" y="29" width="5" height="5" rx=".8" fill="#5a5a5a"/><rect x="17" y="35" width="5" height="5" rx=".8" fill="#0d0d0d"/><rect x="41" y="35" width="5" height="5" rx=".8" fill="#0d0d0d"/><rect x="17" y="41" width="5" height="5" rx=".8" fill="#0d0d0d"/><rect x="41" y="41" width="5" height="5" rx=".8" fill="#0d0d0d"/></symbol>
+  <symbol id="m103" viewBox="0 0 64 64"><g fill="#5a5a5a">
+  <rect x="20" y="5" width="4" height="6" rx="1"/><rect x="20" y="53" width="4" height="6" rx="1"/>
+  <rect x="5" y="20" width="6" height="4" rx="1"/><rect x="53" y="20" width="6" height="4" rx="1"/>
+  <rect x="30" y="5" width="4" height="6" rx="1"/><rect x="30" y="53" width="4" height="6" rx="1"/>
+  <rect x="5" y="30" width="6" height="4" rx="1"/><rect x="53" y="30" width="6" height="4" rx="1"/>
+  <rect x="40" y="5" width="4" height="6" rx="1"/><rect x="40" y="53" width="4" height="6" rx="1"/>
+  <rect x="5" y="40" width="6" height="4" rx="1"/><rect x="53" y="40" width="6" height="4" rx="1"/></g>
+  <rect x="12" y="12" width="40" height="40" rx="5" fill="#0d0d0d"/><rect x="29" y="17" width="5" height="5" rx=".8" fill="#ffffff"/><rect x="23" y="23" width="5" height="5" rx=".8" fill="#ffffff"/><rect x="35" y="23" width="5" height="5" rx=".8" fill="#ffffff"/><rect x="23" y="29" width="5" height="5" rx=".8" fill="#bdbdbd"/><rect x="29" y="29" width="5" height="5" rx=".8" fill="#bdbdbd"/><rect x="35" y="29" width="5" height="5" rx=".8" fill="#bdbdbd"/><rect x="17" y="35" width="5" height="5" rx=".8" fill="#ffffff"/><rect x="41" y="35" width="5" height="5" rx=".8" fill="#ffffff"/><rect x="17" y="41" width="5" height="5" rx=".8" fill="#ffffff"/><rect x="41" y="41" width="5" height="5" rx=".8" fill="#ffffff"/></symbol>
+</svg>
+
+<div class="wrap">
+  <section class="intro">
+    <div>
+      <div class="eyebrow">Brand exploration · Round 10</div>
+      <h1>Chip A, final touches</h1>
+      <p>The Chip A from Round 8, with the three requested changes: pins centered on every side, a solid chip body in #0871B2, and black and white versions for dark and light backgrounds.</p>
+    </div>
+    <div class="base">
+      <svg width="64" height="64" aria-hidden="true"><use href="#m101"/></svg>
+      <div><b>Selected: Chip A</b><span>Round 8, M4. Updated here as C1, C2 and C3.</span></div>
+    </div>
+  </section>
+
+  <section style="display:flex;flex-direction:column;gap:16px">
+    <div class="section-head"><h2>What changed</h2><span>The dashed lines mark the center of the logo</span></div>
+    <div class="pair">
+      <figure>
+        <svg viewBox="0 0 64 64"><use href="#m100" width="64" height="64"/>
+          <g stroke="#ff6b6b" stroke-width=".35" stroke-dasharray="1.2 1.2"><line x1="32" y1="0" x2="32" y2="64"/><line x1="0" y1="32" x2="64" y2="32"/></g></svg>
+        Before: pins sit 2 units off center
+      </figure>
+      <figure>
+        <svg viewBox="0 0 64 64"><use href="#m101" width="64" height="64"/>
+          <g stroke="#ff6b6b" stroke-width=".35" stroke-dasharray="1.2 1.2"><line x1="32" y1="0" x2="32" y2="64"/><line x1="0" y1="32" x2="64" y2="32"/></g></svg>
+        After: pins centered, solid #0871B2 body
+      </figure>
+    </div>
+    <ul class="changes">
+      <li><b>Pins centered</b><span>The three pins on each side now sit at 22, 32 and 42, so the middle pin lines up with the center of the chip on all four sides.</span></li>
+      <li><b>Solid body</b><span>The gradient is replaced by one flat color, #0871B2, behind the pixel A.</span></li>
+      <li><b>Black and white</b><span>Two grayscale versions: white chip for dark backgrounds, black chip for light backgrounds.</span></li>
+    </ul>
+  </section>
+
+  <section style="display:flex;flex-direction:column;gap:16px">
+    <div class="section-head"><h2>The three versions</h2><span>Each is saved as an SVG in <code>assets/</code></span></div>
+    <div class="vgrid">
+  <article class="vcard">
+    <div class="concept-head"><h3>C1. Chip A, color</h3><span class="tag rec">Final color</span></div>
+    <div class="vstage" style="background:#0d0f18;border-color:#232842"><svg width="132" height="132" aria-hidden="true"><use href="#m101"/></svg></div>
+    <div class="vrow" style="background:#0d0f18;border-color:#232842;color:#e2e8f0">
+      <svg width="40" height="40" aria-hidden="true"><use href="#m101"/></svg>
+      <div><div class="word">AUDI</div><div class="expand" style="color:#8a98b0">Augmented Unified Delivery Intelligence</div></div>
+    </div>
+    <div class="vrow vfav" style="background:#0d0f18;border-color:#232842;color:#8a98b0">
+      <figure><svg width="48" height="48" aria-hidden="true"><use href="#m101"/></svg><figcaption>48</figcaption></figure>
+      <figure><svg width="32" height="32" aria-hidden="true"><use href="#m101"/></svg><figcaption>32</figcaption></figure>
+      <figure><svg width="16" height="16" aria-hidden="true"><use href="#m101"/></svg><figcaption>16</figcaption></figure>
+    </div>
+    <div class="body">
+      <ul class="swatches"><li><i style="background:#0871B2"></i><span>Chip body</span><code>#0871B2</code></li><li><i style="background:#3399cc"></i><span>Pins</span><code>#3399cc</code></li><li><i style="background:#ffffff"></i><span>Pixel A</span><code>#ffffff</code></li><li><i style="background:#5cc8ff"></i><span>Crossbar</span><code>#5cc8ff</code></li></ul>
+      <p class="ct">White A on body 5.2:1 · crossbar on body 2.8:1</p>
+      <a class="dl" href="../assets/audi-logo-c1-chip-a.svg">audi-logo-c1-chip-a.svg</a>
+    </div>
+  </article>
+  <article class="vcard">
+    <div class="concept-head"><h3>C2. Chip A, black and white</h3><span class="tag">For dark backgrounds</span></div>
+    <div class="vstage" style="background:#0d0f18;border-color:#232842"><svg width="132" height="132" aria-hidden="true"><use href="#m102"/></svg></div>
+    <div class="vrow" style="background:#0d0f18;border-color:#232842;color:#e2e8f0">
+      <svg width="40" height="40" aria-hidden="true"><use href="#m102"/></svg>
+      <div><div class="word">AUDI</div><div class="expand" style="color:#8a98b0">Augmented Unified Delivery Intelligence</div></div>
+    </div>
+    <div class="vrow vfav" style="background:#0d0f18;border-color:#232842;color:#8a98b0">
+      <figure><svg width="48" height="48" aria-hidden="true"><use href="#m102"/></svg><figcaption>48</figcaption></figure>
+      <figure><svg width="32" height="32" aria-hidden="true"><use href="#m102"/></svg><figcaption>32</figcaption></figure>
+      <figure><svg width="16" height="16" aria-hidden="true"><use href="#m102"/></svg><figcaption>16</figcaption></figure>
+    </div>
+    <div class="body">
+      <ul class="swatches"><li><i style="background:#ffffff"></i><span>Chip body</span><code>#ffffff</code></li><li><i style="background:#c4c4c4"></i><span>Pins</span><code>#c4c4c4</code></li><li><i style="background:#0d0d0d"></i><span>Pixel A</span><code>#0d0d0d</code></li><li><i style="background:#5a5a5a"></i><span>Crossbar</span><code>#5a5a5a</code></li></ul>
+      <p class="ct">Dark A on white body 19.4:1 · crossbar on body 6.9:1</p>
+      <a class="dl" href="../assets/audi-logo-c2-chip-a-mono-for-dark.svg">audi-logo-c2-chip-a-mono-for-dark.svg</a>
+    </div>
+  </article>
+  <article class="vcard">
+    <div class="concept-head"><h3>C3. Chip A, black and white</h3><span class="tag">For light backgrounds</span></div>
+    <div class="vstage" style="background:#f3f6fa;border-color:#d6dee8"><svg width="132" height="132" aria-hidden="true"><use href="#m103"/></svg></div>
+    <div class="vrow" style="background:#f3f6fa;border-color:#d6dee8;color:#131a2a">
+      <svg width="40" height="40" aria-hidden="true"><use href="#m103"/></svg>
+      <div><div class="word">AUDI</div><div class="expand" style="color:#56647a">Augmented Unified Delivery Intelligence</div></div>
+    </div>
+    <div class="vrow vfav" style="background:#f3f6fa;border-color:#d6dee8;color:#56647a">
+      <figure><svg width="48" height="48" aria-hidden="true"><use href="#m103"/></svg><figcaption>48</figcaption></figure>
+      <figure><svg width="32" height="32" aria-hidden="true"><use href="#m103"/></svg><figcaption>32</figcaption></figure>
+      <figure><svg width="16" height="16" aria-hidden="true"><use href="#m103"/></svg><figcaption>16</figcaption></figure>
+    </div>
+    <div class="body">
+      <ul class="swatches"><li><i style="background:#0d0d0d"></i><span>Chip body</span><code>#0d0d0d</code></li><li><i style="background:#5a5a5a"></i><span>Pins</span><code>#5a5a5a</code></li><li><i style="background:#ffffff"></i><span>Pixel A</span><code>#ffffff</code></li><li><i style="background:#bdbdbd"></i><span>Crossbar</span><code>#bdbdbd</code></li></ul>
+      <p class="ct">White A on black body 19.4:1 · crossbar on body 10.3:1</p>
+      <a class="dl" href="../assets/audi-logo-c3-chip-a-mono-for-light.svg">audi-logo-c3-chip-a-mono-for-light.svg</a>
+    </div>
+  </article></div>
+  </section>
+
+  <section style="display:flex;flex-direction:column;gap:16px">
+    <div class="section-head"><h2>Contrast check</h2><span>Contrast ratio of the chip body against the background. 3:1 is the minimum for logos and icons.</span></div>
+    <div class="tilegroups">
+      
+  <div class="tilegroup">
+    <h3>C2, white version on dark backgrounds</h3>
+    <div class="tiles">
+      <figure style="background:#000000"><svg width="64" height="64" aria-hidden="true"><use href="#m102"/></svg><figcaption style="color:#ccc">Black <b>21:1</b></figcaption></figure>
+      <figure style="background:#1a1a1a"><svg width="64" height="64" aria-hidden="true"><use href="#m102"/></svg><figcaption style="color:#ccc">Charcoal <b>17.4:1</b></figcaption></figure>
+      <figure style="background:#333333"><svg width="64" height="64" aria-hidden="true"><use href="#m102"/></svg><figcaption style="color:#ccc">Dark grey <b>12.6:1</b></figcaption></figure>
+    </div>
+  </div>
+      
+  <div class="tilegroup">
+    <h3>C3, black version on light backgrounds</h3>
+    <div class="tiles">
+      <figure style="background:#ffffff"><svg width="64" height="64" aria-hidden="true"><use href="#m103"/></svg><figcaption style="color:#333">White <b>19.4:1</b></figcaption></figure>
+      <figure style="background:#eeeeee"><svg width="64" height="64" aria-hidden="true"><use href="#m103"/></svg><figcaption style="color:#333">Light grey <b>16.8:1</b></figcaption></figure>
+      <figure style="background:#d9d9d9"><svg width="64" height="64" aria-hidden="true"><use href="#m103"/></svg><figcaption style="color:#333">Mid grey <b>13.8:1</b></figcaption></figure>
+    </div>
+  </div>
+    </div>
+  </section>
+
+  <section class="ctx">
+    <div class="section-head"><h2>In the dashboard header</h2><span>Browser tab at 16px, header at 28px</span></div>
+
+    <div class="ctxrow">
+      <div class="label">Color on the dark dashboard</div>
+      <div class="browser"><div class="tabs">
+        <div class="tab"><svg width="16" height="16" aria-hidden="true"><use href="#m101"/></svg>AUDI · Orchestrator Dashboard</div>
+        <div class="tab ghost">Figma – Bell Mobility</div></div></div>
+      <div class="dash-bar"><div class="brand"><svg width="28" height="28" aria-hidden="true"><use href="#m101"/></svg><span class="word">AUDI</span></div><span class="sub">Orchestrator Dashboard</span></div>
+      <div class="dash-body" aria-hidden="true"><div></div><div></div><div></div></div>
+    </div>
+
+    <div class="ctxrow">
+      <div class="label">White version on a dark header</div>
+      <div class="browser"><div class="tabs">
+        <div class="tab"><svg width="16" height="16" aria-hidden="true"><use href="#m102"/></svg>AUDI · Orchestrator Dashboard</div>
+        <div class="tab ghost">Figma – Bell Mobility</div></div></div>
+      <div class="dash-bar"><div class="brand"><svg width="28" height="28" aria-hidden="true"><use href="#m102"/></svg><span class="word">AUDI</span></div><span class="sub">Orchestrator Dashboard</span></div>
+      <div class="dash-body" aria-hidden="true"><div></div><div></div><div></div></div>
+    </div>
+
+    <div class="ctxrow">
+      <div class="label">Black version on a light header</div>
+      <div class="lighttabs"><div class="tabs">
+        <div class="tab"><svg width="16" height="16" aria-hidden="true"><use href="#m103"/></svg>AUDI · Orchestrator Dashboard</div>
+        <div class="tab ghost">Figma – Bell Mobility</div></div></div>
+      <div class="dash-bar lightbar"><div class="brand"><svg width="28" height="28" aria-hidden="true"><use href="#m103"/></svg><span class="word">AUDI</span></div><span class="sub">Orchestrator Dashboard</span></div>
+      <div class="lightbody" aria-hidden="true"><div></div><div></div><div></div></div>
+    </div>
+  </section>
+
+  <section class="note">
+    <div>
+      <h2>Notes</h2>
+      <p>The black and white versions use grays so the crossbar stays visible against the A. Use <strong>C2</strong> (white chip) on dark and <strong>C3</strong> (black chip) on light. At 16px the pins are 1 pixel wide, so they read as a soft edge around the chip.</p>
+    </div>
+    <div>
+      <h2>Next</h2>
+      <p>When you confirm the final version, I can make <code>favicon.svg</code>, a multi-size <code>favicon.ico</code> (16/32/48) and <code>apple-touch-icon.png</code> (180).</p>
+    </div>
+  </section>
+</div>
+</body>
+</html>
